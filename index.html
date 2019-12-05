@@ -160,6 +160,73 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-04二分查找-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/2019-12-04二分查找-2/">二分查找(2)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/04/2019-12-04二分查找-2/" class="archive-article-date">
+  	<time datetime="2019-12-04T06:22:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="第一个给定值"><a href="#第一个给定值" class="headerlink" title="第一个给定值"></a>第一个给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchFirst</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &lt; value) &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === <span class="number">0</span> || list[middle - <span class="number">1</span>] !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchFirst(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="最后一个给定值"><a href="#最后一个给定值" class="headerlink" title="最后一个给定值"></a>最后一个给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchLast</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &lt; value) &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === list.length - <span class="number">1</span> || list[middle + <span class="number">1</span>] !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchLast(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="第一个大于等于给定值"><a href="#第一个大于等于给定值" class="headerlink" title="第一个大于等于给定值"></a>第一个大于等于给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchGE</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === <span class="number">0</span> || list[middle - <span class="number">1</span>] &lt; value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchGE(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="最后一个小于等于给定值"><a href="#最后一个小于等于给定值" class="headerlink" title="最后一个小于等于给定值"></a>最后一个小于等于给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchLE</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &lt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === list.length - <span class="number">1</span> || list[middle + <span class="number">1</span>] &gt; value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchLE(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序排列的循环有序数组</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchCircle</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(high + (low - high) / <span class="number">2</span>)</span><br><span class="line">    <span class="comment">// 循环有序数组被切割后，会分为有序数组和循环有序数组</span></span><br><span class="line">    <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list[low] &lt;= list[middle]) &#123;</span><br><span class="line">      <span class="comment">// 左侧有序</span></span><br><span class="line">      <span class="keyword">if</span> (list[middle] &gt;= value &amp;&amp; list[low] &lt;= value) &#123;</span><br><span class="line">        high = middle - <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = middle + <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 右侧有序</span></span><br><span class="line">      <span class="keyword">if</span> (list[high] &gt;= value &amp;&amp; list[middle] &lt;= value) &#123;</span><br><span class="line">        low = middle + <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = middle - <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchCircle(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/04/2019-12-04二分查找-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-3二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -879,122 +946,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-07-19-复杂度分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/2019-07-19-复杂度分析/">复杂度分析</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/2019-07-19-复杂度分析/" class="archive-article-date">
-  	<time datetime="2019-07-19T06:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="大-O-复杂度表示法"><a href="#大-O-复杂度表示法" class="headerlink" title="大 O 复杂度表示法"></a>大 O 复杂度表示法</h3><p>表示随着数据增加，复杂度的增长趋势</p>
-<h4 id="大-O-时间复杂度"><a href="#大-O-时间复杂度" class="headerlink" title="大 O 时间复杂度"></a>大 O 时间复杂度</h4><p>表示随着数据增加，代码执行时间的增长趋势</p>
-<ol>
-<li>只关注执行次数最多的代码</li>
-<li>加法法则（只关注量级最大的，比如<code>n^2</code>大于<code>n</code>）</li>
-<li>乘法法则（嵌套代码的复杂度，等于嵌套代码复杂度的乘积）</li>
-</ol>
-<h4 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4><ol>
-<li><p>最好情况时间复杂度</p>
-<blockquote>
-<p>最理想情况下，代码执行时间复杂度</p>
-</blockquote>
-</li>
-<li><p>最坏情况时间复杂度</p>
-<blockquote>
-<p>最理糟糕情况下，代码执行时间复杂度</p>
-</blockquote>
-</li>
-<li><p>平均情况时间复杂度</p>
-<blockquote>
-<p>其实是求加权平均值，即期望值</p>
-</blockquote>
-</li>
-<li><p>均摊情况时间复杂度</p>
-<blockquote>
-<p>把时间复杂度高的，均摊到其他复杂度低的操作上，计算出来的时间复杂度</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="复杂度量级-递增"><a href="#复杂度量级-递增" class="headerlink" title="复杂度量级(递增)"></a>复杂度量级(递增)</h4><ul>
-<li>常量阶 O(1)</li>
-<li>对数阶 O($\log$n)</li>
-<li>线性阶 O(n)</li>
-<li>线性对数阶 O(n$\log$n)</li>
-<li>平方阶 O(n^2) 等</li>
-<li>指数阶 O(2^n)</li>
-<li>阶乘阶 O(n!)</li>
-</ul>
-<h4 id="大-O-空间复杂度"><a href="#大-O-空间复杂度" class="headerlink" title="大 O 空间复杂度"></a>大 O 空间复杂度</h4><p>表示随着数据增加，代码存储空间的增长趋势 （其他类似时间复杂度）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/2019-07-19-复杂度分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1109,15 +1060,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1145,15 +1096,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
