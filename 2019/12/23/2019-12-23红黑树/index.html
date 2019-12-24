@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>node.js 笔记 | 宋公子的博客</title>
+  <title>2019-12-23红黑树 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+  <meta name="description" content="平衡二叉查找树 任意一个节点，其左右子树的高度相差不超过 1 很多平衡二叉树，并没有严格遵守这一点 为了解决二叉查找树，在动态插入、删除等动态更新下，退化成为链表 只要树的高度，不比 log2n 大很多，还保留在指数级，就是一个合格的平衡二叉查找树  红黑树(R-B Tree) 根节点是黑色 任何叶子节点都是黑色空节点，不存储数据 任何相邻节点都不能为红色，必须黑色隔开 每个节点，到达其叶子节点的">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js 笔记">
-<meta property="og:url" content="http://yoursite.com/2018/02/11/了不起的-node-js-笔记/index.html">
+<meta property="og:title" content="2019-12-23红黑树">
+<meta property="og:url" content="http://yoursite.com/2019/12/23/2019-12-23红黑树/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+<meta property="og:description" content="平衡二叉查找树 任意一个节点，其左右子树的高度相差不超过 1 很多平衡二叉树，并没有严格遵守这一点 为了解决二叉查找树，在动态插入、删除等动态更新下，退化成为链表 只要树的高度，不比 log2n 大很多，还保留在指数级，就是一个合格的平衡二叉查找树  红黑树(R-B Tree) 根节点是黑色 任何叶子节点都是黑色空节点，不存储数据 任何相邻节点都不能为红色，必须黑色隔开 每个节点，到达其叶子节点的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-10T09:14:27.047Z">
+<meta property="og:updated_time" content="2019-12-23T08:11:24.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js 笔记">
-<meta name="twitter:description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+<meta name="twitter:title" content="2019-12-23红黑树">
+<meta name="twitter:description" content="平衡二叉查找树 任意一个节点，其左右子树的高度相差不超过 1 很多平衡二叉树，并没有严格遵守这一点 为了解决二叉查找树，在动态插入、删除等动态更新下，退化成为链表 只要树的高度，不比 log2n 大很多，还保留在指数级，就是一个合格的平衡二叉查找树  红黑树(R-B Tree) 根节点是黑色 任何叶子节点都是黑色空节点，不存储数据 任何相邻节点都不能为红色，必须黑色隔开 每个节点，到达其叶子节点的">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,28 +159,53 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-了不起的-node-js-笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019-12-23红黑树" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      node.js 笔记
+      2019-12-23红黑树
     </h1>
   
 
         
-        <a href="/2018/02/11/了不起的-node-js-笔记/" class="archive-article-date">
-  	<time datetime="2018-02-11T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+        <a href="/2019/12/23/2019-12-23红黑树/" class="archive-article-date">
+  	<time datetime="2019-12-23T07:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h2><p>新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h3 id="模块依赖"><a href="#模块依赖" class="headerlink" title="模块依赖"></a>模块依赖</h3><h3 id="构建应用"><a href="#构建应用" class="headerlink" title="构建应用"></a>构建应用</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h3 id="定义路由"><a href="#定义路由" class="headerlink" title="定义路由"></a>定义路由</h3><h3 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h3>
+        <h3 id="平衡二叉查找树"><a href="#平衡二叉查找树" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h3><ol>
+<li>任意一个节点，其左右子树的高度相差不超过 1</li>
+<li>很多平衡二叉树，并没有严格遵守这一点</li>
+<li>为了解决二叉查找树，在动态插入、删除等动态更新下，退化成为链表</li>
+<li>只要树的高度，不比 log2n 大很多，还保留在指数级，就是一个合格的平衡二叉查找树</li>
+</ol>
+<h3 id="红黑树-R-B-Tree"><a href="#红黑树-R-B-Tree" class="headerlink" title="红黑树(R-B Tree)"></a>红黑树(R-B Tree)</h3><ol>
+<li>根节点是黑色</li>
+<li>任何叶子节点都是黑色空节点，不存储数据</li>
+<li>任何相邻节点都不能为红色，必须黑色隔开</li>
+<li>每个节点，到达其叶子节点的任意路径，黑色节点个数相同</li>
+</ol>
+<h3 id="高度分析"><a href="#高度分析" class="headerlink" title="高度分析"></a>高度分析</h3><ol>
+<li>去掉红色节点，黑色节点构成的树，最多变成四叉树</li>
+<li>根据每条路径黑色节点个数相同，从叶子节点取出节点放到节点下，可组成完全二叉树</li>
+<li>完全二叉树高度近似 log2n，黑色二叉树高度近似 log2n</li>
+<li>红色节点被黑色节点隔开，每一个红色节点，对应一个黑色节点，那红色二叉树的高度近似 log2n</li>
+<li>整体高度近似 2log2n</li>
+</ol>
+<h3 id="为何使用红黑树"><a href="#为何使用红黑树" class="headerlink" title="为何使用红黑树"></a>为何使用红黑树</h3><ol>
+<li>AVL 完全平衡，查找很高效，但是为了维持平衡，需要在插入和删除，都需要调整</li>
+<li>红黑树查找、插入、删除，性能都比较稳定，适用于工程</li>
+</ol>
+<h3 id="动态数据结构对比"><a href="#动态数据结构对比" class="headerlink" title="动态数据结构对比"></a>动态数据结构对比</h3><p>散列表：插入删除查找都是 O(1), 是最常用的，但其缺点是不能顺序遍历以及扩容缩容的性能损耗。适用于那些不需要顺序遍历，数据更新不那么频繁的。</p>
+<p>跳表：插入删除查找都是 O(logn), 并且能顺序遍历。缺点是空间复杂度 O(n)。适用于不那么在意内存空间的，其顺序遍历和区间查找非常方便。</p>
+<p>红黑树：插入删除查找都是 O(logn), 中序遍历即是顺序遍历，稳定。缺点是难以实现，去查找不方便。其实跳表更佳，但红黑树已经用于很多地方了。</p>
+
       
 
       
@@ -269,7 +294,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/11/了不起的-node-js-笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/23/2019-12-23红黑树/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +308,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/07/02/JavaScript-继承/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/23/2019-12-24红黑树-2/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JavaScript 继承
+          2019-12-24红黑树-2
         
       </div>
     </a>
   
   
-    <a href="/2018/02/08/JavaScript-权威指南/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript 权威指南</div>
+    <a href="/2019/12/23/2019-12-23二叉树搜索树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二叉树搜索树</div>
       <i class="icon-circle-right"></i>
     </a>
   

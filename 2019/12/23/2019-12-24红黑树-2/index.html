@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>node.js 笔记 | 宋公子的博客</title>
+  <title>2019-12-24红黑树-2 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+  <meta name="description" content="概念 根节点是黑色节点 每个叶子节点是黑色的空节点，不存储数据 任何相邻节点不能同时为红，被黑色节点隔开 每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点  左旋（右旋同理） 围绕某个节点的左旋 2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）  怎么维持平衡 左右旋转维持树的左右子树高度相差不大 根据关注节点改变颜色，维持树的颜色平衡">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js 笔记">
-<meta property="og:url" content="http://yoursite.com/2018/02/11/了不起的-node-js-笔记/index.html">
+<meta property="og:title" content="2019-12-24红黑树-2">
+<meta property="og:url" content="http://yoursite.com/2019/12/23/2019-12-24红黑树-2/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+<meta property="og:description" content="概念 根节点是黑色节点 每个叶子节点是黑色的空节点，不存储数据 任何相邻节点不能同时为红，被黑色节点隔开 每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点  左旋（右旋同理） 围绕某个节点的左旋 2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）  怎么维持平衡 左右旋转维持树的左右子树高度相差不大 根据关注节点改变颜色，维持树的颜色平衡">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-10T09:14:27.047Z">
+<meta property="og:updated_time" content="2019-12-24T03:50:03.192Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js 笔记">
-<meta name="twitter:description" content="诞生新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。 流程安装模块依赖构建应用中间件定义路由监听">
+<meta name="twitter:title" content="2019-12-24红黑树-2">
+<meta name="twitter:description" content="概念 根节点是黑色节点 每个叶子节点是黑色的空节点，不存储数据 任何相邻节点不能同时为红，被黑色节点隔开 每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点  左旋（右旋同理） 围绕某个节点的左旋 2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）  怎么维持平衡 左右旋转维持树的左右子树高度相差不大 根据关注节点改变颜色，维持树的颜色平衡">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,28 +159,41 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-了不起的-node-js-笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019-12-24红黑树-2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      node.js 笔记
+      2019-12-24红黑树-2
     </h1>
   
 
         
-        <a href="/2018/02/11/了不起的-node-js-笔记/" class="archive-article-date">
-  	<time datetime="2018-02-11T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+        <a href="/2019/12/23/2019-12-24红黑树-2/" class="archive-article-date">
+  	<time datetime="2019-12-23T10:11:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h2><p>新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h3 id="模块依赖"><a href="#模块依赖" class="headerlink" title="模块依赖"></a>模块依赖</h3><h3 id="构建应用"><a href="#构建应用" class="headerlink" title="构建应用"></a>构建应用</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h3 id="定义路由"><a href="#定义路由" class="headerlink" title="定义路由"></a>定义路由</h3><h3 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h3>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>根节点是黑色节点</li>
+<li>每个叶子节点是黑色的空节点，不存储数据</li>
+<li>任何相邻节点不能同时为红，被黑色节点隔开</li>
+<li>每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点</li>
+</ul>
+<h2 id="左旋（右旋同理）"><a href="#左旋（右旋同理）" class="headerlink" title="左旋（右旋同理）"></a>左旋（右旋同理）</h2><ul>
+<li>围绕某个节点的左旋</li>
+<li>2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）</li>
+</ul>
+<h2 id="怎么维持平衡"><a href="#怎么维持平衡" class="headerlink" title="怎么维持平衡"></a>怎么维持平衡</h2><ul>
+<li>左右旋转维持树的左右子树高度相差不大</li>
+<li>根据关注节点改变颜色，维持树的颜色平衡</li>
+</ul>
+
       
 
       
@@ -269,7 +282,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/11/了不起的-node-js-笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/23/2019-12-24红黑树-2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +296,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/07/02/JavaScript-继承/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JavaScript 继承
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/08/JavaScript-权威指南/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript 权威指南</div>
+    <a href="/2019/12/23/2019-12-23红黑树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2019-12-23红黑树</div>
       <i class="icon-circle-right"></i>
     </a>
   
