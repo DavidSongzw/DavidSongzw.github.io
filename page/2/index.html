@@ -160,6 +160,86 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-05跳表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/05/2019-12-05跳表/">跳表</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/05/2019-12-05跳表/" class="archive-article-date">
+  	<time datetime="2019-12-05T04:59:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="链表加多级索引就是跳表"><a href="#链表加多级索引就是跳表" class="headerlink" title="链表加多级索引就是跳表"></a>链表加多级索引就是跳表</h2><h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ol>
+<li>n 个数据，假设每 2 个数据建 1 索引，那第一级索引个数为 n/2，第 k 级索引是 n/2^k</li>
+<li>当 k 级索引个数为 2 时，n/2^k = 2，k = log2(n) - 1，加上原始数据，那整个跳表高度为 log2(n)</li>
+<li>每 2 个数据一个索引，那每一级遍历最多 3 次，时间复杂度为：O(3*log2(n)) =&gt; O(log(n))</li>
+</ol>
+<h3 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h3><ol>
+<li>第一级 n/2 第二级 n/4 第三级 n/8 …等比数列</li>
+<li>额外的空间占用 n - 2</li>
+<li>当索引建立间隔增加，空间占用会更小</li>
+</ol>
+<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><ol>
+<li>查找的时间复杂度为: O(log(n)) 执行插入的时间复杂度为 O(1)</li>
+<li>删除查找的时间复杂度为: O(log(n)) 执行删除的时间复杂度为 O(1)，同时还需要删除索引节点，单链表还需要找到前驱节点</li>
+</ol>
+<h3 id="索引动态更新"><a href="#索引动态更新" class="headerlink" title="索引动态更新"></a>索引动态更新</h3><ol>
+<li>当插入数据过多时，可能退化为单链表，这时候需要动态更新索引</li>
+<li>使用随机函数来插入索引，从 k 级到 1 级执行插入，随机函数要保证插入的数据大小平衡和索引大小平衡</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/05/2019-12-05跳表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-04二分查找-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -862,93 +942,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-07-22-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/22/2019-07-22-数组/">数组</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/22/2019-07-22-数组/" class="archive-article-date">
-  	<time datetime="2019-07-22T14:47:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>线性表数据结构，用连续的内存，来存储相同类型的数据（JavaScript 中的数组比较类型可不同）</p>
-</blockquote>
-<h3 id="线性"><a href="#线性" class="headerlink" title="线性"></a>线性</h3><ul>
-<li>线性表：数据连成一条线，并且数据最多只有前后两个方向（数组、链表、队列和栈）</li>
-<li>非线性表：可以有多个方向（树、图和堆）</li>
-</ul>
-<h3 id="连续内存空间和相同数据类型"><a href="#连续内存空间和相同数据类型" class="headerlink" title="连续内存空间和相同数据类型"></a>连续内存空间和相同数据类型</h3><ul>
-<li>连续内存支持随机访问 O(1)</li>
-<li>插入 O(n)和删除 O(n)</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/22/2019-07-22-数组/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1096,10 +1092,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
@@ -1113,6 +1105,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
             
             <div class="clearfix"></div>

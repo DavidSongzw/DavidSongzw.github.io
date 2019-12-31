@@ -160,6 +160,106 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-30图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/30/2019-12-30图/">图</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/30/2019-12-30图/" class="archive-article-date">
+  	<time datetime="2019-12-30T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="图-Graph-概念"><a href="#图-Graph-概念" class="headerlink" title="图(Graph)概念"></a>图(Graph)概念</h2><ol>
+<li>顶点（vertex）：图中的每个点</li>
+<li>边（edge）：任意两个顶点的连线</li>
+<li>顶点的度（degree）：顶点连接的边的数量</li>
+<li>方向：边具有方向，这种图叫有向图</li>
+<li>出度（out-degree）和入度（in-degree）：顶点指向其他顶点的边数，其他顶点指向当前顶点的边数</li>
+<li>带权图（weighted graph）：每条边都有权重</li>
+</ol>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><ol>
+<li>二维数组存储</li>
+<li>无向 a[i][j]和 a[j][i]都存 1</li>
+<li>有向 i 指向 j a[i][j]存 1</li>
+<li>带权 a[i][j]存权重</li>
+</ol>
+<p>优势：</p>
+<ol>
+<li>矩阵方便进行数学运算</li>
+<li>存储方式简单直接</li>
+<li>基于数组，访问顶点关系简单</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>无向图 多存储了一倍的数据</li>
+<li>稀疏图 很多空间没用上</li>
+</ol>
+<h3 id="邻接表存储方法"><a href="#邻接表存储方法" class="headerlink" title="邻接表存储方法"></a>邻接表存储方法</h3><ol>
+<li>有向图 每个顶点，存储指向的顶点</li>
+<li>无向图 每个顶点，存储连接的点</li>
+</ol>
+<p>优势：</p>
+<ol>
+<li>占用空间小</li>
+<li>链表可以采用更高效的数据结构，红黑树、平衡二叉树、跳表</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>不利于计算，是用时间换空间</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/30/2019-12-30图/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-30堆应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -945,89 +1045,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-05跳表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/2019-12-05跳表/">跳表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/05/2019-12-05跳表/" class="archive-article-date">
-  	<time datetime="2019-12-05T04:59:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="链表加多级索引就是跳表"><a href="#链表加多级索引就是跳表" class="headerlink" title="链表加多级索引就是跳表"></a>链表加多级索引就是跳表</h2><h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ol>
-<li>n 个数据，假设每 2 个数据建 1 索引，那第一级索引个数为 n/2，第 k 级索引是 n/2^k</li>
-<li>当 k 级索引个数为 2 时，n/2^k = 2，k = log2(n) - 1，加上原始数据，那整个跳表高度为 log2(n)</li>
-<li>每 2 个数据一个索引，那每一级遍历最多 3 次，时间复杂度为：O(3*log2(n)) =&gt; O(log(n))</li>
-</ol>
-<h3 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h3><ol>
-<li>第一级 n/2 第二级 n/4 第三级 n/8 …等比数列</li>
-<li>额外的空间占用 n - 2</li>
-<li>当索引建立间隔增加，空间占用会更小</li>
-</ol>
-<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><ol>
-<li>查找的时间复杂度为: O(log(n)) 执行插入的时间复杂度为 O(1)</li>
-<li>删除查找的时间复杂度为: O(log(n)) 执行删除的时间复杂度为 O(1)，同时还需要删除索引节点，单链表还需要找到前驱节点</li>
-</ol>
-<h3 id="索引动态更新"><a href="#索引动态更新" class="headerlink" title="索引动态更新"></a>索引动态更新</h3><ol>
-<li>当插入数据过多时，可能退化为单链表，这时候需要动态更新索引</li>
-<li>使用随机函数来插入索引，从 k 级到 1 级执行插入，随机函数要保证插入的数据大小平衡和索引大小平衡</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/05/2019-12-05跳表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1175,10 +1195,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
@@ -1192,6 +1208,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
             
             <div class="clearfix"></div>
