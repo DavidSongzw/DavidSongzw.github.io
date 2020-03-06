@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>字符串 | 宋公子的博客</title>
+  <title>字符串(KMP算法)-3 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BF（Brute Force）算法  中文：暴力匹配算法  主串：在该字符串中查找字符串模式串：在主串中，查找这个字符串 算法：  主串长度 n 模式串长度 m 从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比  时间复杂度： n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&amp;gt; O(n * m) 实际比较 BF 常用：">
+  <meta name="description" content="KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动 拆解：  找到坏字符下标 j 坏字符前面的子串，是好前缀 需要好前缀(模式串与主串匹配部分)滑动最多 滑动计算，只关心模式串，就可以了(此时是好前缀) 所有模式串前缀子串，与后缀子串匹配 得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’   此时下一个需要匹配的字符位置(模式串中)就是 j">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串">
-<meta property="og:url" content="http://yoursite.com/2020/01/06/2020-01-06字符串/index.html">
+<meta property="og:title" content="字符串(KMP算法)-3">
+<meta property="og:url" content="http://yoursite.com/2020/03/04/2020-03-04字符串-3/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="BF（Brute Force）算法  中文：暴力匹配算法  主串：在该字符串中查找字符串模式串：在主串中，查找这个字符串 算法：  主串长度 n 模式串长度 m 从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比  时间复杂度： n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&amp;gt; O(n * m) 实际比较 BF 常用：">
+<meta property="og:description" content="KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动 拆解：  找到坏字符下标 j 坏字符前面的子串，是好前缀 需要好前缀(模式串与主串匹配部分)滑动最多 滑动计算，只关心模式串，就可以了(此时是好前缀) 所有模式串前缀子串，与后缀子串匹配 得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’   此时下一个需要匹配的字符位置(模式串中)就是 j">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-06T09:11:44.091Z">
+<meta property="og:updated_time" content="2020-03-06T11:32:30.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符串">
-<meta name="twitter:description" content="BF（Brute Force）算法  中文：暴力匹配算法  主串：在该字符串中查找字符串模式串：在主串中，查找这个字符串 算法：  主串长度 n 模式串长度 m 从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比  时间复杂度： n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&amp;gt; O(n * m) 实际比较 BF 常用：">
+<meta name="twitter:title" content="字符串(KMP算法)-3">
+<meta name="twitter:description" content="KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动 拆解：  找到坏字符下标 j 坏字符前面的子串，是好前缀 需要好前缀(模式串与主串匹配部分)滑动最多 滑动计算，只关心模式串，就可以了(此时是好前缀) 所有模式串前缀子串，与后缀子串匹配 得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’   此时下一个需要匹配的字符位置(模式串中)就是 j">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,50 +159,46 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020-01-06字符串" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020-03-04字符串-3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      字符串
+      字符串(KMP算法)-3
     </h1>
   
 
         
-        <a href="/2020/01/06/2020-01-06字符串/" class="archive-article-date">
-  	<time datetime="2020-01-06T03:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
+        <a href="/2020/03/04/2020-03-04字符串-3/" class="archive-article-date">
+  	<time datetime="2020-03-04T07:47:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>BF（Brute Force）算法</p>
-<blockquote>
-<p>中文：暴力匹配算法</p>
-</blockquote>
-<p>主串：在该字符串中查找字符串<br>模式串：在主串中，查找这个字符串</p>
-<p>算法：</p>
+        <p>KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动</p>
+<p>拆解：</p>
 <ol>
-<li>主串长度 n 模式串长度 m</li>
-<li>从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比</li>
+<li>找到坏字符下标 j</li>
+<li>坏字符前面的子串，是好前缀</li>
+<li>需要好前缀(模式串与主串匹配部分)滑动最多<ol>
+<li>滑动计算，只关心模式串，就可以了(此时是好前缀)</li>
+<li>所有模式串前缀子串，与后缀子串匹配</li>
+<li>得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’</li>
 </ol>
-<p>时间复杂度：</p>
-<p>n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&gt; O(n * m)</p>
-<p>实际比较 BF 常用：</p>
+</li>
+<li>此时下一个需要匹配的字符位置(模式串中)就是 j = j’ + 1</li>
+</ol>
+<p>拆解模式串 next 算法：</p>
 <ol>
-<li>一般字符串长度不会太长，影响不大，另外当比对一旦不一样的时候，就可以停止</li>
-<li>实现简单不容易出错</li>
+<li>第一个字符无匹配 下标为 -1</li>
+<li>核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那 k 值增加 1</li>
+<li>上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]<br>此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的<br>我们在之前匹配过的子串中寻找，即 k = next[k]（次长串），看看接下来的字符能和 pattern[i]</li>
 </ol>
-<p>RK 算法 (Rabin-Karp)</p>
-<ol>
-<li>n -m +1 个子串求 hash 值与模式串的 hash 值比较</li>
-<li>当散列冲突时，再比较子串和模式串，需要控制 hash 冲突，要不然就退化成 BF 算法了</li>
-</ol>
-<p>时间复杂度：</p>
-<p>遍历主串技术 hash 值，复杂度为 n，进行比较 n -m +1 次，因此时间复杂度为 O(n)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算next数组</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pLength 模式串的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext</span>(<span class="params">pattern, pLength</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> next = <span class="keyword">new</span> <span class="built_in">Array</span>(pLength)</span><br><span class="line">  next[<span class="number">0</span>] = <span class="number">-1</span> <span class="comment">// 第一个字符无匹配 下标为 -1</span></span><br><span class="line">  <span class="keyword">let</span> k = <span class="number">-1</span> <span class="comment">// 以及匹配到的下标</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; pLength; ++i) &#123;</span><br><span class="line">    <span class="comment">// 上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]</span></span><br><span class="line">    <span class="comment">// 此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的</span></span><br><span class="line">    <span class="comment">// 我们在之前匹配过的子串中寻找，即k = next[k]（次长串），看看接下来的字符能和pattern[i]</span></span><br><span class="line">    <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; pattern[k + <span class="number">1</span>] != pattern[i]) &#123;</span><br><span class="line">      k = next[k]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那k值增加1</span></span><br><span class="line">    <span class="keyword">if</span> (pattern[k + <span class="number">1</span>] == pattern[i]) &#123;</span><br><span class="line">      ++k</span><br><span class="line">    &#125;</span><br><span class="line">    next[i] = k</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * kmp 算法</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; main 主串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kmp</span>(<span class="params">main, pattern</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 长度</span></span><br><span class="line">  <span class="keyword">const</span> mLength = main.length</span><br><span class="line">  <span class="keyword">const</span> pLength = pattern.length</span><br><span class="line">  <span class="comment">// 获取next数组</span></span><br><span class="line">  <span class="keyword">const</span> next = getNext(pattern, pLength)</span><br><span class="line">  <span class="comment">// 模式串下标</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mLength; i++) &#123;</span><br><span class="line">    <span class="comment">// 一直找到 main[i]和 pattern[j] 坏字符</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; main[i] != pattern[j]) &#123;</span><br><span class="line">      <span class="comment">// j为坏字符下标</span></span><br><span class="line">      <span class="comment">// j - 1为好前缀最后一个字符下标</span></span><br><span class="line">      <span class="comment">// next[j - 1] 好前缀最长可匹配字符下标 +1是下个要匹配的字符</span></span><br><span class="line">      j = next[j - <span class="number">1</span>] + <span class="number">1</span> <span class="comment">// 滑动到最大可滑动的下标</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 匹配的字符 向后移动</span></span><br><span class="line">    <span class="keyword">if</span> (main[i] == pattern[j]) &#123;</span><br><span class="line">      ++j</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找到匹配模式串的了</span></span><br><span class="line">    <span class="keyword">if</span> (j === pLength) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - pLength + <span class="number">1</span> <span class="comment">// 得出当前主串中匹配的第一个下标</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'e', 'a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  kmp(</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>],</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>]</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -292,7 +288,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/06/2020-01-06字符串/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/04/2020-03-04字符串-3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -306,18 +302,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/01/06/2020-01-06字符串-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          字符串(BM算法)-2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/31/2019-12-31优先搜索/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">优先搜索</div>
+    <a href="/2020/01/06/2020-01-06字符串-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串(BM算法)-2</div>
       <i class="icon-circle-right"></i>
     </a>
   

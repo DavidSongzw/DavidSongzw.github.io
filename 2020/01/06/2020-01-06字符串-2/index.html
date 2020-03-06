@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>字符串-2 | 宋公子的博客</title>
+  <title>字符串(BM算法)-2 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="BM 算法（Boyer-Moore）简析 在暴力匹配中，我们把主串中子串和模式串一一对比，这样效率低 BM 算法中，当主串字符在模式串中不存在时，我们就跳过这次对比，直接从当前字符的下一个子串开始对比  原理分析 坏字符规则（bad character rule）  当倒序遍历模式串的字符，和主串对应位置字符无法匹配时，就称这个字符为坏字符，如果这个字符在模式串中没有，那主串匹配位置，移到当前字符">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串-2">
+<meta property="og:title" content="字符串(BM算法)-2">
 <meta property="og:url" content="http://yoursite.com/2020/01/06/2020-01-06字符串-2/index.html">
 <meta property="og:site_name" content="宋公子的博客">
 <meta property="og:description" content="BM 算法（Boyer-Moore）简析 在暴力匹配中，我们把主串中子串和模式串一一对比，这样效率低 BM 算法中，当主串字符在模式串中不存在时，我们就跳过这次对比，直接从当前字符的下一个子串开始对比  原理分析 坏字符规则（bad character rule）  当倒序遍历模式串的字符，和主串对应位置字符无法匹配时，就称这个字符为坏字符，如果这个字符在模式串中没有，那主串匹配位置，移到当前字符">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-04T07:45:41.876Z">
+<meta property="og:updated_time" content="2020-03-05T12:37:12.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符串-2">
+<meta name="twitter:title" content="字符串(BM算法)-2">
 <meta name="twitter:description" content="BM 算法（Boyer-Moore）简析 在暴力匹配中，我们把主串中子串和模式串一一对比，这样效率低 BM 算法中，当主串字符在模式串中不存在时，我们就跳过这次对比，直接从当前字符的下一个子串开始对比  原理分析 坏字符规则（bad character rule）  当倒序遍历模式串的字符，和主串对应位置字符无法匹配时，就称这个字符为坏字符，如果这个字符在模式串中没有，那主串匹配位置，移到当前字符">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
@@ -166,7 +166,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      字符串-2
+      字符串(BM算法)-2
     </h1>
   
 
@@ -301,6 +301,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/03/04/2020-03-04字符串-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          字符串(KMP算法)-3
+        
+      </div>
+    </a>
   
   
     <a href="/2020/01/06/2020-01-06字符串/" id="article-nav-older" class="article-nav-link-wrap">
@@ -487,19 +496,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
             
             <div class="clearfix"></div>

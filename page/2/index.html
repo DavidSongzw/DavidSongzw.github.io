@@ -160,6 +160,104 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-23二叉树搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/23/2019-12-23二叉树搜索树/">二叉树搜索树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/23/2019-12-23二叉树搜索树/" class="archive-article-date">
+  	<time datetime="2019-12-23T03:07:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二叉搜索树-Binary-Search-Tree"><a href="#二叉搜索树-Binary-Search-Tree" class="headerlink" title="二叉搜索树(Binary Search Tree)"></a>二叉搜索树(Binary Search Tree)</h2><h3 id="查找实现"><a href="#查找实现" class="headerlink" title="查找实现"></a>查找实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = tree</span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (p.data === data) &#123;</span><br><span class="line">      <span class="keyword">return</span> p</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p.data &lt; data) &#123;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入实现"><a href="#插入实现" class="headerlink" title="插入实现"></a>插入实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = tree</span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data &gt; p.data) &#123;</span><br><span class="line">      <span class="keyword">if</span> (p.right === <span class="literal">null</span> || p.right === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        p.right = <span class="keyword">new</span> Node(data)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (p.left === <span class="literal">null</span> || p.left === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        p.left = <span class="keyword">new</span> Node(data)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="删除实现"><a href="#删除实现" class="headerlink" title="删除实现"></a>删除实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> p = tree <span class="comment">// 指向删除节点</span></span><br><span class="line">  <span class="keyword">let</span> pp <span class="comment">// 指向删除节点的父节点</span></span><br><span class="line">  <span class="comment">// 找到要删除节点</span></span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span> &amp;&amp; p.data !== data) &#123;</span><br><span class="line">    pp = p</span><br><span class="line">    <span class="keyword">if</span> (p.data &lt; data) &#123;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除节点不存在</span></span><br><span class="line">  <span class="keyword">if</span> (p === <span class="literal">null</span> || p === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 左右节点都存在 此时找右子树最小的节点</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    p.left !== <span class="literal">null</span> &amp;&amp;</span><br><span class="line">    p.left !== <span class="literal">undefined</span> &amp;&amp;</span><br><span class="line">    p.right !== <span class="literal">null</span> &amp;&amp;</span><br><span class="line">    p.right !== <span class="literal">undefined</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">let</span> minP = p.right <span class="comment">// 最小右树子节点</span></span><br><span class="line">    <span class="keyword">let</span> minPP = p <span class="comment">//   最小右树子节点的父节点</span></span><br><span class="line">    <span class="keyword">while</span> (mimP.left !== <span class="literal">null</span> &amp;&amp; minP.left !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      minPP = minP</span><br><span class="line">      minP = mimP.left</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数据替换完成</span></span><br><span class="line">    p.data = minP.data</span><br><span class="line">    <span class="comment">// 删除最小节点</span></span><br><span class="line">    p = minP</span><br><span class="line">    pp = minPP</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> child</span><br><span class="line">  <span class="comment">//  删除节点是叶子节点或者只有一个子节点</span></span><br><span class="line">  <span class="keyword">if</span> (p.left !== <span class="literal">null</span> || p.left !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    child = p.left</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p.right !== <span class="literal">null</span> || p.right !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    child = p.right</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    child = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (pp === <span class="literal">null</span> || pp === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    tree = child <span class="comment">// 删除根节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pp.left === p) &#123;</span><br><span class="line">    pp.left = child</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    pp.right = child</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>查找: O(logn)<br>插入: O(logn)<br>删除: O(logn)</p>
+<p>当特殊时间会退化成 O(n)的复杂度</p>
+<h3 id="和散列表比较"><a href="#和散列表比较" class="headerlink" title="和散列表比较"></a>和散列表比较</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">对比</th>
+<th style="text-align:center">散列表</th>
+<th style="text-align:center">二叉树查找树</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">是否有序</td>
+<td style="text-align:center">无序存储，还需再次排序</td>
+<td style="text-align:center">有序，中序遍历就可以 O(n)输出有序数据</td>
+</tr>
+<tr>
+<td style="text-align:center">性能</td>
+<td style="text-align:center">需要动态扩容，散列冲突需要考虑，性能不稳定</td>
+<td style="text-align:center">不需要扩容，二叉查找时有可能性能不平衡，但是平衡二叉查找树，性能很平衡，稳定在 O(logn)</td>
+</tr>
+<tr>
+<td style="text-align:center">时间复杂度</td>
+<td style="text-align:center">常量级别，但因为冲突因子存在，常量并不一定小，加上哈希函数的耗时，可能更长</td>
+<td style="text-align:center">稳定在 O(logn)可能比常量级更小</td>
+</tr>
+<tr>
+<td style="text-align:center">实现复杂度</td>
+<td style="text-align:center">考虑扩容、缩容、散列冲突，比较复杂</td>
+<td style="text-align:center">只需要考虑平衡性</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/23/2019-12-23二叉树搜索树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-20二叉树基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -896,92 +994,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-11-27递归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/27/2019-11-27递归/">递归</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/27/2019-11-27递归/" class="archive-article-date">
-  	<time datetime="2019-11-27T11:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="递归的条件"><a href="#递归的条件" class="headerlink" title="递归的条件"></a>递归的条件</h2><ol>
-<li>问题可以分解为子问题</li>
-<li>分解后的子问题，除了数据规模不同，解决方法一致</li>
-<li>存在递归终止条件，不能存在无限循环</li>
-</ol>
-<h2 id="递归关键点"><a href="#递归关键点" class="headerlink" title="递归关键点"></a>递归关键点</h2><ol>
-<li>递归公式</li>
-<li>终止条件</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 走台阶，一次可以走一次或者两次，总共7个台阶，有多少种可能呢？</span></span><br><span class="line"><span class="comment">// 1.问题分解：7个台阶可能性可以拆分为，6个台阶的可能性+5个台阶可能性</span></span><br><span class="line"><span class="comment">// 2.解法一致：6个台阶和5个台阶，可以接着分解</span></span><br><span class="line"><span class="comment">// 3.终止条件：1个和2个台阶时分别有1，2种可能性，可终止</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归公式</span></span><br><span class="line"><span class="comment">// f(n) = f(n-1)+f(n-2)</span></span><br><span class="line"><span class="comment">// 终止条件</span></span><br><span class="line"><span class="comment">// f(1) = 1</span></span><br><span class="line"><span class="comment">// f(2) = 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="递归难点"><a href="#递归难点" class="headerlink" title="递归难点"></a>递归难点</h2><ul>
-<li>不要深入去思考递归过程，我们需要的是推到递归公式和终止条件</li>
-<li>警惕堆栈溢出</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line"><span class="comment">// 全局变量，表示递归的深度。</span></span><br><span class="line"><span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  ++depth；</span><br><span class="line">  <span class="keyword">if</span> (depth &gt; <span class="number">1000</span>) <span class="keyword">throw</span> exception;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> f(n-<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>警惕重复计算</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// f(7) = f(6) + f(5)</span></span><br><span class="line"><span class="comment">// f(6) = f(5) + f(4)</span></span><br><span class="line"><span class="comment">// 重复计算了f(5)</span></span><br><span class="line"><span class="comment">// 代码优化</span></span><br><span class="line"><span class="keyword">const</span> temp = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (temp[n]) &#123;</span><br><span class="line">    <span class="keyword">return</span> temp[n]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> ret = f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">  temp[n] = ret</span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调试递归:</p>
-<ol>
-<li>打印日志发现，递归值</li>
-<li>结合条件断点进行调试</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/27/2019-11-27递归/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1136,19 +1148,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
             
             <div class="clearfix"></div>

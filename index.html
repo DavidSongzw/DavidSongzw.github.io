@@ -160,6 +160,88 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-03-04字符串-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/04/2020-03-04字符串-3/">字符串(KMP算法)-3</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/04/2020-03-04字符串-3/" class="archive-article-date">
+  	<time datetime="2020-03-04T07:47:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动</p>
+<p>拆解：</p>
+<ol>
+<li>找到坏字符下标 j</li>
+<li>坏字符前面的子串，是好前缀</li>
+<li>需要好前缀(模式串与主串匹配部分)滑动最多<ol>
+<li>滑动计算，只关心模式串，就可以了(此时是好前缀)</li>
+<li>所有模式串前缀子串，与后缀子串匹配</li>
+<li>得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’</li>
+</ol>
+</li>
+<li>此时下一个需要匹配的字符位置(模式串中)就是 j = j’ + 1</li>
+</ol>
+<p>拆解模式串 next 算法：</p>
+<ol>
+<li>第一个字符无匹配 下标为 -1</li>
+<li>核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那 k 值增加 1</li>
+<li>上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]<br>此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的<br>我们在之前匹配过的子串中寻找，即 k = next[k]（次长串），看看接下来的字符能和 pattern[i]</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算next数组</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pLength 模式串的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext</span>(<span class="params">pattern, pLength</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> next = <span class="keyword">new</span> <span class="built_in">Array</span>(pLength)</span><br><span class="line">  next[<span class="number">0</span>] = <span class="number">-1</span> <span class="comment">// 第一个字符无匹配 下标为 -1</span></span><br><span class="line">  <span class="keyword">let</span> k = <span class="number">-1</span> <span class="comment">// 以及匹配到的下标</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; pLength; ++i) &#123;</span><br><span class="line">    <span class="comment">// 上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]</span></span><br><span class="line">    <span class="comment">// 此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的</span></span><br><span class="line">    <span class="comment">// 我们在之前匹配过的子串中寻找，即k = next[k]（次长串），看看接下来的字符能和pattern[i]</span></span><br><span class="line">    <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; pattern[k + <span class="number">1</span>] != pattern[i]) &#123;</span><br><span class="line">      k = next[k]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那k值增加1</span></span><br><span class="line">    <span class="keyword">if</span> (pattern[k + <span class="number">1</span>] == pattern[i]) &#123;</span><br><span class="line">      ++k</span><br><span class="line">    &#125;</span><br><span class="line">    next[i] = k</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * kmp 算法</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; main 主串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kmp</span>(<span class="params">main, pattern</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 长度</span></span><br><span class="line">  <span class="keyword">const</span> mLength = main.length</span><br><span class="line">  <span class="keyword">const</span> pLength = pattern.length</span><br><span class="line">  <span class="comment">// 获取next数组</span></span><br><span class="line">  <span class="keyword">const</span> next = getNext(pattern, pLength)</span><br><span class="line">  <span class="comment">// 模式串下标</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mLength; i++) &#123;</span><br><span class="line">    <span class="comment">// 一直找到 main[i]和 pattern[j] 坏字符</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; main[i] != pattern[j]) &#123;</span><br><span class="line">      <span class="comment">// j为坏字符下标</span></span><br><span class="line">      <span class="comment">// j - 1为好前缀最后一个字符下标</span></span><br><span class="line">      <span class="comment">// next[j - 1] 好前缀最长可匹配字符下标 +1是下个要匹配的字符</span></span><br><span class="line">      j = next[j - <span class="number">1</span>] + <span class="number">1</span> <span class="comment">// 滑动到最大可滑动的下标</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 匹配的字符 向后移动</span></span><br><span class="line">    <span class="keyword">if</span> (main[i] == pattern[j]) &#123;</span><br><span class="line">      ++j</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找到匹配模式串的了</span></span><br><span class="line">    <span class="keyword">if</span> (j === pLength) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - pLength + <span class="number">1</span> <span class="comment">// 得出当前主串中匹配的第一个下标</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'e', 'a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  kmp(</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>],</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>]</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/04/2020-03-04字符串-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-01-06字符串-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -167,7 +249,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/06/2020-01-06字符串-2/">字符串-2</a>
+      <a class="article-title" href="/2020/01/06/2020-01-06字符串-2/">字符串(BM算法)-2</a>
     </h1>
   
 
@@ -921,104 +1003,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-23二叉树搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/2019-12-23二叉树搜索树/">二叉树搜索树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/23/2019-12-23二叉树搜索树/" class="archive-article-date">
-  	<time datetime="2019-12-23T03:07:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二叉搜索树-Binary-Search-Tree"><a href="#二叉搜索树-Binary-Search-Tree" class="headerlink" title="二叉搜索树(Binary Search Tree)"></a>二叉搜索树(Binary Search Tree)</h2><h3 id="查找实现"><a href="#查找实现" class="headerlink" title="查找实现"></a>查找实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = tree</span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (p.data === data) &#123;</span><br><span class="line">      <span class="keyword">return</span> p</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p.data &lt; data) &#123;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="插入实现"><a href="#插入实现" class="headerlink" title="插入实现"></a>插入实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = tree</span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data &gt; p.data) &#123;</span><br><span class="line">      <span class="keyword">if</span> (p.right === <span class="literal">null</span> || p.right === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        p.right = <span class="keyword">new</span> Node(data)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (p.left === <span class="literal">null</span> || p.left === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        p.left = <span class="keyword">new</span> Node(data)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="删除实现"><a href="#删除实现" class="headerlink" title="删除实现"></a>删除实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNode</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> p = tree <span class="comment">// 指向删除节点</span></span><br><span class="line">  <span class="keyword">let</span> pp <span class="comment">// 指向删除节点的父节点</span></span><br><span class="line">  <span class="comment">// 找到要删除节点</span></span><br><span class="line">  <span class="keyword">while</span> (p !== <span class="literal">null</span> &amp;&amp; p !== <span class="literal">undefined</span> &amp;&amp; p.data !== data) &#123;</span><br><span class="line">    pp = p</span><br><span class="line">    <span class="keyword">if</span> (p.data &lt; data) &#123;</span><br><span class="line">      p = p.right</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      p = p.left</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除节点不存在</span></span><br><span class="line">  <span class="keyword">if</span> (p === <span class="literal">null</span> || p === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 左右节点都存在 此时找右子树最小的节点</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    p.left !== <span class="literal">null</span> &amp;&amp;</span><br><span class="line">    p.left !== <span class="literal">undefined</span> &amp;&amp;</span><br><span class="line">    p.right !== <span class="literal">null</span> &amp;&amp;</span><br><span class="line">    p.right !== <span class="literal">undefined</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">let</span> minP = p.right <span class="comment">// 最小右树子节点</span></span><br><span class="line">    <span class="keyword">let</span> minPP = p <span class="comment">//   最小右树子节点的父节点</span></span><br><span class="line">    <span class="keyword">while</span> (mimP.left !== <span class="literal">null</span> &amp;&amp; minP.left !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      minPP = minP</span><br><span class="line">      minP = mimP.left</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数据替换完成</span></span><br><span class="line">    p.data = minP.data</span><br><span class="line">    <span class="comment">// 删除最小节点</span></span><br><span class="line">    p = minP</span><br><span class="line">    pp = minPP</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> child</span><br><span class="line">  <span class="comment">//  删除节点是叶子节点或者只有一个子节点</span></span><br><span class="line">  <span class="keyword">if</span> (p.left !== <span class="literal">null</span> || p.left !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    child = p.left</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p.right !== <span class="literal">null</span> || p.right !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    child = p.right</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    child = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (pp === <span class="literal">null</span> || pp === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    tree = child <span class="comment">// 删除根节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pp.left === p) &#123;</span><br><span class="line">    pp.left = child</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    pp.right = child</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>查找: O(logn)<br>插入: O(logn)<br>删除: O(logn)</p>
-<p>当特殊时间会退化成 O(n)的复杂度</p>
-<h3 id="和散列表比较"><a href="#和散列表比较" class="headerlink" title="和散列表比较"></a>和散列表比较</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">对比</th>
-<th style="text-align:center">散列表</th>
-<th style="text-align:center">二叉树查找树</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">是否有序</td>
-<td style="text-align:center">无序存储，还需再次排序</td>
-<td style="text-align:center">有序，中序遍历就可以 O(n)输出有序数据</td>
-</tr>
-<tr>
-<td style="text-align:center">性能</td>
-<td style="text-align:center">需要动态扩容，散列冲突需要考虑，性能不稳定</td>
-<td style="text-align:center">不需要扩容，二叉查找时有可能性能不平衡，但是平衡二叉查找树，性能很平衡，稳定在 O(logn)</td>
-</tr>
-<tr>
-<td style="text-align:center">时间复杂度</td>
-<td style="text-align:center">常量级别，但因为冲突因子存在，常量并不一定小，加上哈希函数的耗时，可能更长</td>
-<td style="text-align:center">稳定在 O(logn)可能比常量级更小</td>
-</tr>
-<tr>
-<td style="text-align:center">实现复杂度</td>
-<td style="text-align:center">考虑扩容、缩容、散列冲突，比较复杂</td>
-<td style="text-align:center">只需要考虑平衡性</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/2019-12-23二叉树搜索树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1173,19 +1157,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
             
             <div class="clearfix"></div>
