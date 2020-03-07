@@ -160,6 +160,89 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-03-07-Trie-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/07/2020-03-07-Trie-树/">Trie 树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/07/2020-03-07-Trie-树/" class="archive-article-date">
+  	<time datetime="2020-03-07T14:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Trie-树-字典树"><a href="#Trie-树-字典树" class="headerlink" title="Trie 树(字典树)"></a>Trie 树(字典树)</h2><blockquote>
+<p>专门处理字符串匹配的数据结构</p>
+</blockquote>
+<ol>
+<li>树的 root 节点不表示意思</li>
+<li>其余每个节点，表示字符串中的字符</li>
+<li>从根节点到红色节点，表示一个字符串（但是红色节点并不一定是叶子节点）<br><img src="https://davidsongzw.github.io/assets/blogImg/trie.jpg" alt="image"> 4.生成 Trie 的过程<br><img src="https://davidsongzw.github.io/assets/blogImg/trie1.jpg" alt="image"><br><img src="https://davidsongzw.github.io/assets/blogImg/trie2.jpg" alt="image"></li>
+</ol>
+<h2 id="代码实现-Trie-树"><a href="#代码实现-Trie-树" class="headerlink" title="代码实现 Trie 树"></a>代码实现 Trie 树</h2><p>拆解：</p>
+<ol>
+<li>Trie 树有多个杈</li>
+<li>每个树杈都需要快速查找子节点</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.isEndingChar = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">this</span>.children = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">26</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> TrieNode(<span class="string">'/'</span>) <span class="comment">// 存储无意义字符</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 往Trie树中插入一个字符串</span></span><br><span class="line">  insert(text) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; text.length; ++i) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = text[i].charCodeAt() - <span class="string">'a'</span>.charCodeAt()</span><br><span class="line">      <span class="keyword">if</span> (!node.children[index]) &#123;</span><br><span class="line">        <span class="keyword">const</span> newNode = <span class="keyword">new</span> TrieNode(text[i])</span><br><span class="line">        node.children[index] = newNode</span><br><span class="line">      &#125;</span><br><span class="line">      node = node.children[index]</span><br><span class="line">    &#125;</span><br><span class="line">    node.isEndingChar = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在Trie树中查找一个字符串</span></span><br><span class="line">  find(pattern) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pattern.length; ++i) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = pattern[i].charCodeAt() - <span class="string">'a'</span>.charCodeAt()</span><br><span class="line">      <span class="keyword">if</span> (!node.children[index]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// 不存在pattern</span></span><br><span class="line">      &#125;</span><br><span class="line">      node = node.children[index]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 不能完全匹配，只是前缀</span></span><br><span class="line">    <span class="keyword">return</span> node.isEndingChar</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tree = <span class="keyword">new</span> Trie()</span><br><span class="line"><span class="keyword">var</span> strs = [<span class="string">'how'</span>, <span class="string">'hi'</span>, <span class="string">'her'</span>, <span class="string">'hello'</span>, <span class="string">'so'</span>, <span class="string">'see'</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> str <span class="keyword">of</span> strs) &#123;</span><br><span class="line">  tree.insert(str)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> str <span class="keyword">of</span> strs) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(tree.find(str))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(tree.find(<span class="string">'world'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Trie-树存在的问题："><a href="#Trie-树存在的问题：" class="headerlink" title="Trie 树存在的问题："></a>Trie 树存在的问题：</h2><ol>
+<li>使用数组存储子节点指针，会占用更多的内存空间，尤其是字符集比较大的时候，插入和查找效率都会降低</li>
+<li>字符串前缀重合的多，才能节省空间</li>
+<li>手动实现工业级容易出bug</li>
+<li>指针非连续存储，对缓存优化不好</li>
+</ol>
+<p>比较适合的场景是：搜索时候的联想功能</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/07/2020-03-07-Trie-树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-03-04字符串-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -915,94 +998,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-23红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/2019-12-23红黑树/">2019-12-23红黑树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/23/2019-12-23红黑树/" class="archive-article-date">
-  	<time datetime="2019-12-23T07:03:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="平衡二叉查找树"><a href="#平衡二叉查找树" class="headerlink" title="平衡二叉查找树"></a>平衡二叉查找树</h3><ol>
-<li>任意一个节点，其左右子树的高度相差不超过 1</li>
-<li>很多平衡二叉树，并没有严格遵守这一点</li>
-<li>为了解决二叉查找树，在动态插入、删除等动态更新下，退化成为链表</li>
-<li>只要树的高度，不比 log2n 大很多，还保留在指数级，就是一个合格的平衡二叉查找树</li>
-</ol>
-<h3 id="红黑树-R-B-Tree"><a href="#红黑树-R-B-Tree" class="headerlink" title="红黑树(R-B Tree)"></a>红黑树(R-B Tree)</h3><ol>
-<li>根节点是黑色</li>
-<li>任何叶子节点都是黑色空节点，不存储数据</li>
-<li>任何相邻节点都不能为红色，必须黑色隔开</li>
-<li>每个节点，到达其叶子节点的任意路径，黑色节点个数相同</li>
-</ol>
-<h3 id="高度分析"><a href="#高度分析" class="headerlink" title="高度分析"></a>高度分析</h3><ol>
-<li>去掉红色节点，黑色节点构成的树，最多变成四叉树</li>
-<li>根据每条路径黑色节点个数相同，从叶子节点取出节点放到节点下，可组成完全二叉树</li>
-<li>完全二叉树高度近似 log2n，黑色二叉树高度近似 log2n</li>
-<li>红色节点被黑色节点隔开，每一个红色节点，对应一个黑色节点，那红色二叉树的高度近似 log2n</li>
-<li>整体高度近似 2log2n</li>
-</ol>
-<h3 id="为何使用红黑树"><a href="#为何使用红黑树" class="headerlink" title="为何使用红黑树"></a>为何使用红黑树</h3><ol>
-<li>AVL 完全平衡，查找很高效，但是为了维持平衡，需要在插入和删除，都需要调整</li>
-<li>红黑树查找、插入、删除，性能都比较稳定，适用于工程</li>
-</ol>
-<h3 id="动态数据结构对比"><a href="#动态数据结构对比" class="headerlink" title="动态数据结构对比"></a>动态数据结构对比</h3><p>散列表：插入删除查找都是 O(1), 是最常用的，但其缺点是不能顺序遍历以及扩容缩容的性能损耗。适用于那些不需要顺序遍历，数据更新不那么频繁的。</p>
-<p>跳表：插入删除查找都是 O(logn), 并且能顺序遍历。缺点是空间复杂度 O(n)。适用于不那么在意内存空间的，其顺序遍历和区间查找非常方便。</p>
-<p>红黑树：插入删除查找都是 O(logn), 中序遍历即是顺序遍历，稳定。缺点是难以实现，去查找不方便。其实跳表更佳，但红黑树已经用于很多地方了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/2019-12-23红黑树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1153,15 +1148,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
