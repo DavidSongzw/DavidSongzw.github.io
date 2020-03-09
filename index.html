@@ -160,6 +160,96 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-03-09-AC-自动机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/09/2020-03-09-AC-自动机/">AC 自动机</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/09/2020-03-09-AC-自动机/" class="archive-article-date">
+  	<time datetime="2020-03-09T03:09:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单模式串匹配算法：单个模式串与主串比较<br>多模式串匹配算法：多个模式串与主串比较</p>
+<p>经典多模式串匹配算法：AC 自动机</p>
+<p>AC 自动机：</p>
+<ol>
+<li>构建 Trie 树，基础部分不变，需要增加类似 KMP 的 fail (或者说 next)数组，增加匹配长度记录</li>
+<li>fail 数组构建<ol>
+<li>首先是对树的遍历</li>
+<li>找子节点的失败节点</li>
+<li>根据当前节点和当前节点的失败节点，找当前节点子节点的失败节点<br><img src="https://davidsongzw.github.io/assets/blogImg/failTrie.jpg" alt="image"></li>
+</ol>
+</li>
+<li>匹配函数<ol>
+<li>子节点不匹配，节点更换为子节点的失败节点</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ACNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.children = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="comment">// 标志是否结束</span></span><br><span class="line">    <span class="keyword">this</span>.isEndingChar = <span class="literal">false</span></span><br><span class="line">    <span class="comment">// 字符串长度</span></span><br><span class="line">    <span class="keyword">this</span>.length = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 失败next数组</span></span><br><span class="line">    <span class="keyword">this</span>.fail = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ACTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> ACNode(<span class="string">'/'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  insert(text) &#123;</span><br><span class="line">    <span class="comment">//   根节点</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="comment">// 遍历</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> char <span class="keyword">of</span> text) &#123;</span><br><span class="line">      <span class="comment">// 如果子节点没存过，设置子节点</span></span><br><span class="line">      <span class="keyword">if</span> (!node.children.get(char)) &#123;</span><br><span class="line">        node.children.set(char, <span class="keyword">new</span> ACNode(char))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//   取出下一个子节点，接着构建</span></span><br><span class="line">      node = node.children.get(char)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 结束标志，长度标志</span></span><br><span class="line">    node.isEndingChar = <span class="literal">true</span></span><br><span class="line">    node.length = text.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  buildFailurePointer() &#123;</span><br><span class="line">    <span class="comment">// 1. 对树进行遍历</span></span><br><span class="line">    <span class="keyword">let</span> root = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">const</span> queue = []</span><br><span class="line">    <span class="comment">// 放入栈中等待遍历</span></span><br><span class="line">    queue.push(root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (queue.length) &#123;</span><br><span class="line">      <span class="keyword">let</span> node = queue.shift()</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> nodeChild <span class="keyword">of</span> node.children.values()) &#123;</span><br><span class="line">        <span class="comment">//   空节点跳过</span></span><br><span class="line">        <span class="keyword">if</span> (!nodeChild) &#123;</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 根据当前节点的失败指针 求其子节点的失败指针</span></span><br><span class="line">        <span class="keyword">if</span> (node === root) &#123;</span><br><span class="line">          nodeChild.fail = root</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> nodeFail = node.fail</span><br><span class="line">          <span class="keyword">while</span> (nodeFail) &#123;</span><br><span class="line">            <span class="comment">// 当前节点的子节点 与 当前节点对应失败节点的子节点， 如果相等， 那么当前节点子节点的失败节点 是 当前节点对应失败节点的子节点</span></span><br><span class="line">            <span class="keyword">const</span> nodeFailChild = nodeFail.children.get(nodeChild.data)</span><br><span class="line">            <span class="keyword">if</span> (nodeFailChild) &#123;</span><br><span class="line">              nodeChild.fail = nodeFailChild</span><br><span class="line">              <span class="comment">//   找到就终端</span></span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 找不到就接着找</span></span><br><span class="line">            nodeFail = nodeFail.fail</span><br><span class="line">            <span class="keyword">if</span> (!nodeFail) &#123;</span><br><span class="line">              <span class="comment">// 如果失败节点不存在了 那就指向root</span></span><br><span class="line">              nodeChild.fail = root</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 放入栈中等待遍历</span></span><br><span class="line">        queue.push(nodeChild)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  match(text) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; text.length; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> char = text[i]</span><br><span class="line">      <span class="comment">//   寻找匹配的节点</span></span><br><span class="line">      <span class="keyword">while</span> (node != <span class="keyword">this</span>.root &amp;&amp; !node.children.get(char)) &#123;</span><br><span class="line">        node = node.fail</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//   取出子节点</span></span><br><span class="line">      node = node.children.get(char)</span><br><span class="line">      <span class="comment">//   如果子节点 不存在 那要重根节点开始找</span></span><br><span class="line">      <span class="keyword">if</span> (!node) &#123;</span><br><span class="line">        node = <span class="keyword">this</span>.root</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> tmp = node</span><br><span class="line">      <span class="keyword">while</span> (tmp != <span class="keyword">this</span>.root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tmp.isEndingChar) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(</span><br><span class="line">            <span class="string">`Start from <span class="subst">$&#123;i - node.length + <span class="number">1</span>&#125;</span>, length: <span class="subst">$&#123;node.length&#125;</span>`</span></span><br><span class="line">          )</span><br><span class="line">        &#125;</span><br><span class="line">        tmp = tmp.fail</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">match</span>(<span class="params">text, patterns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> automata = <span class="keyword">new</span> ACTree()</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> pattern <span class="keyword">of</span> patterns) &#123;</span><br><span class="line">    automata.insert(pattern)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  automata.buildFailurePointer()</span><br><span class="line">  automata.match(text)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> patterns = [<span class="string">'at'</span>, <span class="string">'art'</span>, <span class="string">'oars'</span>, <span class="string">'soar'</span>]</span><br><span class="line"><span class="keyword">let</span> text = <span class="string">'soarsoars'</span></span><br><span class="line">match(text, patterns)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> patterns2 = [<span class="string">'Fxtec Pro1'</span>, <span class="string">'谷歌Pixel'</span>]</span><br><span class="line"><span class="keyword">let</span> text2 =</span><br><span class="line">  <span class="string">'一家总部位于伦敦的公司Fxtex在MWC上就推出了一款名为Fxtec Pro1的手机，该机最大的亮点就是采用了侧滑式全键盘设计。DxOMark年度总榜发布 华为P20 Pro/谷歌Pixel 3争冠'</span></span><br><span class="line">match(text2, patterns2)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/09/2020-03-09-AC-自动机/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-03-07-Trie-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1021,93 +1111,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-23红黑树-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/2019-12-23红黑树-2/">2019-12-23红黑树-2</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/23/2019-12-23红黑树-2/" class="archive-article-date">
-  	<time datetime="2019-12-23T10:11:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>根节点是黑色节点</li>
-<li>每个叶子节点是黑色的空节点，不存储数据</li>
-<li>任何相邻节点不能同时为红，被黑色节点隔开</li>
-<li>每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点</li>
-</ul>
-<h2 id="左旋（右旋同理）"><a href="#左旋（右旋同理）" class="headerlink" title="左旋（右旋同理）"></a>左旋（右旋同理）</h2><ul>
-<li>围绕某个节点的左旋</li>
-<li>2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）</li>
-</ul>
-<h2 id="怎么维持平衡"><a href="#怎么维持平衡" class="headerlink" title="怎么维持平衡"></a>怎么维持平衡</h2><ul>
-<li>左右旋转维持树的左右子树高度相差不大</li>
-<li>根据关注节点改变颜色，维持树的颜色平衡</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/2019-12-23红黑树-2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1222,6 +1225,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
@@ -1230,7 +1237,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">个人博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1250,23 +1261,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">个人博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
               <li class="article-tag-list-item">

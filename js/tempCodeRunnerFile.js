@@ -1,53 +1,24 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// /**
-//  * kmp 算法
-//  * @param {*} main 主串
-//  * @param {*} pattern 模式串
-//  */
-// function kmp(main, pattern) {
-//   // 长度
-//   const mLength = main.length
-//   const pLength = pattern.length
-//   // 获取next数组
-//   const next = getNext(pattern, pLength)
-//   // 模式串下标
-//   let j = 0
-//   for (let i = 0; i < mLength; i++) {
-//     // 一直找到 main[i]和 pattern[j] 坏字符
-//     while (j > 0 && main[i] != pattern[j]) {
-//       j = next[j - 1] + 1 // 滑动到最大可滑动的下标
-//     }
-//     // 匹配的字符 向后移动
-//     if (main[i] == pattern[j]) {
-//       ++j
-//     }
-//     // 找到匹配模式串的了
-//     if (j === pLength) {
-//       return i - pLength + 1 // 得出当前主串中匹配的第一个下标
-//     }
-//   }
-//   return -1
-// }
+atch(text) {
+    let node = this.root
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i]
+      //   寻找匹配的节点
+      while (node != this.root && !node.children.get(char)) {
+        node = node.fail
+      }
+      //   取出子节点
+      node = node.children.get(char)
+      //   如果子节点 不存在 那要重根节点开始找
+      if (!node) {
+        node = this.root
+      }
+      let tmp = node
+      while (tmp != this.root) {
+          if (tmp.isEndingChar) {
+              console.log(
+            `Start from ${i - node.length + 1}, length: ${node.length}`
+          )
+          tmp = tmp.fail
+      }
+    }
+  }
