@@ -17,7 +17,7 @@
 <meta property="og:description" content="单模式串匹配算法：单个模式串与主串比较多模式串匹配算法：多个模式串与主串比较 经典多模式串匹配算法：AC 自动机 AC 自动机：  构建 Trie 树，基础部分不变，需要增加类似 KMP 的 fail (或者说 next)数组，增加匹配长度记录 fail 数组构建 首先是对树的遍历 找子节点的失败节点 根据当前节点和当前节点的失败节点，找当前节点子节点的失败节点   匹配函数 子节点不匹配，节点更">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://davidsongzw.github.io/assets/blogImg/failTrie.jpg">
-<meta property="og:updated_time" content="2020-03-09T13:41:33.490Z">
+<meta property="og:updated_time" content="2020-03-09T13:50:53.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AC 自动机">
 <meta name="twitter:description" content="单模式串匹配算法：单个模式串与主串比较多模式串匹配算法：多个模式串与主串比较 经典多模式串匹配算法：AC 自动机 AC 自动机：  构建 Trie 树，基础部分不变，需要增加类似 KMP 的 fail (或者说 next)数组，增加匹配长度记录 fail 数组构建 首先是对树的遍历 找子节点的失败节点 根据当前节点和当前节点的失败节点，找当前节点子节点的失败节点   匹配函数 子节点不匹配，节点更">
@@ -194,6 +194,7 @@ var _hmt = _hmt || [];
 </li>
 <li>匹配函数<ol>
 <li>子节点不匹配，节点更换为子节点的失败节点</li>
+<li>判断节点是不是结束节点，不是结束节点则寻找其失败节点是不是结束节点</li>
 </ol>
 </li>
 </ol>
@@ -311,6 +312,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/03/09/2020-03-09-贪心算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          贪心算法
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/07/2020-03-07-Trie-树/" id="article-nav-older" class="article-nav-link-wrap">
@@ -457,10 +467,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
@@ -469,11 +475,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">个人博客</a>
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,15 +495,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">个人博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">关于我</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
               <li class="article-tag-list-item">
