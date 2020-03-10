@@ -1,24 +1,12 @@
-atch(text) {
-    let node = this.root
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i]
-      //   寻找匹配的节点
-      while (node != this.root && !node.children.get(char)) {
-        node = node.fail
-      }
-      //   取出子节点
-      node = node.children.get(char)
-      //   如果子节点 不存在 那要重根节点开始找
-      if (!node) {
-        node = this.root
-      }
-      let tmp = node
-      while (tmp != this.root) {
-          if (tmp.isEndingChar) {
-              console.log(
-            `Start from ${i - node.length + 1}, length: ${node.length}`
-          )
-          tmp = tmp.fail
-      }
-    }
-  }
+unction find(index, cWeight, items, num, weight) {
+//   // cWeight==w表示装满了;
+//   // index==num表示已经考察完所有的物品
+//   if (cWeight == weight || index == num) {
+//     // 更新最大重量
+//     if (cWeight > maxW) maxW = cWeight
+//     return
+//   }
+//   // 不装进去
+//   find(index + 1, cWeight, items, num, weight)
+//   // 装进去 但是判断下是不是超过了
+//   if (cWeight + items[index] 
