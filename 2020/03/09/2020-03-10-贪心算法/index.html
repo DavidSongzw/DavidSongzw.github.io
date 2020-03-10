@@ -6,20 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>堆应用 | 宋公子的博客</title>
+  <title>贪心算法 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="优先级队列 按照优先级，优先级高的先出，优先级队列===堆 优先级队列插入数据===堆插入数据，优先级队列取出数据===取出堆顶  应用合并有序小文件 每个小文件取出第一个元素，放入小顶堆 从小顶堆中，取出堆顶放入数组中，并堆化 从堆顶来源文件，接着取出元素放入堆中，并堆化  高性能定时器 对执行任务按照时间，放入堆中 计算堆顶和当前差值，定时器在过差值时间后，再执行任务 避免了轮询，消耗性能">
+  <meta name="description" content="贪心算法 (greedy algorithm)第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大第三部：在数据中，小范围验证 贪心算法实战1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&amp;lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等">
 <meta name="keywords" content="技术，数据结构，算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="堆应用">
-<meta property="og:url" content="http://yoursite.com/2019/12/30/2019-12-30堆应用/index.html">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/2020-03-10-贪心算法/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="优先级队列 按照优先级，优先级高的先出，优先级队列===堆 优先级队列插入数据===堆插入数据，优先级队列取出数据===取出堆顶  应用合并有序小文件 每个小文件取出第一个元素，放入小顶堆 从小顶堆中，取出堆顶放入数组中，并堆化 从堆顶来源文件，接着取出元素放入堆中，并堆化  高性能定时器 对执行任务按照时间，放入堆中 计算堆顶和当前差值，定时器在过差值时间后，再执行任务 避免了轮询，消耗性能">
+<meta property="og:description" content="贪心算法 (greedy algorithm)第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大第三部：在数据中，小范围验证 贪心算法实战1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&amp;lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-07T15:33:20.262Z">
+<meta property="og:image" content="https://davidsongzw.github.io/assets/blogImg/range.jpg">
+<meta property="og:image" content="https://davidsongzw.github.io/assets/blogImg/range1.jpg">
+<meta property="og:image" content="https://davidsongzw.github.io/assets/blogImg/human.jpg">
+<meta property="og:image" content="https://davidsongzw.github.io/assets/blogImg/human1.jpg">
+<meta property="og:updated_time" content="2020-03-10T06:52:45.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="堆应用">
-<meta name="twitter:description" content="优先级队列 按照优先级，优先级高的先出，优先级队列===堆 优先级队列插入数据===堆插入数据，优先级队列取出数据===取出堆顶  应用合并有序小文件 每个小文件取出第一个元素，放入小顶堆 从小顶堆中，取出堆顶放入数组中，并堆化 从堆顶来源文件，接着取出元素放入堆中，并堆化  高性能定时器 对执行任务按照时间，放入堆中 计算堆顶和当前差值，定时器在过差值时间后，再执行任务 避免了轮询，消耗性能">
+<meta name="twitter:title" content="贪心算法">
+<meta name="twitter:description" content="贪心算法 (greedy algorithm)第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大第三部：在数据中，小范围验证 贪心算法实战1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&amp;lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等">
+<meta name="twitter:image" content="https://davidsongzw.github.io/assets/blogImg/range.jpg">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,50 +164,33 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019-12-30堆应用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020-03-10-贪心算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      堆应用
+      贪心算法
     </h1>
   
 
         
-        <a href="/2019/12/30/2019-12-30堆应用/" class="archive-article-date">
-  	<time datetime="2019-12-30T11:47:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+        <a href="/2020/03/09/2020-03-10-贪心算法/" class="archive-article-date">
+  	<time datetime="2020-03-09T13:49:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><ol>
-<li>按照优先级，优先级高的先出，优先级队列===堆</li>
-<li>优先级队列插入数据===堆插入数据，优先级队列取出数据===取出堆顶</li>
-</ol>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="合并有序小文件"><a href="#合并有序小文件" class="headerlink" title="合并有序小文件"></a>合并有序小文件</h3><ol>
-<li>每个小文件取出第一个元素，放入小顶堆</li>
-<li>从小顶堆中，取出堆顶放入数组中，并堆化</li>
-<li>从堆顶来源文件，接着取出元素放入堆中，并堆化</li>
-</ol>
-<h3 id="高性能定时器"><a href="#高性能定时器" class="headerlink" title="高性能定时器"></a>高性能定时器</h3><ol>
-<li>对执行任务按照时间，放入堆中</li>
-<li>计算堆顶和当前差值，定时器在过差值时间后，再执行任务</li>
-<li>避免了轮询，消耗性能</li>
-</ol>
-<h3 id="求-Top-K"><a href="#求-Top-K" class="headerlink" title="求 Top K"></a>求 Top K</h3><ol>
-<li>创建 K 大堆</li>
-<li>遍历数组，大于堆顶放入，小于继续</li>
-<li>最后这个堆就是 Top K</li>
-</ol>
-<h3 id="求中位数"><a href="#求中位数" class="headerlink" title="求中位数"></a>求中位数</h3><ol>
-<li>把数据分割为两份，小顶堆和大顶堆，并且大顶堆的最大值小于小顶堆的最小值（个数是奇书时大顶堆多一个数）</li>
-<li>新入数据，如果小于等于大顶堆的堆顶，测数据插入小顶堆，否则插入大顶堆</li>
-<li>维护两个堆的数据平衡，如果大顶堆超过n/2 + 1，取堆顶数据插入小顶堆，反之取小堆顶数据插入大顶堆</li>
-</ol>
+        <h2 id="贪心算法-greedy-algorithm"><a href="#贪心算法-greedy-algorithm" class="headerlink" title="贪心算法 (greedy algorithm)"></a>贪心算法 (greedy algorithm)</h2><p>第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大<br>第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大<br>第三部：在数据中，小范围验证</p>
+<h3 id="贪心算法实战"><a href="#贪心算法实战" class="headerlink" title="贪心算法实战"></a>贪心算法实战</h3><p>1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等，这 m 个糖果的大小分别是 s1，s2，s3，……，sm。除此之外，每个孩子对糖果大小的需求也是不一样的，只有糖果的大小大于等于孩子的对糖果大小的需求的时候，孩子才得到满足。假设这 n 个孩子对糖果大小的需求分别是 g1，g2，g3，……，gn。我的问题是，如何分配糖果，能尽可能满足最多数量的孩子？</p>
+<p>答：每次挑选需求最小的孩子，然后在糖果中挑选最小满足他的糖果，这样才能更多的满足孩子（每个孩子期望值一样）</p>
+<p>2.钱币找零：这个问题在我们的日常生活中更加普遍。假设我们有 1 元、2 元、5 元、10 元、20 元、50 元、100 元这些面额的纸币，它们的张数分别是 c1、c2、c5、c10、c20、c50、c100。我们现在要用这些钱来支付 K 元，最少要用多少张纸币呢？</p>
+<p>答：先用大额纸币支付，然后选择小额纸币（每张的纸币期望相同）</p>
+<p>3.区间覆盖：假设我们有 n 个区间，区间的起始端点和结束端点分别是[l1, r1]，[l2, r2]，[l3, r3]，……，[ln, rn]。我们从这 n 个区间中选出一部分区间，这部分区间满足两两不相交（端点相交的情况不算相交），最多能选出多少个区间呢？<br><img src="https://davidsongzw.github.io/assets/blogImg/range.jpg" alt="image"><br>答：排序区间，选择左端点和已覆盖区域不想交，同时右端点最小（给右侧区间留更大位置）<br><img src="https://davidsongzw.github.io/assets/blogImg/range1.jpg" alt="image"></p>
+<h3 id="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"><a href="#霍夫曼编码（数据压缩编码，有效节省数据存储空间）" class="headerlink" title="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"></a>霍夫曼编码（数据压缩编码，有效节省数据存储空间）</h3><p>1.出现越多的字符，编码长度越低，且为了防止解码问题，任何一个编码都不能是另外一个编码的前缀<br><img src="https://davidsongzw.github.io/assets/blogImg/human.jpg" alt="image"><br><img src="https://davidsongzw.github.io/assets/blogImg/human1.jpg" alt="image"></p>
 
       
 
@@ -303,7 +291,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/30/2019-12-30堆应用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/09/2020-03-10-贪心算法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,18 +305,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/12/30/2019-12-30图/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          图
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/30/2019-12-30堆/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">堆</div>
+    <a href="/2020/03/09/2020-03-09-AC-自动机/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AC 自动机</div>
       <i class="icon-circle-right"></i>
     </a>
   
