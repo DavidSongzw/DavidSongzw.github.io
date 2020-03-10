@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>宋公子的博客</title>
+  <title>回溯算法 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="不会健身的程序员，不是个好码农">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋公子的博客">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta name="keywords" content="技术，数据结构，算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯算法">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/2020-03-10-回溯算法/index.html">
 <meta property="og:site_name" content="宋公子的博客">
 <meta property="og:description" content="不会健身的程序员，不是个好码农">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-10T07:24:46.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋公子的博客">
+<meta name="twitter:title" content="回溯算法">
 <meta name="twitter:description" content="不会健身的程序员，不是个好码农">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
@@ -158,36 +159,60 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2019-12-04二分查找-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2020-03-10-回溯算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/2019-12-04二分查找-2/">二分查找(2)</a>
+    <h1 class="article-title" itemprop="name">
+      回溯算法
     </h1>
   
 
         
-        <a href="/2019/12/04/2019-12-04二分查找-2/" class="archive-article-date">
-  	<time datetime="2019-12-04T06:22:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+        <a href="/2020/03/10/2020-03-10-回溯算法/" class="archive-article-date">
+  	<time datetime="2020-03-10T07:24:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="第一个给定值"><a href="#第一个给定值" class="headerlink" title="第一个给定值"></a>第一个给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchFirst</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &lt; value) &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === <span class="number">0</span> || list[middle - <span class="number">1</span>] !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchFirst(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="最后一个给定值"><a href="#最后一个给定值" class="headerlink" title="最后一个给定值"></a>最后一个给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchLast</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &lt; value) &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === list.length - <span class="number">1</span> || list[middle + <span class="number">1</span>] !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchLast(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="第一个大于等于给定值"><a href="#第一个大于等于给定值" class="headerlink" title="第一个大于等于给定值"></a>第一个大于等于给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchGE</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &gt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === <span class="number">0</span> || list[middle - <span class="number">1</span>] &lt; value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchGE(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="最后一个小于等于给定值"><a href="#最后一个小于等于给定值" class="headerlink" title="最后一个小于等于给定值"></a>最后一个小于等于给定值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchLE</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hight = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= hight) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(hight + (low - hight) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] &lt;= value) &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === list.length - <span class="number">1</span> || list[middle + <span class="number">1</span>] &gt; value) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hight = middle - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchLE(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序排列的循环有序数组</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearchCircle</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(high + (low - high) / <span class="number">2</span>)</span><br><span class="line">    <span class="comment">// 循环有序数组被切割后，会分为有序数组和循环有序数组</span></span><br><span class="line">    <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list[low] &lt;= list[middle]) &#123;</span><br><span class="line">      <span class="comment">// 左侧有序</span></span><br><span class="line">      <span class="keyword">if</span> (list[middle] &gt;= value &amp;&amp; list[low] &lt;= value) &#123;</span><br><span class="line">        high = middle - <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        low = middle + <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 右侧有序</span></span><br><span class="line">      <span class="keyword">if</span> (list[high] &gt;= value &amp;&amp; list[middle] &lt;= value) &#123;</span><br><span class="line">        low = middle + <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        high = middle - <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearchCircle(list, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
-
+        
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -207,16 +232,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/2019-12-04二分查找-2/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/10/2020-03-10-回溯算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/10/2020-03-10-分治算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">分治算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -236,808 +320,14 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-2019-12-3二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/02/2019-12-3二分查找/">二分查找</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/02/2019-12-3二分查找/" class="archive-article-date">
-  	<time datetime="2019-12-02T11:40:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><ul>
-<li>不断地二分区间，快速缩小区间范围</li>
-<li>时间复杂度 O(logn)</li>
-</ul>
-<h2 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h2><ul>
-<li>依赖数组，数组的下标随机访问，时间复杂度 O(1)</li>
-<li>依赖有序，如果没序，需要先排序，那时间复杂度就高了（插入和删除操作不频繁的场景）</li>
-<li>数据量太小，不需要用，遍历性能也不差，但是比较很耗费性能，那建议使用二分查找，减少比较</li>
-<li>数据量不能太大，数组要求连续的内存存储，数据量太大对内存影响太大</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(low + (high - low) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      high = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br><span class="line"><span class="built_in">console</span>.log(binarySearch(list, <span class="number">7</span>))</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bSearch(list, <span class="number">0</span>, list.length - <span class="number">1</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bSearch</span>(<span class="params">list, low, high, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(low + (high - low) / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      <span class="keyword">return</span> bSearch(list, low, middle - <span class="number">1</span>, value)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> bSearch(list, middle + <span class="number">1</span>, high, value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br><span class="line"><span class="built_in">console</span>.log(binarySearch(list, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开方</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sqrtBisection</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) <span class="keyword">return</span> n</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = n &lt; <span class="number">1</span> ? <span class="number">1</span> : n</span><br><span class="line">  <span class="comment">// 使用Number.EPSILON表示能够接受的最小误差范围</span></span><br><span class="line"><span class="comment">//   const E = Number.EPSILON // 接受的最小误差范围</span></span><br><span class="line">  <span class="keyword">const</span> E = <span class="number">0.000001</span> <span class="comment">//指定精度</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> middle = (low + high) / <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Math</span>.abs(middle * middle - n) &lt;= E) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (middle * middle - n &gt; E) &#123;</span><br><span class="line">      high = middle</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sqrtBisection'</span>, sqrtBisection(<span class="number">0.1</span>), <span class="built_in">Math</span>.sqrt(<span class="number">0.1</span>))</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/02/2019-12-3二分查找/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-12-2排序-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/02/2019-12-2排序-3/">排序(3)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/02/2019-12-2排序-3/" class="archive-article-date">
-  	<time datetime="2019-12-02T09:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="线性排序-时间复杂度为：O-n"><a href="#线性排序-时间复杂度为：O-n" class="headerlink" title="线性排序 时间复杂度为：O(n)"></a>线性排序 时间复杂度为：O(n)</h2><h2 id="桶排序-bucket-sort"><a href="#桶排序-bucket-sort" class="headerlink" title="桶排序 bucket sort"></a>桶排序 bucket sort</h2><h3 id="桶排序概念"><a href="#桶排序概念" class="headerlink" title="桶排序概念"></a>桶排序概念</h3><ol>
-<li>n 个数据均匀分配到 m 个桶中</li>
-<li>每个桶中元素为 k = n / m</li>
-<li>对每个桶中的数据进行排序(快速排序 O(klogk))</li>
-<li>m 个桶，整个时间福再度 O(m _ klogk) ====(k = n / m)====&gt; O(n _ log(n / m))</li>
-<li>当 n 接近于 m 时，时间复杂度为 O(n)</li>
-</ol>
-<h3 id="桶排序局限"><a href="#桶排序局限" class="headerlink" title="桶排序局限"></a>桶排序局限</h3><ol>
-<li>桶之间数据要均匀分配，否则排序要退化为快排</li>
-<li>桶之间数据要有序，否则再次排序时间复杂度</li>
-</ol>
-<h2 id="计数排序-counting-sort"><a href="#计数排序-counting-sort" class="headerlink" title="计数排序 counting sort"></a>计数排序 counting sort</h2><ol>
-<li>可以理解为桶排序的特殊情况，多少个数据，就多少个桶</li>
-<li>计数排序只能用在数据范围不大的地方，且数据必须为非负数</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counting</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = list[<span class="number">0</span>]</span><br><span class="line">  list.forEach(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (num &gt; max) &#123;</span><br><span class="line">      max = num</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> countArr = <span class="keyword">new</span> <span class="built_in">Array</span>(max + <span class="number">1</span>).fill(<span class="number">0</span>)</span><br><span class="line">  list.forEach(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    countArr[num]++</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//   相邻累加</span></span><br><span class="line">  countArr.reduce(<span class="function">(<span class="params">pre, cur, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> plus = pre + cur</span><br><span class="line">    countArr[i] = plus</span><br><span class="line">    <span class="keyword">return</span> plus</span><br><span class="line">  &#125;, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> tempArray = []</span><br><span class="line">  <span class="comment">//   倒序放值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = list.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//  值 list[i]；计数位置 countArr[list[i]]；转为数组下标 countArr[list[i]] - 1</span></span><br><span class="line">    <span class="keyword">const</span> index = countArr[list[i]] - <span class="number">1</span></span><br><span class="line">    tempArray[index] = list[i]</span><br><span class="line">    countArr[list[i]]--</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> tempArray</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line"><span class="built_in">console</span>.log(counting(testArr))</span><br></pre></td></tr></table></figure>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>手机号码的例子，按照位去比较，当大的位数不相同时，直接比较就可以得到大小，不用再比较小的位了</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/02/2019-12-2排序-3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-11-28排序-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/2019-11-28排序-2/">排序(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/2019-11-28排序-2/" class="archive-article-date">
-  	<time datetime="2019-11-28T10:01:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="分治思想"><a href="#分治思想" class="headerlink" title="分治思想"></a>分治思想</h2><ul>
-<li>将大的问题分解成小问题，然后分别解决</li>
-<li>分治是一种思想，递归是编程技巧</li>
-</ul>
-<h2 id="归并排序-merge-sort"><a href="#归并排序-merge-sort" class="headerlink" title="归并排序 merge sort"></a>归并排序 merge sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list</span></span><br><span class="line"><span class="comment"> * 1. 把数组分解到最小</span></span><br><span class="line"><span class="comment"> * 2. 然后合并 (有序)</span></span><br><span class="line"><span class="comment"> * 3. 得到有序数组</span></span><br><span class="line"><span class="comment"> * 使用递归，递归公式如下：</span></span><br><span class="line"><span class="comment"> *    mergeSort(list) = merge(mergeSort(listLeft), mergeSort(listRight))</span></span><br><span class="line"><span class="comment"> *    终止条件 list &lt;= 1</span></span><br><span class="line"><span class="comment"> *    合并：使用两个哨兵从两个数组里面取值，值小的放入临时数组中，然后哨兵后移</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">50</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (list.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(list.length / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">const</span> leftArr = list.slice(<span class="number">0</span>, middle)</span><br><span class="line">  <span class="keyword">const</span> rightArr = list.slice(middle)</span><br><span class="line">  <span class="keyword">return</span> merge(mergeSort(leftArr), mergeSort(rightArr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">leftArr, rightArr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> temp = []</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> leftLength = leftArr.length</span><br><span class="line">  <span class="keyword">let</span> rightLength = rightArr.length</span><br><span class="line">  <span class="keyword">while</span> (i &lt; leftLength &amp;&amp; j &lt; rightLength) &#123;</span><br><span class="line">    <span class="keyword">if</span> (leftArr[i] &lt;= rightArr[j]) &#123;</span><br><span class="line">      temp.push(leftArr[i])</span><br><span class="line">      i++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temp.push(rightArr[j])</span><br><span class="line">      j++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> temp.concat(leftArr.slice(i)).concat(rightArr.slice(j))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mergeSort(testArr))</span><br><span class="line"><span class="comment">// 稳定排序 merge 里 leftArr[i] &lt;= rightArr[j] 相同值左侧先放就是稳定</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(nlogn)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(n) 不是原地排序</span></span><br></pre></td></tr></table></figure>
-<h2 id="快速排序-quick-sort"><a href="#快速排序-quick-sort" class="headerlink" title="快速排序 quick sort"></a>快速排序 quick sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">50</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list</span></span><br><span class="line"><span class="comment"> * 递归工时 1. quickSort(p ... r) = quickSort(p ... q - 1) + quickSort(q + 1 ... r)</span></span><br><span class="line"><span class="comment"> * 终止条件 2. p &gt;= r</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  quick_sort(list, <span class="number">0</span>, list.length - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick_sort</span>(<span class="params">list, p, r</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 终止条件</span></span><br><span class="line">  <span class="keyword">if</span> (p &gt;= r) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 分区点</span></span><br><span class="line">  <span class="keyword">const</span> q = partition(list, p, r)</span><br><span class="line">  <span class="comment">// 递归</span></span><br><span class="line">  quick_sort(list, p, q - <span class="number">1</span>)</span><br><span class="line">  quick_sort(list, q + <span class="number">1</span>, r)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 分区点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">list, p, r</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pivot = list[r]</span><br><span class="line">  <span class="keyword">let</span> i = p</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = p; j &lt; r; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (list[j] &lt; pivot) &#123;</span><br><span class="line">      <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">        ;[list[i], list[j]] = [list[j], list[i]]</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[list[i], list[r]] = [list[r], list[i]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line">quickSort(testArr)</span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line"><span class="comment">// 非稳定排序</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(nlogn)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1) 原地排序</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取数组中第k大的元素，利用分区的思想，当分区点 p + 1 === k 时，得到第 K 大（降序排列）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getK</span>(<span class="params">list, k, m, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = partition(list, m, n)</span><br><span class="line">  <span class="keyword">if</span> (p + <span class="number">1</span> === k) &#123;</span><br><span class="line">    <span class="keyword">return</span> list[p]</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p + <span class="number">1</span> &gt; k) &#123;</span><br><span class="line">    <span class="keyword">return</span> getK(list, k, m, p - <span class="number">1</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getK(list, k, p + <span class="number">1</span>, n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">list, m, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = m</span><br><span class="line">  <span class="keyword">let</span> pivot = list[n]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = m; j &lt; n; j++) &#123;</span><br><span class="line">    <span class="comment">//   降序排列</span></span><br><span class="line">    <span class="keyword">if</span> (list[j] &gt; pivot) &#123;</span><br><span class="line">      <span class="keyword">if</span> (j != i) &#123;</span><br><span class="line">        ;[list[j], list[i]] = [list[i], list[j]]</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[list[n], list[i]] = [list[i], list[n]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'k'</span>, getK(list, <span class="number">2</span>, <span class="number">0</span>, <span class="number">5</span>), list)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/2019-11-28排序-2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-11-28排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/2019-11-28排序/">排序</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/2019-11-28排序/" class="archive-article-date">
-  	<time datetime="2019-11-28T03:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="排序算法的执行效率"><a href="#排序算法的执行效率" class="headerlink" title="排序算法的执行效率"></a>排序算法的执行效率</h2><ul>
-<li>最好情况、最坏情况和平均情况时间复杂度</li>
-<li>时间复杂度的系数、常数和低阶</li>
-<li>比较次数和移动次数</li>
-</ul>
-<h2 id="排序算法的内存消耗"><a href="#排序算法的内存消耗" class="headerlink" title="排序算法的内存消耗"></a>排序算法的内存消耗</h2><ul>
-<li>原地排序，空间复杂度 O(1)</li>
-</ul>
-<h2 id="排序算法的稳定性"><a href="#排序算法的稳定性" class="headerlink" title="排序算法的稳定性"></a>排序算法的稳定性</h2><ul>
-<li>相同值经过排序位置不变</li>
-</ul>
-<h2 id="有序度"><a href="#有序度" class="headerlink" title="有序度"></a>有序度</h2><ul>
-<li>数组中具有有序关系对的个数</li>
-<li>满有序度 n * (n - 1) / 2</li>
-<li>有序度 = 满有序度 - 逆有序度</li>
-</ul>
-<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡-bubble-sort"><a href="#冒泡-bubble-sort" class="headerlink" title="冒泡 bubble sort"></a>冒泡 bubble sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 冒泡排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> * 1. 每一次比较相邻两个数的大小，按照比较结果排序</span></span><br><span class="line"><span class="comment"> * 2. 经过 n 排序，得到排序结果</span></span><br><span class="line"><span class="comment"> * 3. 每次冒泡次数为：j &lt; len - 1 - i  ，-1 是相邻比较次数比长度少一次，-i 是因为排过的不用再比较</span></span><br><span class="line"><span class="comment"> * 4. 设置标志位，如果一次冒泡没有排序，代表排序完成提前退出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> len = list.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> isExchange = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (list[j] &gt; list[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        [list[j], list[j + <span class="number">1</span>]] = [list[j + <span class="number">1</span>], list[j]]</span><br><span class="line">        isExchange = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!isExchange) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">3</span>, <span class="number">23</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]))</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 原地排序 空间复杂度O(1)</span></span><br><span class="line"><span class="comment"> * 2. 稳定排序 只有大于时才交换</span></span><br><span class="line"><span class="comment"> * 3. 时间复杂度 最好一次冒泡 O(n) 最坏(倒序) O(n^2) 平均</span></span><br><span class="line"><span class="comment"> * /</span></span><br></pre></td></tr></table></figure>
-<h3 id="插入-insertion-sort"><a href="#插入-insertion-sort" class="headerlink" title="插入 insertion sort"></a>插入 insertion sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> * 1.遍历有序数组找到插入位置，插入数据</span></span><br><span class="line"><span class="comment"> * 2.把数组分为有序数组和无序数组</span></span><br><span class="line"><span class="comment"> * 3.插入开始 i = 1 知道数组结束</span></span><br><span class="line"><span class="comment"> * 4.遍历有序数组找到插入位置插入，其他数据后移</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = list[i]</span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> (; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (value &lt; list[j]) &#123;</span><br><span class="line">        list[j + <span class="number">1</span>] = list[j]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list[j + <span class="number">1</span>] = value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(insertionSort([<span class="number">3</span>, <span class="number">23</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]))</span><br><span class="line"><span class="comment">// 原地排序</span></span><br><span class="line"><span class="comment">// 稳定排序</span></span><br><span class="line"><span class="comment">// 最好O(n) 最坏O(n^2) 平均 O(n^2)</span></span><br></pre></td></tr></table></figure>
-<h2 id="选择-selection-sort"><a href="#选择-selection-sort" class="headerlink" title="选择 selection sort"></a>选择 selection sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * 1.分为排序和未排序部分，未排序部分找出最小值，放到已排序队尾</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len = list.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (list[min] &gt; list[j]) &#123;</span><br><span class="line">                min = j</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        [list[i], list[min]] = [list[min], list[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">23</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]))</span><br><span class="line"><span class="comment">// 原地排序</span></span><br><span class="line"><span class="comment">// 非稳定排序</span></span><br><span class="line"><span class="comment">// 最好O(n^2) 最坏O(n^2) 平均 O(n^2)</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/2019-11-28排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-11-27递归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/27/2019-11-27递归/">递归</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/27/2019-11-27递归/" class="archive-article-date">
-  	<time datetime="2019-11-27T11:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="递归的条件"><a href="#递归的条件" class="headerlink" title="递归的条件"></a>递归的条件</h2><ol>
-<li>问题可以分解为子问题</li>
-<li>分解后的子问题，除了数据规模不同，解决方法一致</li>
-<li>存在递归终止条件，不能存在无限循环</li>
-</ol>
-<h2 id="递归关键点"><a href="#递归关键点" class="headerlink" title="递归关键点"></a>递归关键点</h2><ol>
-<li>递归公式</li>
-<li>终止条件</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 走台阶，一次可以走一次或者两次，总共7个台阶，有多少种可能呢？</span></span><br><span class="line"><span class="comment">// 1.问题分解：7个台阶可能性可以拆分为，6个台阶的可能性+5个台阶可能性</span></span><br><span class="line"><span class="comment">// 2.解法一致：6个台阶和5个台阶，可以接着分解</span></span><br><span class="line"><span class="comment">// 3.终止条件：1个和2个台阶时分别有1，2种可能性，可终止</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归公式</span></span><br><span class="line"><span class="comment">// f(n) = f(n-1)+f(n-2)</span></span><br><span class="line"><span class="comment">// 终止条件</span></span><br><span class="line"><span class="comment">// f(1) = 1</span></span><br><span class="line"><span class="comment">// f(2) = 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="递归难点"><a href="#递归难点" class="headerlink" title="递归难点"></a>递归难点</h2><ul>
-<li>不要深入去思考递归过程，我们需要的是推到递归公式和终止条件</li>
-<li>警惕堆栈溢出</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line"><span class="comment">// 全局变量，表示递归的深度。</span></span><br><span class="line"><span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  ++depth；</span><br><span class="line">  <span class="keyword">if</span> (depth &gt; <span class="number">1000</span>) <span class="keyword">throw</span> exception;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> f(n-<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>警惕重复计算</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// f(7) = f(6) + f(5)</span></span><br><span class="line"><span class="comment">// f(6) = f(5) + f(4)</span></span><br><span class="line"><span class="comment">// 重复计算了f(5)</span></span><br><span class="line"><span class="comment">// 代码优化</span></span><br><span class="line"><span class="keyword">const</span> temp = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (temp[n]) &#123;</span><br><span class="line">    <span class="keyword">return</span> temp[n]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> ret = f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">  temp[n] = ret</span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调试递归:</p>
-<ol>
-<li>打印日志发现，递归值</li>
-<li>结合条件断点进行调试</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/27/2019-11-27递归/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-08-06队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/2019-08-06队列/">队列</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/06/2019-08-06队列/" class="archive-article-date">
-  	<time datetime="2019-08-06T11:36:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
-<li>先进先出，后进后出</li>
-<li>数组实现的顺序队列</li>
-<li>链表实现的链式队列</li>
-</ul>
-<p>普通队列<br>head 头，tail 尾，n 长度<br>空时：head === tail<br>满时：tail === n</p>
-<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>head 头，tail 尾，n 长度<br>空时：head === tail<br>满时：(tail + 1) % n === head</p>
-<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><ul>
-<li>队列为空时，队头取数据阻塞，直到有数据；队列满时阻塞插入，直到有空间再执行插入</li>
-<li>完美的符合 生产者-消费者 模型</li>
-<li>当生产者生产数据过多，消费者来不及消费（队列满了），此时生产者阻塞；当消费者消费过多，生产者来不及生产（队列空了），此时消费者阻塞</li>
-</ul>
-<h3 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h3><p>当多线程消费队列时，称为并发队列，要保证队列的线程安全，可以加锁</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/06/2019-08-06队列/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-08-05栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/2019-08-05栈/">栈</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/05/2019-08-05栈/" class="archive-article-date">
-  	<time datetime="2019-08-05T09:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><ul>
-<li>先进后出，后进先出，只允许在一端插入和删除数据。</li>
-<li>数组实现为顺序栈。</li>
-<li>链表实现为链式栈。</li>
-</ul>
-<h2 id="栈的应用"><a href="#栈的应用" class="headerlink" title="栈的应用"></a>栈的应用</h2><h3 id="1-浏览器前进后退"><a href="#1-浏览器前进后退" class="headerlink" title="1. 浏览器前进后退"></a>1. 浏览器前进后退</h3><p>栈 1[a, b, c] 栈 2[]<br>后退：栈 1[a, b] 栈 2[c]<br>后退：栈 1[a] 栈 2[b, c]<br>前进：栈 1[a, b] 栈 2[c]<br>新开：栈 1[a, b, d] 栈 2[]（清空）</p>
-<h3 id="2-括号匹配"><a href="#2-括号匹配" class="headerlink" title="2.  [] 括号匹配"></a>2.  [] 括号匹配</h3><p>我们用栈来保存未匹配的左括号，从左到右依次扫描字符串。当扫描到左括号时，则将其压入栈中；<br>当扫描到右括号时，从栈顶取出一个左括号。匹配继续执行，不匹配非法格式。</p>
-<h3 id="3-表达式求值"><a href="#3-表达式求值" class="headerlink" title="3. 表达式求值"></a>3. 表达式求值</h3><p><img src="https://davidsongzw.github.io/assets/blogImg/stack1.jpg" alt="image"></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.函数调用为何使用栈来实现？<br>答：后入先出（LIFO）的数据结构，和函数嵌套执行顺序天然合适。另外就是函数执行的临时作用域，栈顶生成执行完重置，也很合适。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/05/2019-08-05栈/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-07-22-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/23/2019-07-22-链表/">链表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/23/2019-07-22-链表/" class="archive-article-date">
-  	<time datetime="2019-07-23T11:05:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>不需要连续内存，通过“指针”将零散的内存块串联起来</p>
-</blockquote>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
-<li>单向链表<br>尾节点指向 null</li>
-<li>双向链表<br>拥有双向指针，头节点的前节点是 null，尾节点的后节点是 null</li>
-<li>循环链表<br>尾节点执向 头节点</li>
-<li>双向循环链表<br>拥有双向指针，头节点的前节点是尾节点，尾节点的后节点是头节点</li>
-</ul>
-<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><ul>
-<li>插入 O(1)</li>
-<li>删除 O(1)</li>
-<li>查找 O(n)</li>
-</ul>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="1-指针与变量"><a href="#1-指针与变量" class="headerlink" title="1.指针与变量"></a>1.指针与变量</h3><ol>
-<li>变量赋值给指针，是把变量的内存地址赋值给了指针</li>
-<li>指针保存这个变量的内存地址，此内存地址指向这个变量</li>
-</ol>
-<h3 id="2-指针丢失与内存泄露"><a href="#2-指针丢失与内存泄露" class="headerlink" title="2.指针丢失与内存泄露"></a>2.指针丢失与内存泄露</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.next =&gt; b 此时插入 x</span></span><br><span class="line">a.next = x <span class="comment">// 此时a.next 已经改变</span></span><br><span class="line">x.next = a.next <span class="comment">// 指针丢失</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//正确代码</span></span><br><span class="line">x.next = a.next <span class="comment">// 先把下个节点赋值</span></span><br><span class="line">a.next = x</span><br></pre></td></tr></table></figure>
-<h3 id="3-哨兵"><a href="#3-哨兵" class="headerlink" title="3.哨兵"></a>3.哨兵</h3><ol>
-<li>哨兵很有用，尤其在处理边界问题时</li>
-</ol>
-<h3 id="4-链表验证"><a href="#4-链表验证" class="headerlink" title="4.链表验证"></a>4.链表验证</h3><ol>
-<li>链表为空时</li>
-<li>链表只要一个节点时</li>
-<li>链表只有两个节点时</li>
-<li>处理链表头尾时</li>
-</ol>
-<h3 id="5-画图和举列子"><a href="#5-画图和举列子" class="headerlink" title="5.画图和举列子"></a>5.画图和举列子</h3><p>比如简单的插入值，就可以在图上画出示意图</p>
-<h3 id="6-练习题"><a href="#6-练习题" class="headerlink" title="6.练习题"></a>6.练习题</h3><p>链表练习题</p>
-<ul>
-<li style="list-style: none"><input type="checkbox"> 单链表反转</li>
-<li style="list-style: none"><input type="checkbox"> 链表中环的检测</li>
-<li style="list-style: none"><input type="checkbox"> 两个有序的链表合并</li>
-<li style="list-style: none"><input type="checkbox"> 删除链表倒数第 n 个结点</li>
-<li style="list-style: none"><input type="checkbox"> 求链表的中间结点</li>
-</ul>
-<p>leetcode 对应 206，141，21，19，876</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/23/2019-07-22-链表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-07-22-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/22/2019-07-22-数组/">数组</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/22/2019-07-22-数组/" class="archive-article-date">
-  	<time datetime="2019-07-22T14:47:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>线性表数据结构，用连续的内存，来存储相同类型的数据（JavaScript 中的数组比较类型可不同）</p>
-</blockquote>
-<h3 id="线性"><a href="#线性" class="headerlink" title="线性"></a>线性</h3><ul>
-<li>线性表：数据连成一条线，并且数据最多只有前后两个方向（数组、链表、队列和栈）</li>
-<li>非线性表：可以有多个方向（树、图和堆）</li>
-</ul>
-<h3 id="连续内存空间和相同数据类型"><a href="#连续内存空间和相同数据类型" class="headerlink" title="连续内存空间和相同数据类型"></a>连续内存空间和相同数据类型</h3><ul>
-<li>连续内存支持随机访问 O(1)</li>
-<li>插入 O(n)和删除 O(n)</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/22/2019-07-22-数组/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1060,8 +350,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
