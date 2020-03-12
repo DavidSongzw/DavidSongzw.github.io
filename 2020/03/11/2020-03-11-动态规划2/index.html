@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 小程序 | 宋公子的博客</title>
+  <title>动态规划2 理论 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不会健身的程序员，不是个好码农">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋公子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/小程序/index.html">
+  <meta name="description" content="动态规划适合解决什么问题 一个模型三个特征  一个模型 多阶段决策最优解模型   解决问题分为多个阶段，每个阶段对应一种状态 选择一组状态，得到最优解  三个特征最优子结构问题的最优解，包含子问题的最优解，可以理解为，后面阶段的状态，可以由前面状态推到处理 无后效性 只关心当前阶段值，不关心具体得到过程 前面阶段值一旦确定，不受后面阶段影响  重复子问题不同的组合状态，可能得到相同的结果 解题思路">
+<meta name="keywords" content="技术，数据结构，算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划2 理论">
+<meta property="og:url" content="http://yoursite.com/2020/03/11/2020-03-11-动态规划2/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="不会健身的程序员，不是个好码农">
+<meta property="og:description" content="动态规划适合解决什么问题 一个模型三个特征  一个模型 多阶段决策最优解模型   解决问题分为多个阶段，每个阶段对应一种状态 选择一组状态，得到最优解  三个特征最优子结构问题的最优解，包含子问题的最优解，可以理解为，后面阶段的状态，可以由前面状态推到处理 无后效性 只关心当前阶段值，不关心具体得到过程 前面阶段值一旦确定，不受后面阶段影响  重复子问题不同的组合状态，可能得到相同的结果 解题思路">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-11T14:25:07.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋公子的博客">
-<meta name="twitter:description" content="不会健身的程序员，不是个好码农">
+<meta name="twitter:title" content="动态规划2 理论">
+<meta name="twitter:description" content="动态规划适合解决什么问题 一个模型三个特征  一个模型 多阶段决策最优解模型   解决问题分为多个阶段，每个阶段对应一种状态 选择一组状态，得到最优解  三个特征最优子结构问题的最优解，包含子问题的最优解，可以理解为，后面阶段的状态，可以由前面状态推到处理 无后效性 只关心当前阶段值，不关心具体得到过程 前面阶段值一旦确定，不受后面阶段影响  重复子问题不同的组合状态，可能得到相同的结果 解题思路">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -158,75 +159,216 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2020-03-11-动态规划2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/小程序的小思考/" class="archive-article-date">
-  	<time datetime="2017-04-09T14:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/小程序的小思考/">小程序的小思考</a>
+    <h1 class="article-title" itemprop="name">
+      动态规划2 理论
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/11/2020-03-11-动态规划2/" class="archive-article-date">
+  	<time datetime="2020-03-11T10:16:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="动态规划适合解决什么问题"><a href="#动态规划适合解决什么问题" class="headerlink" title="动态规划适合解决什么问题"></a>动态规划适合解决什么问题</h2><blockquote>
+<p>一个模型三个特征</p>
+</blockquote>
+<h3 id="一个模型"><a href="#一个模型" class="headerlink" title="一个模型"></a>一个模型</h3><blockquote>
+<p>多阶段决策最优解模型</p>
+</blockquote>
+<ol>
+<li>解决问题分为多个阶段，每个阶段对应一种状态</li>
+<li>选择一组状态，得到最优解</li>
+</ol>
+<h3 id="三个特征"><a href="#三个特征" class="headerlink" title="三个特征"></a>三个特征</h3><h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><p>问题的最优解，包含子问题的最优解，可以理解为，后面阶段的状态，可以由前面状态推到处理</p>
+<h3 id="无后效性"><a href="#无后效性" class="headerlink" title="无后效性"></a>无后效性</h3><ol>
+<li>只关心当前阶段值，不关心具体得到过程</li>
+<li>前面阶段值一旦确定，不受后面阶段影响</li>
+</ol>
+<h3 id="重复子问题"><a href="#重复子问题" class="headerlink" title="重复子问题"></a>重复子问题</h3><p>不同的组合状态，可能得到相同的结果</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="状态转移表法"><a href="#状态转移表法" class="headerlink" title="状态转移表法"></a>状态转移表法</h3><ul>
+<li>利用回溯算法，一般回溯算法，都可以使用动态规划实现</li>
+<li>回溯算法画出递归树，找出重复子问题</li>
+<li>然后画出状态表</li>
+</ul>
+<p>回溯算法实现 =&gt; 定义状态 =&gt; 画递归树 =&gt; 找重复子问题 =&gt; 画状态转移表 =&gt; 根据递推关系填表 =&gt; 将填表过程翻译成代码</p>
+<h3 id="状态转移方程法"><a href="#状态转移方程法" class="headerlink" title="状态转移方程法"></a>状态转移方程法</h3><p>类似这种</p>
+<blockquote>
+<p>min_dist(i, j) = w[i][j] + min(min_dist(i, j-1), min_dist(i-1, j))</p>
+</blockquote>
+<ul>
+<li>递归 + 备忘录</li>
+<li>迭代递推</li>
+</ul>
+<p>找最优子结构 =&gt; 写状态转移方程 =&gt; 将状态转移方程翻译成代码</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/微信//" class="article-tag-list-link color3">微信</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/11/2020-03-11-动态规划2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/03/11/2020-03-11-动态规划3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          动态规划3 实战
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/03/11/2020-03-11-动态规划/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">动态规划</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,9 +391,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
