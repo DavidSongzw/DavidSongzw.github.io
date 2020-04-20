@@ -160,6 +160,86 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-03-10-贪心算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/09/2020-03-10-贪心算法/">贪心算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/09/2020-03-10-贪心算法/" class="archive-article-date">
+  	<time datetime="2020-03-09T13:49:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="贪心算法-greedy-algorithm"><a href="#贪心算法-greedy-algorithm" class="headerlink" title="贪心算法 (greedy algorithm)"></a>贪心算法 (greedy algorithm)</h2><p>第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大<br>第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大<br>第三部：在数据中，小范围验证</p>
+<h3 id="贪心算法实战"><a href="#贪心算法实战" class="headerlink" title="贪心算法实战"></a>贪心算法实战</h3><p>1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等，这 m 个糖果的大小分别是 s1，s2，s3，……，sm。除此之外，每个孩子对糖果大小的需求也是不一样的，只有糖果的大小大于等于孩子的对糖果大小的需求的时候，孩子才得到满足。假设这 n 个孩子对糖果大小的需求分别是 g1，g2，g3，……，gn。我的问题是，如何分配糖果，能尽可能满足最多数量的孩子？</p>
+<p>答：每次挑选需求最小的孩子，然后在糖果中挑选最小满足他的糖果，这样才能更多的满足孩子（每个孩子期望值一样）</p>
+<p>2.钱币找零：这个问题在我们的日常生活中更加普遍。假设我们有 1 元、2 元、5 元、10 元、20 元、50 元、100 元这些面额的纸币，它们的张数分别是 c1、c2、c5、c10、c20、c50、c100。我们现在要用这些钱来支付 K 元，最少要用多少张纸币呢？</p>
+<p>答：先用大额纸币支付，然后选择小额纸币（每张的纸币期望相同）</p>
+<p>3.区间覆盖：假设我们有 n 个区间，区间的起始端点和结束端点分别是[l1, r1]，[l2, r2]，[l3, r3]，……，[ln, rn]。我们从这 n 个区间中选出一部分区间，这部分区间满足两两不相交（端点相交的情况不算相交），最多能选出多少个区间呢？<br><img src="https://davidsongzw.github.io/assets/blogImg/range.jpg" alt="image"><br>答：排序区间，选择左端点和已覆盖区域不想交，同时右端点最小（给右侧区间留更大位置）<br><img src="https://davidsongzw.github.io/assets/blogImg/range1.jpg" alt="image"></p>
+<h3 id="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"><a href="#霍夫曼编码（数据压缩编码，有效节省数据存储空间）" class="headerlink" title="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"></a>霍夫曼编码（数据压缩编码，有效节省数据存储空间）</h3><p>1.出现越多的字符，编码长度越低，且为了防止解码问题，任何一个编码都不能是另外一个编码的前缀<br><img src="https://davidsongzw.github.io/assets/blogImg/human.jpg" alt="image"><br><img src="https://davidsongzw.github.io/assets/blogImg/human1.jpg" alt="image"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/09/2020-03-10-贪心算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-03-09-AC-自动机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1029,89 +1109,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-24递归树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/24/2019-12-24递归树/">2019-12-24递归树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/24/2019-12-24递归树/" class="archive-article-date">
-  	<time datetime="2019-12-24T03:54:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>递归思想中，把大问题分解为小问题，把这个过程画出来，就是一个树，成为递归树</p>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><ol>
-<li>归并排序的过程，可以画出一个树</li>
-<li>每一层归并的时间近似为 n，假设树的高度为 h，那时间复杂度为 O(n * h)</li>
-<li>归并排序树是个满二叉树，那 h 为 log2n，所以时间复杂度为 O(nlogn)</li>
-</ol>
-<h3 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h3><ol>
-<li>分析出每层时间复杂度</li>
-<li>分析出树的形状，计算树的高度</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/24/2019-12-24递归树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1262,15 +1259,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
