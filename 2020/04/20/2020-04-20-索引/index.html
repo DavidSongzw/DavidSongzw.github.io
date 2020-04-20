@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 小程序 | 宋公子的博客</title>
+  <title>索引 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不会健身的程序员，不是个好码农">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋公子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/小程序/index.html">
+  <meta name="description" content="索引意义节省内存空间，提高增删改查的效率 索引定义功能性 是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理 静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂 存储内存还是硬盘，大量数据不适宜存储于内存 单值查找还是区间查找，支持区间查找的数据结构，更复杂些 单关键词还是多关键词  非功能性 索引的存储空间要小，尤其是在内存中 考虑索引的维护成本，索引维护不">
+<meta name="keywords" content="技术，数据结构，算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="索引">
+<meta property="og:url" content="http://yoursite.com/2020/04/20/2020-04-20-索引/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="不会健身的程序员，不是个好码农">
+<meta property="og:description" content="索引意义节省内存空间，提高增删改查的效率 索引定义功能性 是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理 静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂 存储内存还是硬盘，大量数据不适宜存储于内存 单值查找还是区间查找，支持区间查找的数据结构，更复杂些 单关键词还是多关键词  非功能性 索引的存储空间要小，尤其是在内存中 考虑索引的维护成本，索引维护不">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-20T11:34:38.738Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋公子的博客">
-<meta name="twitter:description" content="不会健身的程序员，不是个好码农">
+<meta name="twitter:title" content="索引">
+<meta name="twitter:description" content="索引意义节省内存空间，提高增删改查的效率 索引定义功能性 是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理 静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂 存储内存还是硬盘，大量数据不适宜存储于内存 单值查找还是区间查找，支持区间查找的数据结构，更复杂些 单关键词还是多关键词  非功能性 索引的存储空间要小，尤其是在内存中 考虑索引的维护成本，索引维护不">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -158,75 +159,203 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2020-04-20-索引" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/小程序的小思考/" class="archive-article-date">
-  	<time datetime="2017-04-09T14:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/小程序的小思考/">小程序的小思考</a>
+    <h1 class="article-title" itemprop="name">
+      索引
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/20/2020-04-20-索引/" class="archive-article-date">
+  	<time datetime="2020-04-20T11:17:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="索引意义"><a href="#索引意义" class="headerlink" title="索引意义"></a>索引意义</h2><p>节省内存空间，提高增删改查的效率</p>
+<h2 id="索引定义"><a href="#索引定义" class="headerlink" title="索引定义"></a>索引定义</h2><h3 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h3><ol>
+<li>是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理</li>
+<li>静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂</li>
+<li>存储内存还是硬盘，大量数据不适宜存储于内存</li>
+<li>单值查找还是区间查找，支持区间查找的数据结构，更复杂些</li>
+<li>单关键词还是多关键词</li>
+</ol>
+<h3 id="非功能性"><a href="#非功能性" class="headerlink" title="非功能性"></a>非功能性</h3><ol>
+<li>索引的存储空间要小，尤其是在内存中</li>
+<li>考虑索引的维护成本，索引维护不能太难</li>
+</ol>
+<h3 id="具体的数据结构"><a href="#具体的数据结构" class="headerlink" title="具体的数据结构"></a>具体的数据结构</h3><p><strong>散列表</strong>增删改查操作的性能非常好，时间复杂度是 O(1)。一些键值数据库，比如 Redis、Memcache，就是使用散列表来构建索引的。这类索引，一般都构建在内存中</p>
+<p><strong>红黑树</strong>作为一种常用的平衡二叉查找树，数据插入、删除、查找的时间复杂度是 O(logn)，也非常适合用来构建内存索引。Ext 文件系统中，对磁盘块的索引，用的就是红黑树。</p>
+<p><strong>B+ 树</strong>比起红黑树来说，更加适合构建存储在磁盘中的索引。B+ 树是一个多叉树，所以，对相同个数的数据构建索引，B+ 树的高度要低于红黑树。当借助索引查询数据的时候，读取 B+ 树索引，需要的磁盘 IO 次数会更少。所以，大部分关系型数据库的索引，比如 MySQL、Oracle，都是用 B+ 树来实现的。</p>
+<p><strong>跳表</strong>也支持快速添加、删除、查找数据。而且，我们通过灵活调整索引结点个数和数据个数之间的比例，可以很好地平衡索引对内存的消耗及其查询效率。Redis 中的有序集合，就是用跳表来构建的。</p>
+<p><strong>位图和布隆过滤器</strong>位图很省内存空间，还可以使用布隆过滤器优化，我们可以先构建布隆过滤器，拦截数据是否存在，不存在就不用查了，省了一次索引查询</p>
+<p><strong>有序数组</strong>静态数据，使用有序数组，二分查找也很快</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">微信</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/微信//" class="article-tag-list-link color3">微信</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/20/2020-04-20-索引/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/20/2020-04-20-并行/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          并行
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/20/2020-04-20-A-搜索算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">A*搜索算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,9 +378,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
