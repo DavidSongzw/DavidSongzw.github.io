@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>动态规划 | 宋公子的博客</title>
+  <title>最短路径 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="动态规划（Dynamic Programming）0-1 背包问题 动态规划1234567891011121314151617181920212223242526272829303132/** * 计算0-1背包问题 动态规划 * @param &amp;#123;*&amp;#125; weightList 物品重量 * @param &amp;#123;*&amp;#125; num 物品个数 * @param &amp;#123;">
+  <meta name="description" content="Dijkstra 算法">
 <meta name="keywords" content="技术，数据结构，算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划">
-<meta property="og:url" content="http://yoursite.com/2020/03/11/2020-03-11-动态规划/index.html">
+<meta property="og:title" content="最短路径">
+<meta property="og:url" content="http://yoursite.com/2020/04/18/2020-04-17-最短路径/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="动态规划（Dynamic Programming）0-1 背包问题 动态规划1234567891011121314151617181920212223242526272829303132/** * 计算0-1背包问题 动态规划 * @param &amp;#123;*&amp;#125; weightList 物品重量 * @param &amp;#123;*&amp;#125; num 物品个数 * @param &amp;#123;">
+<meta property="og:description" content="Dijkstra 算法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-11T10:13:20.819Z">
+<meta property="og:updated_time" content="2020-04-20T06:33:12.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划">
-<meta name="twitter:description" content="动态规划（Dynamic Programming）0-1 背包问题 动态规划1234567891011121314151617181920212223242526272829303132/** * 计算0-1背包问题 动态规划 * @param &amp;#123;*&amp;#125; weightList 物品重量 * @param &amp;#123;*&amp;#125; num 物品个数 * @param &amp;#123;">
+<meta name="twitter:title" content="最短路径">
+<meta name="twitter:description" content="Dijkstra 算法">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,28 +159,27 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020-03-11-动态规划" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020-04-17-最短路径" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      动态规划
+      最短路径
     </h1>
   
 
         
-        <a href="/2020/03/11/2020-03-11-动态规划/" class="archive-article-date">
-  	<time datetime="2020-03-11T02:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
+        <a href="/2020/04/18/2020-04-17-最短路径/" class="archive-article-date">
+  	<time datetime="2020-04-18T10:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="动态规划（Dynamic-Programming）"><a href="#动态规划（Dynamic-Programming）" class="headerlink" title="动态规划（Dynamic Programming）"></a>动态规划（Dynamic Programming）</h2><h3 id="0-1-背包问题-动态规划"><a href="#0-1-背包问题-动态规划" class="headerlink" title="0-1 背包问题 动态规划"></a>0-1 背包问题 动态规划</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算0-1背包问题 动态规划</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; weightList 物品重量</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; num 物品个数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; totalWeight 背包可承载重量</span></span><br><span class="line"><span class="comment"> * @returns</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">knapsack</span>(<span class="params">weightList, num, totalWeight</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> states = <span class="keyword">new</span> <span class="built_in">Array</span>(totalWeight + <span class="number">1</span>) <span class="comment">// 默认值false</span></span><br><span class="line">  <span class="comment">// 第一行的数据要特殊处理，可以利用哨兵优化</span></span><br><span class="line">  states[<span class="number">0</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (weightList[<span class="number">0</span>] &lt;= totalWeight) &#123;</span><br><span class="line">    states[weightList[<span class="number">0</span>]] = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; num; ++i) &#123;</span><br><span class="line">    <span class="comment">// 动态规划</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = totalWeight - weightList[i]; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">      <span class="comment">//把第i个物品放入背包</span></span><br><span class="line">      <span class="keyword">if</span> (states[j]) &#123;</span><br><span class="line">        states[j + weightList[i]] = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = totalWeight; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="comment">// 输出结果</span></span><br><span class="line">    <span class="keyword">if</span> (states[i]) <span class="keyword">return</span> i</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> totalWeight = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(knapsack(totalWeight, <span class="number">5</span>, <span class="number">9</span>))</span><br></pre></td></tr></table></figure>
-
+        <h2 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h2>
       
 
       
@@ -280,7 +279,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/11/2020-03-11-动态规划/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/18/2020-04-17-最短路径/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +293,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/03/11/2020-03-11-动态规划2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/20/2020-04-20-位图/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          动态规划2 理论
+          位图
         
       </div>
     </a>
   
   
-    <a href="/2020/03/10/2020-03-10-回溯算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">回溯算法</div>
+    <a href="/2020/04/18/2020-04-17-拓扑排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">拓扑排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
