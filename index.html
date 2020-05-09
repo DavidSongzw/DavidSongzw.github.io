@@ -160,6 +160,79 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-05-09-JavaScript-动态扩容数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/2020-05-09-JavaScript-动态扩容数组/">JavaScript 动态扩容数组</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/09/2020-05-09-JavaScript-动态扩容数组/" class="archive-article-date">
+  	<time datetime="2020-05-09T09:07:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. JavaScript 中的数组和其他语言的数组不太一样</span></span><br><span class="line"><span class="comment"> * 2. 原生就支持动态扩容</span></span><br><span class="line"><span class="comment"> * 3. 使用 ArrayBuffer 模拟其他语言数组 实现数组的动态扩容</span></span><br><span class="line"><span class="comment"> * 4. Uint8Array 来做 DataView</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> preArraySize = <span class="number">4</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DynamicArray</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (size = preArraySize) &#123;</span><br><span class="line">    <span class="comment">//   存储的数量</span></span><br><span class="line">    <span class="keyword">this</span>._size = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 最后一个的下标</span></span><br><span class="line">    <span class="keyword">this</span>._lastIndex = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 默认长度为4</span></span><br><span class="line">    <span class="keyword">this</span>._array = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(size)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 添加</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; item</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  add (item) &#123;</span><br><span class="line">    <span class="keyword">this</span>.set(<span class="keyword">this</span>._lastIndex + <span class="number">1</span>, item)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 根据下标删除</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; index</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  remove (index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rangeCheck(index)) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'下标越界'</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._array[index] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>._size--</span><br><span class="line">    <span class="keyword">return</span> index</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 根据下标设置值</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; index</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; item</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">set</span> (index, item) &#123;</span><br><span class="line">    <span class="keyword">this</span>._lastIndex = <span class="built_in">Math</span>.max(index, <span class="keyword">this</span>._lastIndex)</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rangeCheck(index)) &#123;</span><br><span class="line">      <span class="keyword">const</span> size = index + <span class="number">1</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'set 下标越界'</span>)</span><br><span class="line">      <span class="keyword">this</span>._array = <span class="keyword">this</span>.copyBuffer(size)</span><br><span class="line">      <span class="keyword">this</span>._array[index] = item</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._array[index] = item</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._size++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 根据下标取值</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; index</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">get</span> (index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rangeCheck(index)) &#123;</span><br><span class="line">    <span class="comment">//   console.log('get 下标越界')</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._array[index]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; index</span></span><br><span class="line"><span class="comment">   * 下标越界检查</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  rangeCheck (index) &#123;</span><br><span class="line">    <span class="keyword">return</span> index &gt; <span class="keyword">this</span>._array.length - <span class="number">1</span> || index &lt; <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 复制</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; size </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  copyBuffer (size) &#123;</span><br><span class="line">    <span class="keyword">const</span> buffer = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(size)</span><br><span class="line">    buffer.set(<span class="keyword">this</span>._array)</span><br><span class="line">    <span class="keyword">return</span> buffer</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 当前存储的数据个数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">get</span> size () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._size</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> DynamicArray(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">  arr.set(i, i)</span><br><span class="line">&#125;</span><br><span class="line">arr.add(<span class="number">22</span>)</span><br><span class="line">arr.add(<span class="number">33</span>)</span><br><span class="line">arr.add(<span class="number">44</span>)</span><br><span class="line">arr.remove(<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">25</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arr.get(i))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/09/2020-05-09-JavaScript-动态扩容数组/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-04-20-并行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -906,103 +979,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2020-03-17-webpack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/2020-03-17-webpack/">webpack</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/17/2020-03-17-webpack/" class="archive-article-date">
-  	<time datetime="2020-03-17T10:32:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="webpack-构建项目"><a href="#webpack-构建项目" class="headerlink" title="webpack 构建项目"></a>webpack 构建项目</h3><ol>
-<li>init 项目</li>
-<li>webpack</li>
-<li>babel</li>
-<li>react</li>
-<li>命令优化</li>
-<li>react-router</li>
-<li>webpack-dev-server</li>
-<li>模块热替换（Hot Module Replacement）</li>
-<li>文件路径优化</li>
-<li>redux</li>
-<li>devtool</li>
-<li>优化编译 css</li>
-<li>编译图片</li>
-<li>按需加载</li>
-<li>缓存</li>
-<li>HtmlWebpackPlugin</li>
-<li>提取公共代码</li>
-<li>生产坏境构建</li>
-<li>文件压缩</li>
-<li>指定环境</li>
-<li>优化缓存</li>
-<li>public path</li>
-<li>打包优化</li>
-<li>抽取 css</li>
-<li>使用 axios 和 middleware 优化 API 请求</li>
-<li>合并提取 webpack 公共配置 webpack-common-config</li>
-<li>优化目录结构并增加 404 页面(2017-09-04)</li>
-<li>加入 babel-plugin-transform-runtime 和 babel-polyfill</li>
-<li>集成 PostCSS</li>
-<li>redux 模块热替换配置</li>
-<li>模拟 AJAX 数据之 Mock.js</li>
-<li>使用 CSS Modules</li>
-<li>使用 json-server 代替 Mock.js</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/17/2020-03-17-webpack/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1153,15 +1129,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,6 +1138,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
             
             <div class="clearfix"></div>

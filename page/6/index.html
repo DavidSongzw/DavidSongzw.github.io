@@ -160,6 +160,141 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-React-Native-构建跨平台APP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/22/React-Native-构建跨平台APP/">React Native 构建跨平台APP</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/22/React-Native-构建跨平台APP/" class="archive-article-date">
+  	<time datetime="2017-06-22T08:21:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>想要了解更多项目内容，请点击<a href="https://github.com/DavidSongzw/RN-Gank" target="_blank" rel="noopener">RN-Gank</a>，欢迎来骚扰。</p>
+<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>最初想开始这个项目，是因为想做个有意思的东西，放到 GitHub 上面。也是想锻炼自己，想完成一个产品，从有想法开始到初版完成，这样一个过程。</p>
+<h2 id="产品方向"><a href="#产品方向" class="headerlink" title="产品方向"></a>产品方向</h2><ul>
+<li>阅读类</li>
+</ul>
+<p>阅读类 APP 简单的呈现更多内容</p>
+<ul>
+<li>API 选择</li>
+</ul>
+<p><a href="http://gank.io/api" target="_blank" rel="noopener">http://gank.io/api</a> 的 API 简洁且有每日福利，在此先感谢 gank 提供 API。</p>
+<ul>
+<li>交互逻辑</li>
+</ul>
+<p>采取主流的 TabBar + ListView 形式，简洁高效展示内容。</p>
+<ul>
+<li>UI</li>
+</ul>
+<p>黑白灰素雅冷淡风。</p>
+<p><strong>以上是整个产品初期的思考总结</strong></p>
+<h2 id="实践问题与解决"><a href="#实践问题与解决" class="headerlink" title="实践问题与解决"></a>实践问题与解决</h2><h3 id="交互与设计"><a href="#交互与设计" class="headerlink" title="交互与设计"></a>交互与设计</h3><ul>
+<li>（一）</li>
+</ul>
+<p>从开始确定阅读类 APP 就要考虑产品的最终形态，到应用市场下载了几个主流的阅读了 APP，感觉都不是很喜欢，然后搜索一些比较有设计感的 APP，看人家 APP 亮点。</p>
+<p>最终确定，RN-Gank 需要简洁、高效和素雅的产品风格。</p>
+<p>当我们着手去做的时候才发现，没有设计师真是挺痛苦的（当然没有产品经理真心爽）。美观优雅的布局，需要优秀设计师的支持才能做到。</p>
+<p>写布局样式的过程中，只能边写边调，当然最终也做到了简洁美观 🙂。</p>
+<h3 id="应用技术"><a href="#应用技术" class="headerlink" title="应用技术"></a>应用技术</h3><ul>
+<li>（一）</li>
+</ul>
+<p>应用的架构选取，首先确立 <a href="https://github.com/react-community/react-navigation" target="_blank" rel="noopener">React Navigation</a> 导航，React Native 最初提供两种导航方式，但这两种都存在各种的设计缺陷。</p>
+<p>得益于 React 社区的活跃，第三方组织和个人都提供了较好的导航方案，其中 React Community 提供的 React Navigation 是官方推荐之一。多方比较，这里选取的也是这种方案，具体的比较过程这里就不赘述了。</p>
+<ul>
+<li>（二）</li>
+</ul>
+<p>数据的流动是整个 APP 非常核心的部分，<a href="https://github.com/reactjs/redux" target="_blank" rel="noopener">Redux</a> 为 React 提供的全家桶是不二之选，且和 React Navigation 的搭配如丝般顺滑。同时在数据管理中引入了 <a href="https://github.com/facebook/immutable-js" target="_blank" rel="noopener">Immutable</a> 不可变对象，很好的优化了性能。</p>
+<p><strong>开发的整个过程，当然遇到了很多小问题，这里就不一一细说了。</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章比较简陋，肯定没法详细讲述，整个项目的过程。后续肯定有针对性的文章，把每个点抽出来细细的讲。</p>
+<hr>
+<p>欢迎关注<br>微信公众号: song_say<br><img src="https://davidsongzw.github.io/assets/img/wxgzh.jpg" alt="image"><br>个人博客: <a href="https://davidsongzw.github.io/" target="_blank" rel="noopener">宋公子的博客</a><br>GitHub: <a href="https://github.com/DavidSongzw" target="_blank" rel="noopener">DavidSongzw</a><br>知乎: <a href="https://www.zhihu.com/people/song-zhen-wei/activities" target="_blank" rel="noopener">行走着的宋公子</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">React Native</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React-Native//" class="article-tag-list-link color3">React Native</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/React-Native-构建跨平台APP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-关于我" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -702,15 +837,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,6 +846,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
             
             <div class="clearfix"></div>

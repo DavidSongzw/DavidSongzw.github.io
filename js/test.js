@@ -1,66 +1,100 @@
-
-function Graph() {
-    var graph = {
-        adj: new Map(),
-        addEdge: function (from, to){
-            if(!this.adj.get(from)) {
-                this.adj.set(from, [ to ]);
-            } else {
-                this.adj.get(from).push(to);
-            }
-        },
-        sortingByDsf: function(){
-            var inverseAdj = new Map();
-            var keys = this.adj.keys();
-            for(let key of keys) {
-                let blk = this.adj.get(key);
-                if(blk) {
-                    for(let v of blk) {
-                        if(!inverseAdj.get(v)) {
-                            inverseAdj.set(v, [key]);
-                        } else {
-                            inverseAdj.get(v).push(key);
-                        }
-                    }
-                }
-            }
-
-            let inKeys = inverseAdj.keys();
-            let vertexes = new Set([...keys, ...inKeys]);
-            let visited = [];
-            console.log(vertexes);
-            for(let vertex of vertexes) {
-                if(!visited.includes(vertex)) {
-                    visited.push(vertex);
-                    this.dsf(vertex, inverseAdj, visited);
-                }
-            }
-        },
-        dsf: function(vertex, inverseAdj, visited) {
-            if(!inverseAdj.get(vertex)) {
-                inverseAdj.set(vertex, []);
-            }
-
-            for(let v of inverseAdj.get(vertex)) {
-                if(visited.includes(v)) {
-                    continue;
-                }
-
-                visited.push(v);
-
-                this.dsf(v, inverseAdj, visited);
-            }
-
-            console.log("->" + vertex);
-        }
+/**
+ * 1. JavaScript 中的数组和其他语言的数组不太一样
+ * 2. 原生就支持动态扩容
+ * 3. 使用 ArrayBuffer 模拟其他语言数组 实现数组的动态扩容
+ * 4. Uint8Array 来做 DataView
+ */
+const preArraySize = 4
+class DynamicArray {
+  constructor (size = preArraySize) {
+    //   存储的数量
+    this._size = 0
+    // 最后一个的下标
+    this._lastIndex = 0
+    // 默认长度为4
+    this._array = new Uint8Array(size)
+  }
+  /**
+   * 添加
+   * @param {*} item
+   */
+  add (item) {
+    this.set(this._lastIndex + 1, item)
+  }
+  /**
+   * 根据下标删除
+   * @param {*} index
+   */
+  remove (index) {
+    if (this.rangeCheck(index)) {
+      console.log('下标越界')
+      return undefined
     }
-
-    return graph;
+    this._array[index] = 0
+    this._size--
+    return index
+  }
+  /**
+   * 根据下标设置值
+   * @param {*} index
+   * @param {*} item
+   */
+  set (index, item) {
+    this._lastIndex = Math.max(index, this._lastIndex)
+    if (this.rangeCheck(index)) {
+      const size = index + 1
+      console.log('set 下标越界')
+      this._array = this.copyBuffer(size)
+      this._array[index] = item
+    } else {
+      this._array[index] = item
+    }
+    this._size++
+  }
+  /**
+   * 根据下标取值
+   * @param {*} index
+   */
+  get (index) {
+    if (this.rangeCheck(index)) {
+    //   console.log('get 下标越界')
+      return undefined
+    }
+    return this._array[index]
+  }
+  /**
+   * @param {*} index
+   * 下标越界检查
+   */
+  rangeCheck (index) {
+    return index > this._array.length - 1 || index < 0
+  }
+  /**
+   * 复制
+   * @param {*} size 
+   */
+  copyBuffer (size) {
+    const buffer = new Uint8Array(size)
+    buffer.set(this._array)
+    return buffer
+  }
+  /**
+   * 当前存储的数据个数
+   */
+  get size () {
+    return this._size
+  }
+}
+const arr = new DynamicArray(10)
+for (let i = 0; i < 20; i++) {
+  arr.set(i, i)
+}
+arr.add(22)
+arr.add(33)
+arr.add(44)
+arr.remove(3)
+for (let i = 0; i < 25; i++) {
+  console.log(arr.get(i))
 }
 
-var dag = new Graph();
-dag.addEdge(2, 1);
-dag.addEdge(3, 2);
-dag.addEdge(2, 4);
-dag.addEdge(4, 1);
-dag.sortingByDsf();
+console.log(arr);
