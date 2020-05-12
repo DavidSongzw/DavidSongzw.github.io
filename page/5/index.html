@@ -160,6 +160,194 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-11-28排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/28/2019-11-28排序/">排序</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/28/2019-11-28排序/" class="archive-article-date">
+  	<time datetime="2019-11-28T03:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="排序算法的执行效率"><a href="#排序算法的执行效率" class="headerlink" title="排序算法的执行效率"></a>排序算法的执行效率</h2><ul>
+<li>最好情况、最坏情况和平均情况时间复杂度</li>
+<li>时间复杂度的系数、常数和低阶</li>
+<li>比较次数和移动次数</li>
+</ul>
+<h2 id="排序算法的内存消耗"><a href="#排序算法的内存消耗" class="headerlink" title="排序算法的内存消耗"></a>排序算法的内存消耗</h2><ul>
+<li>原地排序，空间复杂度 O(1)</li>
+</ul>
+<h2 id="排序算法的稳定性"><a href="#排序算法的稳定性" class="headerlink" title="排序算法的稳定性"></a>排序算法的稳定性</h2><ul>
+<li>相同值经过排序位置不变</li>
+</ul>
+<h2 id="有序度"><a href="#有序度" class="headerlink" title="有序度"></a>有序度</h2><ul>
+<li>数组中具有有序关系对的个数</li>
+<li>满有序度 n * (n - 1) / 2</li>
+<li>有序度 = 满有序度 - 逆有序度</li>
+</ul>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡-bubble-sort"><a href="#冒泡-bubble-sort" class="headerlink" title="冒泡 bubble sort"></a>冒泡 bubble sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 冒泡排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> * 1. 每一次比较相邻两个数的大小，按照比较结果排序</span></span><br><span class="line"><span class="comment"> * 2. 经过 n 排序，得到排序结果</span></span><br><span class="line"><span class="comment"> * 3. 每次冒泡次数为：j &lt; len - 1 - i  ，-1 是相邻比较次数比长度少一次，-i 是因为排过的不用再比较</span></span><br><span class="line"><span class="comment"> * 4. 设置标志位，如果一次冒泡没有排序，代表排序完成提前退出</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> len = list.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> isExchange = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (list[j] &gt; list[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        [list[j], list[j + <span class="number">1</span>]] = [list[j + <span class="number">1</span>], list[j]]</span><br><span class="line">        isExchange = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!isExchange) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">3</span>, <span class="number">23</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]))</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 原地排序 空间复杂度O(1)</span></span><br><span class="line"><span class="comment"> * 2. 稳定排序 只有大于时才交换</span></span><br><span class="line"><span class="comment"> * 3. 时间复杂度 最好一次冒泡 O(n) 最坏(倒序) O(n^2) 平均</span></span><br><span class="line"><span class="comment"> * /</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入-insertion-sort"><a href="#插入-insertion-sort" class="headerlink" title="插入 insertion sort"></a>插入 insertion sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> * 1.遍历有序数组找到插入位置，插入数据</span></span><br><span class="line"><span class="comment"> * 2.把数组分为有序数组和无序数组</span></span><br><span class="line"><span class="comment"> * 3.插入开始 i = 1 知道数组结束</span></span><br><span class="line"><span class="comment"> * 4.遍历有序数组找到插入位置插入，其他数据后移</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = list[i]</span><br><span class="line">    <span class="keyword">let</span> j = i - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> (; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (value &lt; list[j]) &#123;</span><br><span class="line">        list[j + <span class="number">1</span>] = list[j]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list[j + <span class="number">1</span>] = value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(insertionSort([<span class="number">3</span>, <span class="number">23</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]))</span><br><span class="line"><span class="comment">// 原地排序</span></span><br><span class="line"><span class="comment">// 稳定排序</span></span><br><span class="line"><span class="comment">// 最好O(n) 最坏O(n^2) 平均 O(n^2)</span></span><br></pre></td></tr></table></figure>
+<h2 id="选择-selection-sort"><a href="#选择-selection-sort" class="headerlink" title="选择 selection sort"></a>选择 selection sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * 1.分为排序和未排序部分，未排序部分找出最小值，放到已排序队尾</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list 数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len = list.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (list[min] &gt; list[j]) &#123;</span><br><span class="line">                min = j</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        [list[i], list[min]] = [list[min], list[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">23</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]))</span><br><span class="line"><span class="comment">// 原地排序</span></span><br><span class="line"><span class="comment">// 非稳定排序</span></span><br><span class="line"><span class="comment">// 最好O(n^2) 最坏O(n^2) 平均 O(n^2)</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/28/2019-11-28排序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-11-27递归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/27/2019-11-27递归/">递归</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/27/2019-11-27递归/" class="archive-article-date">
+  	<time datetime="2019-11-27T11:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="递归的条件"><a href="#递归的条件" class="headerlink" title="递归的条件"></a>递归的条件</h2><ol>
+<li>问题可以分解为子问题</li>
+<li>分解后的子问题，除了数据规模不同，解决方法一致</li>
+<li>存在递归终止条件，不能存在无限循环</li>
+</ol>
+<h2 id="递归关键点"><a href="#递归关键点" class="headerlink" title="递归关键点"></a>递归关键点</h2><ol>
+<li>递归公式</li>
+<li>终止条件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 走台阶，一次可以走一次或者两次，总共7个台阶，有多少种可能呢？</span></span><br><span class="line"><span class="comment">// 1.问题分解：7个台阶可能性可以拆分为，6个台阶的可能性+5个台阶可能性</span></span><br><span class="line"><span class="comment">// 2.解法一致：6个台阶和5个台阶，可以接着分解</span></span><br><span class="line"><span class="comment">// 3.终止条件：1个和2个台阶时分别有1，2种可能性，可终止</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归公式</span></span><br><span class="line"><span class="comment">// f(n) = f(n-1)+f(n-2)</span></span><br><span class="line"><span class="comment">// 终止条件</span></span><br><span class="line"><span class="comment">// f(1) = 1</span></span><br><span class="line"><span class="comment">// f(2) = 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="递归难点"><a href="#递归难点" class="headerlink" title="递归难点"></a>递归难点</h2><ul>
+<li>不要深入去思考递归过程，我们需要的是推到递归公式和终止条件</li>
+<li>警惕堆栈溢出</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line"><span class="comment">// 全局变量，表示递归的深度。</span></span><br><span class="line"><span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  ++depth；</span><br><span class="line">  <span class="keyword">if</span> (depth &gt; <span class="number">1000</span>) <span class="keyword">throw</span> exception;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> f(n-<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>警惕重复计算</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// f(7) = f(6) + f(5)</span></span><br><span class="line"><span class="comment">// f(6) = f(5) + f(4)</span></span><br><span class="line"><span class="comment">// 重复计算了f(5)</span></span><br><span class="line"><span class="comment">// 代码优化</span></span><br><span class="line"><span class="keyword">const</span> temp = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (temp[n]) &#123;</span><br><span class="line">    <span class="keyword">return</span> temp[n]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> ret = f(n - <span class="number">1</span>) + f(n - <span class="number">2</span>)</span><br><span class="line">  temp[n] = ret</span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调试递归:</p>
+<ol>
+<li>打印日志发现，递归值</li>
+<li>结合条件断点进行调试</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/27/2019-11-27递归/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-08-06队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -826,202 +1014,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Android-Linux-Jenkins-自动化构建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/20/Android-Linux-Jenkins-自动化构建/">Android + Linux + Jenkins + React Native 自动化构建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/20/Android-Linux-Jenkins-自动化构建/" class="archive-article-date">
-  	<time datetime="2017-09-20T09:55:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>因为公司给的服务器，没有任何配置，我们需要从头开始配置。</p>
-<h4 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h4><p>本人用 Mac</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &lt;用户名&gt;@&lt;ip地址&gt; -p &lt;端口&gt;</span><br></pre></td></tr></table></figure>
-<p>替换&lt;&gt;及其对应内容，没有端口可以不写。<br>如需密码会要求输入，照此操作就可。</p>
-<h4 id="服务器系统"><a href="#服务器系统" class="headerlink" title="服务器系统"></a>服务器系统</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping &lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
-<p>得到 ttl = 64 判断系统为 Linux</p>
-<h4 id="Git-安装配置"><a href="#Git-安装配置" class="headerlink" title="Git 安装配置"></a>Git 安装配置</h4><p>CentOS 系统 使用 yum 安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install git // 安装</span><br><span class="line">git –version // 查看安装是否成功</span><br><span class="line">git config --global user.name &quot;用户名&quot; // 配置用户名</span><br><span class="line">git config --global user.email &quot;邮箱&quot; // 配置邮箱</span><br><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;邮箱&quot; // 生成公钥，三次握手直接 enter 默认配置</span><br><span class="line">cat ~/.ssh/id_rsa.pub // 复制公钥</span><br></pre></td></tr></table></figure>
-<p>公司使用 gitolite 搭建的 git 相关文章大家可以自己搜索。<br>把生成的公钥添加到 git，配置相应权限。</p>
-<h4 id="JDK-安装配置"><a href="#JDK-安装配置" class="headerlink" title="JDK 安装配置"></a>JDK 安装配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su -c &quot;yum install java-1.8.0-openjdk&quot; // 安装</span><br><span class="line">java -version // 检查是否安装</span><br></pre></td></tr></table></figure>
-<p><a href="http://openjdk.java.net/install" target="_blank" rel="noopener">openjdk 下载</a></p>
-<h4 id="Jenkins-安装"><a href="#Jenkins-安装" class="headerlink" title="Jenkins 安装"></a>Jenkins 安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo</span><br><span class="line">sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key</span><br><span class="line">sudo yum install jenkins</span><br></pre></td></tr></table></figure>
-<p><a href="https://pkg.jenkins.io/redhat-stable/" target="_blank" rel="noopener">Jenkins 安装</a><br>Start/Stop 命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service jenkins start/stop/restart</span><br><span class="line">sudo chkconfig jenkins on</span><br></pre></td></tr></table></figure>
-<h4 id="SDK-安装配置"><a href="#SDK-安装配置" class="headerlink" title="SDK 安装配置"></a>SDK 安装配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 基础包</span><br><span class="line">wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz</span><br><span class="line"></span><br><span class="line">// 解压</span><br><span class="line">tar -zxvf android-sdk_r24.4.1-linux.tgz</span><br><span class="line"></span><br><span class="line">// 进到tools目录</span><br><span class="line">cd android-sdk-linux/tools</span><br><span class="line"></span><br><span class="line">// 查看可见sdk版本</span><br><span class="line">./android list sdk -a</span><br><span class="line"></span><br><span class="line">// 版本前面会有序号 [-a 列出所有sdk版本] [-u 无ui模式] [-t 指定安装版本]</span><br><span class="line">./android update sdk -a -u -t [序号]</span><br><span class="line"></span><br><span class="line">// 指定版本多个安装</span><br><span class="line">android update sdk -u --all --filter 1,2,3</span><br><span class="line"></span><br><span class="line">// 安装完成后此时我们在 .../tools 目录下, 获取当前 sdk 路径</span><br><span class="line">cd .. &amp;&amp; pwd</span><br><span class="line"></span><br><span class="line">// 配置 ANDROID_HOME</span><br><span class="line">vim /etc/profile</span><br><span class="line">// 加上</span><br><span class="line">export ANDROID_HOME=&quot;你的sdk路径&quot;</span><br><span class="line">// 立即生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
-<h4 id="node-配置"><a href="#node-配置" class="headerlink" title="node 配置"></a>node 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 安装make及gcc,gcc-c++编译器</span><br><span class="line">yum install -y gcc-c++ make</span><br><span class="line">// 获取源码</span><br><span class="line">curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -</span><br><span class="line">// 安装</span><br><span class="line">yum install nodejs</span><br><span class="line">// 查看版本</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<h4 id="React-Native-环境配置"><a href="#React-Native-环境配置" class="headerlink" title="React Native 环境配置"></a>React Native 环境配置</h4><p><a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">RN 官网</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
-<p>这里记住 Android SDK Build-Tools 版本为 23.0.1<br><a href="http://reactnative.cn/docs/0.48/getting-started.html" target="_blank" rel="noopener">版本具体信息</a><br>安装方式参见 上面 SDK 配置</p>
-<h3 id="Jenkins-配置"><a href="#Jenkins-配置" class="headerlink" title="Jenkins 配置"></a>Jenkins 配置</h3><p>// 打开 jenkins 默认配置 这里可以更改配置 比如更改 Java 环境配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/default/jenkins</span><br></pre></td></tr></table></figure>
-<p>// 查看 jenkins 打印记录 可以看到秘钥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /var/log/jenkins/jenkins.log</span><br></pre></td></tr></table></figure>
-<p>本地使用的 gitolite 需要和 Jenkins<br><a href="https://wiki.jenkins.io/display/JENKINS/Gitolite" target="_blank" rel="noopener">Jenkins 和 Gitolite 关联</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u jenkins ssh-keygen</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jenkins</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">React Native</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/20/Android-Linux-Jenkins-自动化构建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-《白银时代》未来是银色的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/26/《白银时代》未来是银色的/">《白银时代》未来是银色的</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/26/《白银时代》未来是银色的/" class="archive-article-date">
-  	<time datetime="2017-06-26T07:27:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>未来是银色的？是的，现在是银色的。</p>
-<hr>
-<p>王小波的时代三部曲，大二的时候就买了。我还记得我留下两本，《黑铁时代》和《白银时代》，《黄金时代》送人了。买的时候好奇呀，总是听说王小波，书牛逼，人更牛逼，一定要看看。买是买了，看了几张看不下去了。有种看《百年孤独》的感觉，那种天马行空的跳跃，荒诞和混沌的故事，让当时的我脑袋昏沉。</p>
-<p>现在想想，我很奇怪我当时的状态，初中的时候都会去啃《西游记》和《水浒传》原著，大学时的我，怎么仿佛丧失了阅读能力。幸好在工作几年后，慢慢明白了，读书的重要性，开始重拾读书的能力。</p>
-<p>没想到，沉下心来读《白银时代》，越读越是绝望与悲凉。未来是银色的，那时的小说家不会写小说；历史学家不知历史，因为历史要为革命服务；哲学家的证件也保不得平安；画家一定要解释自己画的什么，解释不清要去砸碱劳动改造。</p>
-<p>每一个故事都在实实在在的发生着，数盲症越来越多，传染性越来越强。老大哥式的人物，在受着“鞭刑”，“公司”的力量无处不在，安置着各种人。随着技术的进步，镣铐越来越多随处可见，镣铐的花样也越来越漂亮，甚至变成了装饰品。</p>
-<p>很想知道，王小波假如活到现在会怎样？活在这个银色的世界会怎样？他是会直挺挺的战斗，直至死去。还是会从“数盲症”那里弄到签证，远离海外。还是……</p>
-<p>现在是银色的，那未来呢？云计算 + 大数据 + AI ，这些是未来，如果这些是银色的呢？</p>
-<p>BIG BROTHER IS WATCHING YOU.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/26/《白银时代》未来是银色的/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1172,6 +1164,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
@@ -1185,10 +1181,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>向量空间 | 宋公子的博客</title>
+  <title>JavaScript 两个有序数组排序 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欧几里得距离使用向量空间，获得一个小的推荐系统  根据不同维度打分，得到一个分数向量 计算向量之间的欧几里得距离，距离最小的，最相似">
-<meta name="keywords" content="技术，数据结构，算法">
+  <meta name="description" content="输入:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6],       n = 3输出: [1,2,2,3,5,6]  12345678910function merge(nums1, m, nums2, n) &amp;#123;  let len = m + n  while (n &amp;gt; 0) &amp;#123;    if (m &amp;lt;= 0) &amp;#123;">
+<meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="向量空间">
-<meta property="og:url" content="http://yoursite.com/2020/04/20/2020-04-20-向量空间/index.html">
+<meta property="og:title" content="JavaScript 两个有序数组排序">
+<meta property="og:url" content="http://yoursite.com/2020/05/12/2020-05-12-JavaScript-两个有序数组排序/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="欧几里得距离使用向量空间，获得一个小的推荐系统  根据不同维度打分，得到一个分数向量 计算向量之间的欧几里得距离，距离最小的，最相似">
+<meta property="og:description" content="输入:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6],       n = 3输出: [1,2,2,3,5,6]  12345678910function merge(nums1, m, nums2, n) &amp;#123;  let len = m + n  while (n &amp;gt; 0) &amp;#123;    if (m &amp;lt;= 0) &amp;#123;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-20T09:04:07.841Z">
+<meta property="og:updated_time" content="2020-05-12T02:35:47.751Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="向量空间">
-<meta name="twitter:description" content="欧几里得距离使用向量空间，获得一个小的推荐系统  根据不同维度打分，得到一个分数向量 计算向量之间的欧几里得距离，距离最小的，最相似">
+<meta name="twitter:title" content="JavaScript 两个有序数组排序">
+<meta name="twitter:description" content="输入:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6],       n = 3输出: [1,2,2,3,5,6]  12345678910function merge(nums1, m, nums2, n) &amp;#123;  let len = m + n  while (n &amp;gt; 0) &amp;#123;    if (m &amp;lt;= 0) &amp;#123;">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -159,31 +159,30 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020-04-20-向量空间" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020-05-12-JavaScript-两个有序数组排序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      向量空间
+      JavaScript 两个有序数组排序
     </h1>
   
 
         
-        <a href="/2020/04/20/2020-04-20-向量空间/" class="archive-article-date">
-  	<time datetime="2020-04-20T08:45:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+        <a href="/2020/05/12/2020-05-12-JavaScript-两个有序数组排序/" class="archive-article-date">
+  	<time datetime="2020-05-12T02:17:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="欧几里得距离"><a href="#欧几里得距离" class="headerlink" title="欧几里得距离"></a>欧几里得距离</h2><p>使用向量空间，获得一个小的推荐系统</p>
-<ol>
-<li>根据不同维度打分，得到一个分数向量</li>
-<li>计算向量之间的欧几里得距离，距离最小的，最相似</li>
-</ol>
+        <blockquote>
+<p>输入:<br>nums1 = [1,2,3,0,0,0], m = 3<br>nums2 = [2,5,6],       n = 3<br>输出: [1,2,2,3,5,6]</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">nums1, m, nums2, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = m + n</span><br><span class="line">  <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">      nums1[--len] = nums2[--n]</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    nums1[--len] = nums1[m - <span class="number">1</span>] &gt; nums2[n - <span class="number">1</span>] ? nums1[--m] : nums2[--n]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -223,17 +222,6 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -284,7 +272,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/20/2020-04-20-向量空间/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/12/2020-05-12-JavaScript-两个有序数组排序/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +286,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/04/20/2020-04-20-B-树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          B+树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/20/2020-04-20-朴素贝叶斯算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">朴素贝叶斯算法</div>
+    <a href="/2020/05/11/2020-05-11-JavaScript-大小固定有序数组/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript 大小固定有序数组</div>
       <i class="icon-circle-right"></i>
     </a>
   

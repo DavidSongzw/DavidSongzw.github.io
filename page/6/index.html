@@ -160,6 +160,202 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Android-Linux-Jenkins-自动化构建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/20/Android-Linux-Jenkins-自动化构建/">Android + Linux + Jenkins + React Native 自动化构建</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/20/Android-Linux-Jenkins-自动化构建/" class="archive-article-date">
+  	<time datetime="2017-09-20T09:55:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>因为公司给的服务器，没有任何配置，我们需要从头开始配置。</p>
+<h4 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h4><p>本人用 Mac</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &lt;用户名&gt;@&lt;ip地址&gt; -p &lt;端口&gt;</span><br></pre></td></tr></table></figure>
+<p>替换&lt;&gt;及其对应内容，没有端口可以不写。<br>如需密码会要求输入，照此操作就可。</p>
+<h4 id="服务器系统"><a href="#服务器系统" class="headerlink" title="服务器系统"></a>服务器系统</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping &lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
+<p>得到 ttl = 64 判断系统为 Linux</p>
+<h4 id="Git-安装配置"><a href="#Git-安装配置" class="headerlink" title="Git 安装配置"></a>Git 安装配置</h4><p>CentOS 系统 使用 yum 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install git // 安装</span><br><span class="line">git –version // 查看安装是否成功</span><br><span class="line">git config --global user.name &quot;用户名&quot; // 配置用户名</span><br><span class="line">git config --global user.email &quot;邮箱&quot; // 配置邮箱</span><br><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;邮箱&quot; // 生成公钥，三次握手直接 enter 默认配置</span><br><span class="line">cat ~/.ssh/id_rsa.pub // 复制公钥</span><br></pre></td></tr></table></figure>
+<p>公司使用 gitolite 搭建的 git 相关文章大家可以自己搜索。<br>把生成的公钥添加到 git，配置相应权限。</p>
+<h4 id="JDK-安装配置"><a href="#JDK-安装配置" class="headerlink" title="JDK 安装配置"></a>JDK 安装配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su -c &quot;yum install java-1.8.0-openjdk&quot; // 安装</span><br><span class="line">java -version // 检查是否安装</span><br></pre></td></tr></table></figure>
+<p><a href="http://openjdk.java.net/install" target="_blank" rel="noopener">openjdk 下载</a></p>
+<h4 id="Jenkins-安装"><a href="#Jenkins-安装" class="headerlink" title="Jenkins 安装"></a>Jenkins 安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo</span><br><span class="line">sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key</span><br><span class="line">sudo yum install jenkins</span><br></pre></td></tr></table></figure>
+<p><a href="https://pkg.jenkins.io/redhat-stable/" target="_blank" rel="noopener">Jenkins 安装</a><br>Start/Stop 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service jenkins start/stop/restart</span><br><span class="line">sudo chkconfig jenkins on</span><br></pre></td></tr></table></figure>
+<h4 id="SDK-安装配置"><a href="#SDK-安装配置" class="headerlink" title="SDK 安装配置"></a>SDK 安装配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 基础包</span><br><span class="line">wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz</span><br><span class="line"></span><br><span class="line">// 解压</span><br><span class="line">tar -zxvf android-sdk_r24.4.1-linux.tgz</span><br><span class="line"></span><br><span class="line">// 进到tools目录</span><br><span class="line">cd android-sdk-linux/tools</span><br><span class="line"></span><br><span class="line">// 查看可见sdk版本</span><br><span class="line">./android list sdk -a</span><br><span class="line"></span><br><span class="line">// 版本前面会有序号 [-a 列出所有sdk版本] [-u 无ui模式] [-t 指定安装版本]</span><br><span class="line">./android update sdk -a -u -t [序号]</span><br><span class="line"></span><br><span class="line">// 指定版本多个安装</span><br><span class="line">android update sdk -u --all --filter 1,2,3</span><br><span class="line"></span><br><span class="line">// 安装完成后此时我们在 .../tools 目录下, 获取当前 sdk 路径</span><br><span class="line">cd .. &amp;&amp; pwd</span><br><span class="line"></span><br><span class="line">// 配置 ANDROID_HOME</span><br><span class="line">vim /etc/profile</span><br><span class="line">// 加上</span><br><span class="line">export ANDROID_HOME=&quot;你的sdk路径&quot;</span><br><span class="line">// 立即生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h4 id="node-配置"><a href="#node-配置" class="headerlink" title="node 配置"></a>node 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 安装make及gcc,gcc-c++编译器</span><br><span class="line">yum install -y gcc-c++ make</span><br><span class="line">// 获取源码</span><br><span class="line">curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -</span><br><span class="line">// 安装</span><br><span class="line">yum install nodejs</span><br><span class="line">// 查看版本</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h4 id="React-Native-环境配置"><a href="#React-Native-环境配置" class="headerlink" title="React Native 环境配置"></a>React Native 环境配置</h4><p><a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">RN 官网</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+<p>这里记住 Android SDK Build-Tools 版本为 23.0.1<br><a href="http://reactnative.cn/docs/0.48/getting-started.html" target="_blank" rel="noopener">版本具体信息</a><br>安装方式参见 上面 SDK 配置</p>
+<h3 id="Jenkins-配置"><a href="#Jenkins-配置" class="headerlink" title="Jenkins 配置"></a>Jenkins 配置</h3><p>// 打开 jenkins 默认配置 这里可以更改配置 比如更改 Java 环境配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/default/jenkins</span><br></pre></td></tr></table></figure>
+<p>// 查看 jenkins 打印记录 可以看到秘钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /var/log/jenkins/jenkins.log</span><br></pre></td></tr></table></figure>
+<p>本地使用的 gitolite 需要和 Jenkins<br><a href="https://wiki.jenkins.io/display/JENKINS/Gitolite" target="_blank" rel="noopener">Jenkins 和 Gitolite 关联</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u jenkins ssh-keygen</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jenkins</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">React Native</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/20/Android-Linux-Jenkins-自动化构建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-《白银时代》未来是银色的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/26/《白银时代》未来是银色的/">《白银时代》未来是银色的</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/26/《白银时代》未来是银色的/" class="archive-article-date">
+  	<time datetime="2017-06-26T07:27:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>未来是银色的？是的，现在是银色的。</p>
+<hr>
+<p>王小波的时代三部曲，大二的时候就买了。我还记得我留下两本，《黑铁时代》和《白银时代》，《黄金时代》送人了。买的时候好奇呀，总是听说王小波，书牛逼，人更牛逼，一定要看看。买是买了，看了几张看不下去了。有种看《百年孤独》的感觉，那种天马行空的跳跃，荒诞和混沌的故事，让当时的我脑袋昏沉。</p>
+<p>现在想想，我很奇怪我当时的状态，初中的时候都会去啃《西游记》和《水浒传》原著，大学时的我，怎么仿佛丧失了阅读能力。幸好在工作几年后，慢慢明白了，读书的重要性，开始重拾读书的能力。</p>
+<p>没想到，沉下心来读《白银时代》，越读越是绝望与悲凉。未来是银色的，那时的小说家不会写小说；历史学家不知历史，因为历史要为革命服务；哲学家的证件也保不得平安；画家一定要解释自己画的什么，解释不清要去砸碱劳动改造。</p>
+<p>每一个故事都在实实在在的发生着，数盲症越来越多，传染性越来越强。老大哥式的人物，在受着“鞭刑”，“公司”的力量无处不在，安置着各种人。随着技术的进步，镣铐越来越多随处可见，镣铐的花样也越来越漂亮，甚至变成了装饰品。</p>
+<p>很想知道，王小波假如活到现在会怎样？活在这个银色的世界会怎样？他是会直挺挺的战斗，直至死去。还是会从“数盲症”那里弄到签证，远离海外。还是……</p>
+<p>现在是银色的，那未来呢？云计算 + 大数据 + AI ，这些是未来，如果这些是银色的呢？</p>
+<p>BIG BROTHER IS WATCHING YOU.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/26/《白银时代》未来是银色的/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-React-Native-构建跨平台APP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -837,6 +1033,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
@@ -850,10 +1050,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
             
             <div class="clearfix"></div>
