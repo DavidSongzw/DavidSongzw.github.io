@@ -160,6 +160,93 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-23红黑树-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/23/2019-12-23红黑树-2/">2019-12-23红黑树-2</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/23/2019-12-23红黑树-2/" class="archive-article-date">
+  	<time datetime="2019-12-23T10:11:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>根节点是黑色节点</li>
+<li>每个叶子节点是黑色的空节点，不存储数据</li>
+<li>任何相邻节点不能同时为红，被黑色节点隔开</li>
+<li>每个节点，到其可到达的叶子节点，都包含相同数目的黑色节点</li>
+</ul>
+<h2 id="左旋（右旋同理）"><a href="#左旋（右旋同理）" class="headerlink" title="左旋（右旋同理）"></a>左旋（右旋同理）</h2><ul>
+<li>围绕某个节点的左旋</li>
+<li>2 树右子节点上提转换为 3 树，在左子节点下方，转为 2 树（2-3 树的转换）</li>
+</ul>
+<h2 id="怎么维持平衡"><a href="#怎么维持平衡" class="headerlink" title="怎么维持平衡"></a>怎么维持平衡</h2><ul>
+<li>左右旋转维持树的左右子树高度相差不大</li>
+<li>根据关注节点改变颜色，维持树的颜色平衡</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/23/2019-12-23红黑树-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-23红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1021,86 +1108,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-11-28排序-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/2019-11-28排序-2/">排序(2)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/2019-11-28排序-2/" class="archive-article-date">
-  	<time datetime="2019-11-28T10:01:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="分治思想"><a href="#分治思想" class="headerlink" title="分治思想"></a>分治思想</h2><ul>
-<li>将大的问题分解成小问题，然后分别解决</li>
-<li>分治是一种思想，递归是编程技巧</li>
-</ul>
-<h2 id="归并排序-merge-sort"><a href="#归并排序-merge-sort" class="headerlink" title="归并排序 merge sort"></a>归并排序 merge sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list</span></span><br><span class="line"><span class="comment"> * 1. 把数组分解到最小</span></span><br><span class="line"><span class="comment"> * 2. 然后合并 (有序)</span></span><br><span class="line"><span class="comment"> * 3. 得到有序数组</span></span><br><span class="line"><span class="comment"> * 使用递归，递归公式如下：</span></span><br><span class="line"><span class="comment"> *    mergeSort(list) = merge(mergeSort(listLeft), mergeSort(listRight))</span></span><br><span class="line"><span class="comment"> *    终止条件 list &lt;= 1</span></span><br><span class="line"><span class="comment"> *    合并：使用两个哨兵从两个数组里面取值，值小的放入临时数组中，然后哨兵后移</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">50</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (list.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(list.length / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">const</span> leftArr = list.slice(<span class="number">0</span>, middle)</span><br><span class="line">  <span class="keyword">const</span> rightArr = list.slice(middle)</span><br><span class="line">  <span class="keyword">return</span> merge(mergeSort(leftArr), mergeSort(rightArr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">leftArr, rightArr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> temp = []</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> leftLength = leftArr.length</span><br><span class="line">  <span class="keyword">let</span> rightLength = rightArr.length</span><br><span class="line">  <span class="keyword">while</span> (i &lt; leftLength &amp;&amp; j &lt; rightLength) &#123;</span><br><span class="line">    <span class="keyword">if</span> (leftArr[i] &lt;= rightArr[j]) &#123;</span><br><span class="line">      temp.push(leftArr[i])</span><br><span class="line">      i++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temp.push(rightArr[j])</span><br><span class="line">      j++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> temp.concat(leftArr.slice(i)).concat(rightArr.slice(j))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mergeSort(testArr))</span><br><span class="line"><span class="comment">// 稳定排序 merge 里 leftArr[i] &lt;= rightArr[j] 相同值左侧先放就是稳定</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(nlogn)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(n) 不是原地排序</span></span><br></pre></td></tr></table></figure>
-<h2 id="快速排序-quick-sort"><a href="#快速排序-quick-sort" class="headerlink" title="快速排序 quick sort"></a>快速排序 quick sort</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">50</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; list</span></span><br><span class="line"><span class="comment"> * 递归工时 1. quickSort(p ... r) = quickSort(p ... q - 1) + quickSort(q + 1 ... r)</span></span><br><span class="line"><span class="comment"> * 终止条件 2. p &gt;= r</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  quick_sort(list, <span class="number">0</span>, list.length - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick_sort</span>(<span class="params">list, p, r</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 终止条件</span></span><br><span class="line">  <span class="keyword">if</span> (p &gt;= r) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 分区点</span></span><br><span class="line">  <span class="keyword">const</span> q = partition(list, p, r)</span><br><span class="line">  <span class="comment">// 递归</span></span><br><span class="line">  quick_sort(list, p, q - <span class="number">1</span>)</span><br><span class="line">  quick_sort(list, q + <span class="number">1</span>, r)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 分区点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">list, p, r</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pivot = list[r]</span><br><span class="line">  <span class="keyword">let</span> i = p</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = p; j &lt; r; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (list[j] &lt; pivot) &#123;</span><br><span class="line">      <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">        ;[list[i], list[j]] = [list[j], list[i]]</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[list[i], list[r]] = [list[r], list[i]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line">quickSort(testArr)</span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line"><span class="comment">// 非稳定排序</span></span><br><span class="line"><span class="comment">// 时间复杂度 O(nlogn)</span></span><br><span class="line"><span class="comment">// 空间复杂度 O(1) 原地排序</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取数组中第k大的元素，利用分区的思想，当分区点 p + 1 === k 时，得到第 K 大（降序排列）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getK</span>(<span class="params">list, k, m, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> p = partition(list, m, n)</span><br><span class="line">  <span class="keyword">if</span> (p + <span class="number">1</span> === k) &#123;</span><br><span class="line">    <span class="keyword">return</span> list[p]</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p + <span class="number">1</span> &gt; k) &#123;</span><br><span class="line">    <span class="keyword">return</span> getK(list, k, m, p - <span class="number">1</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getK(list, k, p + <span class="number">1</span>, n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">list, m, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = m</span><br><span class="line">  <span class="keyword">let</span> pivot = list[n]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = m; j &lt; n; j++) &#123;</span><br><span class="line">    <span class="comment">//   降序排列</span></span><br><span class="line">    <span class="keyword">if</span> (list[j] &gt; pivot) &#123;</span><br><span class="line">      <span class="keyword">if</span> (j != i) &#123;</span><br><span class="line">        ;[list[j], list[i]] = [list[i], list[j]]</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[list[n], list[i]] = [list[i], list[n]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'k'</span>, getK(list, <span class="number">2</span>, <span class="number">0</span>, <span class="number">5</span>), list)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/2019-11-28排序-2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1215,15 +1222,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,15 +1262,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
              
               <li class="article-tag-list-item">
