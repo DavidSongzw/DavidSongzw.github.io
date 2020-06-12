@@ -160,6 +160,85 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-2排序-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/02/2019-12-2排序-3/">排序(3)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/02/2019-12-2排序-3/" class="archive-article-date">
+  	<time datetime="2019-12-02T09:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="线性排序-时间复杂度为：O-n"><a href="#线性排序-时间复杂度为：O-n" class="headerlink" title="线性排序 时间复杂度为：O(n)"></a>线性排序 时间复杂度为：O(n)</h2><h2 id="桶排序-bucket-sort"><a href="#桶排序-bucket-sort" class="headerlink" title="桶排序 bucket sort"></a>桶排序 bucket sort</h2><h3 id="桶排序概念"><a href="#桶排序概念" class="headerlink" title="桶排序概念"></a>桶排序概念</h3><ol>
+<li>n 个数据均匀分配到 m 个桶中</li>
+<li>每个桶中元素为 k = n / m</li>
+<li>对每个桶中的数据进行排序(快速排序 O(klogk))</li>
+<li>m 个桶，整个时间福再度 O(m _ klogk) ====(k = n / m)====&gt; O(n _ log(n / m))</li>
+<li>当 n 接近于 m 时，时间复杂度为 O(n)</li>
+</ol>
+<h3 id="桶排序局限"><a href="#桶排序局限" class="headerlink" title="桶排序局限"></a>桶排序局限</h3><ol>
+<li>桶之间数据要均匀分配，否则排序要退化为快排</li>
+<li>桶之间数据要有序，否则再次排序时间复杂度</li>
+</ol>
+<h2 id="计数排序-counting-sort"><a href="#计数排序-counting-sort" class="headerlink" title="计数排序 counting sort"></a>计数排序 counting sort</h2><ol>
+<li>可以理解为桶排序的特殊情况，多少个数据，就多少个桶</li>
+<li>计数排序只能用在数据范围不大的地方，且数据必须为非负数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testArr = []</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  testArr.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span>))</span><br><span class="line">  i++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counting</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = list[<span class="number">0</span>]</span><br><span class="line">  list.forEach(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (num &gt; max) &#123;</span><br><span class="line">      max = num</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> countArr = <span class="keyword">new</span> <span class="built_in">Array</span>(max + <span class="number">1</span>).fill(<span class="number">0</span>)</span><br><span class="line">  list.forEach(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    countArr[num]++</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//   相邻累加</span></span><br><span class="line">  countArr.reduce(<span class="function">(<span class="params">pre, cur, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> plus = pre + cur</span><br><span class="line">    countArr[i] = plus</span><br><span class="line">    <span class="keyword">return</span> plus</span><br><span class="line">  &#125;, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> tempArray = []</span><br><span class="line">  <span class="comment">//   倒序放值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = list.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//  值 list[i]；计数位置 countArr[list[i]]；转为数组下标 countArr[list[i]] - 1</span></span><br><span class="line">    <span class="keyword">const</span> index = countArr[list[i]] - <span class="number">1</span></span><br><span class="line">    tempArray[index] = list[i]</span><br><span class="line">    countArr[list[i]]--</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> tempArray</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(testArr)</span><br><span class="line"><span class="built_in">console</span>.log(counting(testArr))</span><br></pre></td></tr></table></figure>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>手机号码的例子，按照位去比较，当大的位数不相同时，直接比较就可以得到大小，不用再比较小的位了</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/02/2019-12-2排序-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-11-28排序-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -969,69 +1048,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-了不起的-node-js-笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/了不起的-node-js-笔记/">node.js 笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/11/了不起的-node-js-笔记/" class="archive-article-date">
-  	<time datetime="2018-02-11T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h2><p>新的 V8 引擎可以嵌到操作系统集成层，Ryan Dahl 看到这个机会，让 JavaScript 可以调用操作系统底层异步接口，实现了将其带到操作系统的目的。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h3 id="模块依赖"><a href="#模块依赖" class="headerlink" title="模块依赖"></a>模块依赖</h3><h3 id="构建应用"><a href="#构建应用" class="headerlink" title="构建应用"></a>构建应用</h3><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h3 id="定义路由"><a href="#定义路由" class="headerlink" title="定义路由"></a>定义路由</h3><h3 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/11/了不起的-node-js-笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1146,15 +1162,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,10 +1198,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
@@ -1194,11 +1206,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
             
             <div class="clearfix"></div>

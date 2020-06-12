@@ -160,6 +160,71 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-06-10-JavaScript-实现栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/10/2020-06-10-JavaScript-实现栈/">JavaScript 实现栈</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/10/2020-06-10-JavaScript-实现栈/" class="archive-article-date">
+  	<time datetime="2020-06-10T12:39:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数组实现-顺序栈"><a href="#数组实现-顺序栈" class="headerlink" title="数组实现 顺序栈"></a>数组实现 顺序栈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.list = []</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push (data) &#123;</span><br><span class="line">        <span class="keyword">this</span>.list.push(data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pop() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list.pop()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> Stack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="number">10</span>; index++) &#123;</span><br><span class="line">    stack.push(index)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="number">10</span>; index++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(stack.pop())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="链表实现-链式栈"><a href="#链表实现-链式栈" class="headerlink" title="链表实现 链式栈"></a>链表实现 链式栈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.length = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.head = <span class="keyword">new</span> Node(<span class="string">'head'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 新增</span></span><br><span class="line">  add (value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.insert(<span class="keyword">this</span>.length, value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 插入</span></span><br><span class="line">  insert (index, value) &#123;</span><br><span class="line">    <span class="comment">// 越界 可以添加到队尾</span></span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="keyword">this</span>.length || index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> preNode = index === <span class="number">0</span> ? <span class="keyword">this</span>.head : <span class="keyword">this</span>.find(index - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">const</span> newNode = <span class="keyword">new</span> Node(value)</span><br><span class="line">    newNode.next = preNode.next</span><br><span class="line">    preNode.next = newNode</span><br><span class="line">    <span class="keyword">this</span>.length++</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 查找</span></span><br><span class="line">  find (index) &#123;</span><br><span class="line">    <span class="comment">// 越界 或者 链表为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.checkRange(index) || !<span class="keyword">this</span>.length) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.head.next</span><br><span class="line">    <span class="keyword">while</span> (i++ &lt; index) &#123;</span><br><span class="line">      node = node.next</span><br><span class="line">    &#125;</span><br><span class="line">    return node</span><br><span class="line">  &#125;</span><br><span class="line">  // 删除</span><br><span class="line">  delete (index) &#123;</span><br><span class="line">    // 越界 或者 链表为空</span><br><span class="line">    if (this.checkRange(index) || !this.length) &#123;</span><br><span class="line">      return false</span><br><span class="line">    &#125;</span><br><span class="line">    const node = index === 0 ? this.head : this.find(index - 1)</span><br><span class="line">    node.next = node.next ? node.next.next : null</span><br><span class="line">    this.length--</span><br><span class="line">    return true</span><br><span class="line">  &#125;</span><br><span class="line">  // 检查越界</span><br><span class="line">  checkRange (index) &#123;</span><br><span class="line">    return index + 1 &gt; this.length || index &lt; 0</span><br><span class="line">  &#125;</span><br><span class="line">  // 遍历显示所有节点</span><br><span class="line">  display () &#123;</span><br><span class="line">    let currentNode = this.head.next // 忽略头指针的值</span><br><span class="line">    while (currentNode !== null) &#123;</span><br><span class="line">      console.log(currentNode.value)</span><br><span class="line">      currentNode = currentNode.next</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Stack &#123;</span><br><span class="line">    constructor() &#123;</span><br><span class="line">        this.linkList = new LinkedList()</span><br><span class="line">    &#125;</span><br><span class="line">    // 链表存放到最后位置 时间复杂度更改 因此我们直接插入第一位</span><br><span class="line">    push (data) &#123;</span><br><span class="line">        this.linkList.insert(0, data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pop() &#123;</span><br><span class="line">        const node = this.linkList.find(0)</span><br><span class="line">        this.linkList.delete(0)</span><br><span class="line">        return node</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const stack = new Stack()</span><br><span class="line"></span><br><span class="line">for (let index = 0; index &lt; 10; index++) &#123;</span><br><span class="line">    stack.push(index)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (let index = 0; index &lt; 10; index++) &#123;</span><br><span class="line">    console.log(stack.pop())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="浏览器前进后退"><a href="#浏览器前进后退" class="headerlink" title="浏览器前进后退"></a>浏览器前进后退</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.list = []</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    push (data) &#123;</span><br><span class="line">        <span class="keyword">this</span>.list.push(data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pop() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list.pop()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> size() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> forward = <span class="keyword">new</span> Stack()</span><br><span class="line"><span class="keyword">const</span> backward = <span class="keyword">new</span> Stack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="number">10</span>; index++) &#123;</span><br><span class="line">    backward.push(index)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!forward.size) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'没有前路了'</span>)</span><br><span class="line">        <span class="keyword">return</span>        </span><br><span class="line">    &#125;</span><br><span class="line">    backward.push(forward.pop())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">back</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!backward.size) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'没有退路了'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    forward.push(backward.pop())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">back()</span><br><span class="line">go()</span><br><span class="line">back()</span><br><span class="line">go()</span><br><span class="line">back()</span><br><span class="line">go()</span><br><span class="line">back()</span><br><span class="line">go()</span><br><span class="line">back()</span><br><span class="line">go()</span><br><span class="line">back()</span><br><span class="line">back()</span><br><span class="line">back()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(backward, forward)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/10/2020-06-10-JavaScript-实现栈/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-05-20JavaScript-实现链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -888,85 +953,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2020-04-20-朴素贝叶斯算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/2020-04-20-朴素贝叶斯算法/">朴素贝叶斯算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/2020-04-20-朴素贝叶斯算法/" class="archive-article-date">
-  	<time datetime="2020-04-20T08:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p><img src="https://davidsongzw.github.io/assets/blogImg/base.jpg" alt="image"></p>
-<h2 id="骚扰短信过滤"><a href="#骚扰短信过滤" class="headerlink" title="骚扰短信过滤"></a>骚扰短信过滤</h2><ol>
-<li>黑名单：位图存储（号码黑名单） + 布隆过滤</li>
-<li>规则：短信中，当某个词，出现就过滤</li>
-<li>朴素贝叶斯：短信中，某些词出现，计算这个短信是垃圾短信的概率，然后过滤</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/2020-04-20-朴素贝叶斯算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1081,15 +1067,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">技术，数据结构，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1117,10 +1103,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
@@ -1129,11 +1111,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
             
             <div class="clearfix"></div>
