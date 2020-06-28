@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>宋公子的博客</title>
+  <title>JavaScript 递归 | 宋公子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不会健身的程序员，不是个好码农">
+  <meta name="description" content="编程实现斐波那契数列求值 f(n)=f(n-1)+f(n-2)  123456789101112const fibonacci = (function () &amp;#123;  const memory = &amp;#123;&amp;#125;  return function (n) &amp;#123;    if (n &amp;lt; 2) &amp;#123;      return n    &amp;#125;    if (!">
 <meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宋公子的博客">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 递归">
+<meta property="og:url" content="http://yoursite.com/2020/06/22/2020-06-22-JavaScript-递归/index.html">
 <meta property="og:site_name" content="宋公子的博客">
-<meta property="og:description" content="不会健身的程序员，不是个好码农">
+<meta property="og:description" content="编程实现斐波那契数列求值 f(n)=f(n-1)+f(n-2)  123456789101112const fibonacci = (function () &amp;#123;  const memory = &amp;#123;&amp;#125;  return function (n) &amp;#123;    if (n &amp;lt; 2) &amp;#123;      return n    &amp;#125;    if (!">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-06-28T12:09:42.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宋公子的博客">
-<meta name="twitter:description" content="不会健身的程序员，不是个好码农">
+<meta name="twitter:title" content="JavaScript 递归">
+<meta name="twitter:description" content="编程实现斐波那契数列求值 f(n)=f(n-1)+f(n-2)  123456789101112const fibonacci = (function () &amp;#123;  const memory = &amp;#123;&amp;#125;  return function (n) &amp;#123;    if (n &amp;lt; 2) &amp;#123;      return n    &amp;#125;    if (!">
   
     <link rel="alternative" href="/atom.xml" title="宋公子的博客" type="application/atom+xml">
   
@@ -158,604 +159,149 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2020-03-10-回溯算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2020-06-22-JavaScript-递归" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/10/2020-03-10-回溯算法/">回溯算法</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript 递归
     </h1>
   
 
         
-        <a href="/2020/03/10/2020-03-10-回溯算法/" class="archive-article-date">
-  	<time datetime="2020-03-10T07:24:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
+        <a href="/2020/06/22/2020-06-22-JavaScript-递归/" class="archive-article-date">
+  	<time datetime="2020-06-22T12:58:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><p>利用具体案例来理解，回溯算法</p>
-<h3 id="八皇后"><a href="#八皇后" class="headerlink" title="八皇后"></a>八皇后</h3><p>8X8 的棋盘，每个棋子的行、列、对角线，都不能有其他棋子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8</span>) <span class="comment">//全局或成员变量,下标表示行,值表示queen存储在哪一列</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cal8queens</span>(<span class="params">row</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 调用方式：cal8queens(0);</span></span><br><span class="line">  <span class="keyword">if</span> (row === <span class="number">8</span>) &#123;</span><br><span class="line">    <span class="comment">// 8个棋子都放置好了，打印结果</span></span><br><span class="line">    printQueens(result)</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">// 8行棋子都放好了，已经没法再往下递归了，所以就return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> column = <span class="number">0</span>; column &lt; <span class="number">8</span>; ++column) &#123;</span><br><span class="line">    <span class="comment">// 每一行都有8中放法</span></span><br><span class="line">    <span class="keyword">if</span> (isOk(row, column)) &#123;</span><br><span class="line">      <span class="comment">// 有些放法不满足要求</span></span><br><span class="line">      result[row] = column <span class="comment">// 第row行的棋子放到了column列</span></span><br><span class="line">      cal8queens(row + <span class="number">1</span>) <span class="comment">// 考察下一行</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isOk</span>(<span class="params">row, column</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//判断 row行 column列 放置是否合适</span></span><br><span class="line">  <span class="keyword">var</span> leftUp = column - <span class="number">1</span>,</span><br><span class="line">    rightUp = column + <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = row - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="comment">// 逐行往上考察每一行</span></span><br><span class="line">    <span class="keyword">if</span> (result[i] === column) <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// 第i行的column列有棋子吗？</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (leftUp &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 考察左上对角线：第i行leftUp列有棋子吗？</span></span><br><span class="line">      <span class="keyword">if</span> (result[i] === leftUp) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (rightUp &lt; <span class="number">8</span>) &#123;</span><br><span class="line">      <span class="comment">// 考察右上对角线：第i行rightUp列有棋子吗？</span></span><br><span class="line">      <span class="keyword">if</span> (result[i] === rightUp) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    --leftUp</span><br><span class="line">    ++rightUp</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printQueens</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 打印出一个二维矩阵</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> row = <span class="number">0</span>; row &lt; <span class="number">8</span>; ++row) &#123;</span><br><span class="line">    <span class="keyword">let</span> rowText = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> column = <span class="number">0</span>; column &lt; <span class="number">8</span>; ++column) &#123;</span><br><span class="line">      rowText += result[row] === column ? <span class="string">'Q  '</span> : <span class="string">'*  '</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(rowText)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cal8queens(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="0-1-背包"><a href="#0-1-背包" class="headerlink" title="0-1 背包"></a>0-1 背包</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 0 - 1背包问题</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; index 表示考察到哪个物品了</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; cWeight 已经装的重量</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; items  每个物品重量</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; num 表示物品个数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; weight 背包重量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> maxW = <span class="built_in">Number</span>.MIN_VALUE <span class="comment">//存储背包中物品总重量的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">index, cWeight, items, num, weight</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// cWeight==w表示装满了;</span></span><br><span class="line">  <span class="comment">// index==num表示已经考察完所有的物品</span></span><br><span class="line">  <span class="keyword">if</span> (cWeight == weight || index == num) &#123;</span><br><span class="line">    <span class="comment">// 更新最大重量</span></span><br><span class="line">    <span class="keyword">if</span> (cWeight &gt; maxW) maxW = cWeight</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 不装进去</span></span><br><span class="line">  find(index + <span class="number">1</span>, cWeight, items, num, weight)</span><br><span class="line">  <span class="comment">// 装进去 但是判断下是不是超过了</span></span><br><span class="line">  <span class="keyword">if</span> (cWeight + items[index] &lt;= weight) &#123;</span><br><span class="line">    <span class="comment">//当前物品装进背包</span></span><br><span class="line">    find(index + <span class="number">1</span>, cWeight + items[index], items, num, weight)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = [<span class="number">66</span>, <span class="number">12</span>, <span class="number">11</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">33</span>]</span><br><span class="line">find(<span class="number">0</span>, <span class="number">0</span>, a, <span class="number">10</span>, <span class="number">100</span>)</span><br><span class="line"><span class="built_in">console</span>.log(maxW)</span><br></pre></td></tr></table></figure>
-<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pattern</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(pattern, plen) &#123;</span><br><span class="line">    <span class="comment">// 正则表达式</span></span><br><span class="line">    <span class="keyword">this</span>.pattern = pattern</span><br><span class="line">    <span class="comment">// 正则表达式长度</span></span><br><span class="line">    <span class="keyword">this</span>.plen = plen</span><br><span class="line">    <span class="keyword">this</span>.matched = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">this</span>.int = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  match(text, tlen) &#123;</span><br><span class="line">    <span class="comment">// 文本串及长度</span></span><br><span class="line">    <span class="keyword">this</span>.matched = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">this</span>.rMatch(<span class="number">0</span>, <span class="number">0</span>, text, tlen)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.matched</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; tIndex 字符串下标</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; pIndex 匹配下标</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; text 字符串</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; tlen 长度</span></span><br><span class="line"><span class="comment">   * @memberof Pattern</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  rMatch(tIndex, pIndex, text, tlen) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.matched) <span class="keyword">return</span> <span class="comment">// 如果已经匹配了，就不要继续递归了</span></span><br><span class="line">    <span class="keyword">if</span> (pIndex == <span class="keyword">this</span>.plen) &#123;</span><br><span class="line">      <span class="comment">// 正则表达式到结尾了</span></span><br><span class="line">      <span class="keyword">if</span> (tIndex == tlen) <span class="keyword">this</span>.matched = <span class="literal">true</span> <span class="comment">// 文本串也到结尾了</span></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.pattern[pIndex] == <span class="string">'*'</span>) &#123;</span><br><span class="line">      <span class="comment">// *匹配任意个字符</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">0</span>; k &lt;= tlen - tIndex; ++k) &#123;</span><br><span class="line">        <span class="keyword">this</span>.rMatch(tIndex + k, pIndex + <span class="number">1</span>, text, tlen)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.pattern[pIndex] == <span class="string">'?'</span>) &#123;</span><br><span class="line">      <span class="comment">// ?匹配0个或者1个字符</span></span><br><span class="line">      <span class="keyword">this</span>.rMatch(tIndex, pIndex + <span class="number">1</span>, text, tlen)</span><br><span class="line">      <span class="keyword">this</span>.rMatch(tIndex + <span class="number">1</span>, pIndex + <span class="number">1</span>, text, tlen)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tIndex &lt; tlen &amp;&amp; <span class="keyword">this</span>.pattern[pIndex] == text[tIndex]) &#123;</span><br><span class="line">      <span class="comment">// 纯字符匹配才行</span></span><br><span class="line">      <span class="keyword">this</span>.rMatch(tIndex + <span class="number">1</span>, pIndex + <span class="number">1</span>, text, tlen)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Pattern(<span class="string">'*'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(p.match(<span class="string">'c*a*b'</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/10/2020-03-10-回溯算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-10-分治算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/10/2020-03-10-分治算法/">分治算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/10/2020-03-10-分治算法/" class="archive-article-date">
-  	<time datetime="2020-03-10T06:54:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="分治算法-divide-and-conquer"><a href="#分治算法-divide-and-conquer" class="headerlink" title="分治算法(divide and conquer)"></a>分治算法(divide and conquer)</h2><p>分治算法：顾名思义，分而治之，将原来大的问题，分解成 n 个小的，并且结构与原问题相似问题，递归的解决这些问题，合并成总的结果</p>
-<p>分治算法适用范围：</p>
-<ol>
-<li>问题可以分解为相似结构的子问题</li>
-<li>子问题可以独立求解，子问题没有相关性</li>
-<li>具有分解终止条件，也就是说问题足够小的时候，可以直接求解</li>
-<li>子问题结果，可以合并成原问题，且复杂度不能过高，过高那分解问题就没必要了</li>
-</ol>
-<p>分治算法是一种处理问题的思想，递归是一种编程技巧</p>
-<p>递归步骤：</p>
-<ol>
-<li>分解：将原问题分解成小问题</li>
-<li>解决：递归求解各个子问题，若问题足够小，直接求解</li>
-<li>合并：将各个子问题结果合并成原问题解</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/10/2020-03-10-分治算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-10-贪心算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/09/2020-03-10-贪心算法/">贪心算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/09/2020-03-10-贪心算法/" class="archive-article-date">
-  	<time datetime="2020-03-09T13:49:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="贪心算法-greedy-algorithm"><a href="#贪心算法-greedy-algorithm" class="headerlink" title="贪心算法 (greedy algorithm)"></a>贪心算法 (greedy algorithm)</h2><p>第一步：联想到贪心算法，一组数据给定限制值和期望值，在满足限制值的前提下，期望值最大<br>第二部：是否可使用贪心算法，每次选择，单位限制值下单位期望值最大<br>第三部：在数据中，小范围验证</p>
-<h3 id="贪心算法实战"><a href="#贪心算法实战" class="headerlink" title="贪心算法实战"></a>贪心算法实战</h3><p>1.分糖果： 我们有 m 个糖果和 n 个孩子。我们现在要把糖果分给这些孩子吃，但是糖果少，孩子多（m&lt;n），所以糖果只能分配给一部分孩子。每个糖果的大小不等，这 m 个糖果的大小分别是 s1，s2，s3，……，sm。除此之外，每个孩子对糖果大小的需求也是不一样的，只有糖果的大小大于等于孩子的对糖果大小的需求的时候，孩子才得到满足。假设这 n 个孩子对糖果大小的需求分别是 g1，g2，g3，……，gn。我的问题是，如何分配糖果，能尽可能满足最多数量的孩子？</p>
-<p>答：每次挑选需求最小的孩子，然后在糖果中挑选最小满足他的糖果，这样才能更多的满足孩子（每个孩子期望值一样）</p>
-<p>2.钱币找零：这个问题在我们的日常生活中更加普遍。假设我们有 1 元、2 元、5 元、10 元、20 元、50 元、100 元这些面额的纸币，它们的张数分别是 c1、c2、c5、c10、c20、c50、c100。我们现在要用这些钱来支付 K 元，最少要用多少张纸币呢？</p>
-<p>答：先用大额纸币支付，然后选择小额纸币（每张的纸币期望相同）</p>
-<p>3.区间覆盖：假设我们有 n 个区间，区间的起始端点和结束端点分别是[l1, r1]，[l2, r2]，[l3, r3]，……，[ln, rn]。我们从这 n 个区间中选出一部分区间，这部分区间满足两两不相交（端点相交的情况不算相交），最多能选出多少个区间呢？<br><img src="https://davidsongzw.github.io/assets/blogImg/range.jpg" alt="image"><br>答：排序区间，选择左端点和已覆盖区域不想交，同时右端点最小（给右侧区间留更大位置）<br><img src="https://davidsongzw.github.io/assets/blogImg/range1.jpg" alt="image"></p>
-<h3 id="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"><a href="#霍夫曼编码（数据压缩编码，有效节省数据存储空间）" class="headerlink" title="霍夫曼编码（数据压缩编码，有效节省数据存储空间）"></a>霍夫曼编码（数据压缩编码，有效节省数据存储空间）</h3><p>1.出现越多的字符，编码长度越低，且为了防止解码问题，任何一个编码都不能是另外一个编码的前缀<br><img src="https://davidsongzw.github.io/assets/blogImg/human.jpg" alt="image"><br><img src="https://davidsongzw.github.io/assets/blogImg/human1.jpg" alt="image"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/09/2020-03-10-贪心算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-09-AC-自动机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/09/2020-03-09-AC-自动机/">AC 自动机</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/09/2020-03-09-AC-自动机/" class="archive-article-date">
-  	<time datetime="2020-03-09T03:09:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>单模式串匹配算法：单个模式串与主串比较<br>多模式串匹配算法：多个模式串与主串比较</p>
-<p>经典多模式串匹配算法：AC 自动机</p>
-<p>AC 自动机：</p>
-<ol>
-<li>构建 Trie 树，基础部分不变，需要增加类似 KMP 的 fail (或者说 next)数组，增加匹配长度记录</li>
-<li>fail 数组构建<ol>
-<li>首先是对树的遍历</li>
-<li>找子节点的失败节点</li>
-<li>根据当前节点和当前节点的失败节点，找当前节点子节点的失败节点<br><img src="https://davidsongzw.github.io/assets/blogImg/failTrie.jpg" alt="image"></li>
-</ol>
-</li>
-<li>匹配函数<ol>
-<li>子节点不匹配，节点更换为子节点的失败节点</li>
-<li>判断节点是不是结束节点，不是结束节点则寻找其失败节点是不是结束节点</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ACNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.children = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="comment">// 标志是否结束</span></span><br><span class="line">    <span class="keyword">this</span>.isEndingChar = <span class="literal">false</span></span><br><span class="line">    <span class="comment">// 字符串长度</span></span><br><span class="line">    <span class="keyword">this</span>.length = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 失败next数组</span></span><br><span class="line">    <span class="keyword">this</span>.fail = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ACTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> ACNode(<span class="string">'/'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  insert(text) &#123;</span><br><span class="line">    <span class="comment">//   根节点</span></span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="comment">// 遍历</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> char <span class="keyword">of</span> text) &#123;</span><br><span class="line">      <span class="comment">// 如果子节点没存过，设置子节点</span></span><br><span class="line">      <span class="keyword">if</span> (!node.children.get(char)) &#123;</span><br><span class="line">        node.children.set(char, <span class="keyword">new</span> ACNode(char))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//   取出下一个子节点，接着构建</span></span><br><span class="line">      node = node.children.get(char)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 结束标志，长度标志</span></span><br><span class="line">    node.isEndingChar = <span class="literal">true</span></span><br><span class="line">    node.length = text.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  buildFailurePointer() &#123;</span><br><span class="line">    <span class="comment">// 1. 对树进行遍历</span></span><br><span class="line">    <span class="keyword">let</span> root = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">const</span> queue = []</span><br><span class="line">    <span class="comment">// 放入栈中等待遍历</span></span><br><span class="line">    queue.push(root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (queue.length) &#123;</span><br><span class="line">      <span class="keyword">let</span> node = queue.shift()</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> nodeChild <span class="keyword">of</span> node.children.values()) &#123;</span><br><span class="line">        <span class="comment">//   空节点跳过</span></span><br><span class="line">        <span class="keyword">if</span> (!nodeChild) &#123;</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 根据当前节点的失败指针 求其子节点的失败指针</span></span><br><span class="line">        <span class="keyword">if</span> (node === root) &#123;</span><br><span class="line">          nodeChild.fail = root</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> nodeFail = node.fail</span><br><span class="line">          <span class="keyword">while</span> (nodeFail) &#123;</span><br><span class="line">            <span class="comment">// 当前节点的子节点 与 当前节点对应失败节点的子节点， 如果相等， 那么当前节点子节点的失败节点 是 当前节点对应失败节点的子节点</span></span><br><span class="line">            <span class="keyword">const</span> nodeFailChild = nodeFail.children.get(nodeChild.data)</span><br><span class="line">            <span class="keyword">if</span> (nodeFailChild) &#123;</span><br><span class="line">              nodeChild.fail = nodeFailChild</span><br><span class="line">              <span class="comment">//   找到就终端</span></span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 找不到就接着找</span></span><br><span class="line">            nodeFail = nodeFail.fail</span><br><span class="line">            <span class="keyword">if</span> (!nodeFail) &#123;</span><br><span class="line">              <span class="comment">// 如果失败节点不存在了 那就指向root</span></span><br><span class="line">              nodeChild.fail = root</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 放入栈中等待遍历</span></span><br><span class="line">        queue.push(nodeChild)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  match(text) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; text.length; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> char = text[i]</span><br><span class="line">      <span class="comment">//   寻找匹配的节点</span></span><br><span class="line">      <span class="keyword">while</span> (node != <span class="keyword">this</span>.root &amp;&amp; !node.children.get(char)) &#123;</span><br><span class="line">        node = node.fail</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//   取出子节点</span></span><br><span class="line">      node = node.children.get(char)</span><br><span class="line">      <span class="comment">//   如果子节点 不存在 那要重根节点开始找</span></span><br><span class="line">      <span class="keyword">if</span> (!node) &#123;</span><br><span class="line">        node = <span class="keyword">this</span>.root</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> tmp = node</span><br><span class="line">      <span class="keyword">while</span> (tmp != <span class="keyword">this</span>.root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tmp.isEndingChar) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(</span><br><span class="line">            <span class="string">`Start from <span class="subst">$&#123;i - node.length + <span class="number">1</span>&#125;</span>, length: <span class="subst">$&#123;node.length&#125;</span>`</span></span><br><span class="line">          )</span><br><span class="line">        &#125;</span><br><span class="line">        tmp = tmp.fail</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">match</span>(<span class="params">text, patterns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> automata = <span class="keyword">new</span> ACTree()</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> pattern <span class="keyword">of</span> patterns) &#123;</span><br><span class="line">    automata.insert(pattern)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  automata.buildFailurePointer()</span><br><span class="line">  automata.match(text)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> patterns = [<span class="string">'at'</span>, <span class="string">'art'</span>, <span class="string">'oars'</span>, <span class="string">'soar'</span>]</span><br><span class="line"><span class="keyword">let</span> text = <span class="string">'soarsoars'</span></span><br><span class="line">match(text, patterns)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> patterns2 = [<span class="string">'Fxtec Pro1'</span>, <span class="string">'谷歌Pixel'</span>]</span><br><span class="line"><span class="keyword">let</span> text2 =</span><br><span class="line">  <span class="string">'一家总部位于伦敦的公司Fxtex在MWC上就推出了一款名为Fxtec Pro1的手机，该机最大的亮点就是采用了侧滑式全键盘设计。DxOMark年度总榜发布 华为P20 Pro/谷歌Pixel 3争冠'</span></span><br><span class="line">match(text2, patterns2)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/09/2020-03-09-AC-自动机/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-07-Trie-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/07/2020-03-07-Trie-树/">Trie 树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/07/2020-03-07-Trie-树/" class="archive-article-date">
-  	<time datetime="2020-03-07T14:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Trie-树-字典树"><a href="#Trie-树-字典树" class="headerlink" title="Trie 树(字典树)"></a>Trie 树(字典树)</h2><blockquote>
-<p>专门处理字符串匹配的数据结构</p>
-</blockquote>
-<ol>
-<li>树的 root 节点不表示意思</li>
-<li>其余每个节点，表示字符串中的字符</li>
-<li>从根节点到红色节点，表示一个字符串（但是红色节点并不一定是叶子节点）<br><img src="https://davidsongzw.github.io/assets/blogImg/trie.jpg" alt="image"> 4.生成 Trie 的过程<br><img src="https://davidsongzw.github.io/assets/blogImg/trie1.jpg" alt="image"><br><img src="https://davidsongzw.github.io/assets/blogImg/trie2.jpg" alt="image"></li>
-</ol>
-<h2 id="代码实现-Trie-树"><a href="#代码实现-Trie-树" class="headerlink" title="代码实现 Trie 树"></a>代码实现 Trie 树</h2><p>拆解：</p>
-<ol>
-<li>Trie 树有多个杈</li>
-<li>每个树杈都需要快速查找子节点</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(data) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="keyword">this</span>.isEndingChar = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">this</span>.children = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">26</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> TrieNode(<span class="string">'/'</span>) <span class="comment">// 存储无意义字符</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 往Trie树中插入一个字符串</span></span><br><span class="line">  insert(text) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; text.length; ++i) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = text[i].charCodeAt() - <span class="string">'a'</span>.charCodeAt()</span><br><span class="line">      <span class="keyword">if</span> (!node.children[index]) &#123;</span><br><span class="line">        <span class="keyword">const</span> newNode = <span class="keyword">new</span> TrieNode(text[i])</span><br><span class="line">        node.children[index] = newNode</span><br><span class="line">      &#125;</span><br><span class="line">      node = node.children[index]</span><br><span class="line">    &#125;</span><br><span class="line">    node.isEndingChar = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在Trie树中查找一个字符串</span></span><br><span class="line">  find(pattern) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pattern.length; ++i) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = pattern[i].charCodeAt() - <span class="string">'a'</span>.charCodeAt()</span><br><span class="line">      <span class="keyword">if</span> (!node.children[index]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// 不存在pattern</span></span><br><span class="line">      &#125;</span><br><span class="line">      node = node.children[index]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 不能完全匹配，只是前缀</span></span><br><span class="line">    <span class="keyword">return</span> node.isEndingChar</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tree = <span class="keyword">new</span> Trie()</span><br><span class="line"><span class="keyword">var</span> strs = [<span class="string">'how'</span>, <span class="string">'hi'</span>, <span class="string">'her'</span>, <span class="string">'hello'</span>, <span class="string">'so'</span>, <span class="string">'see'</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> str <span class="keyword">of</span> strs) &#123;</span><br><span class="line">  tree.insert(str)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> str <span class="keyword">of</span> strs) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(tree.find(str))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(tree.find(<span class="string">'world'</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="Trie-树存在的问题："><a href="#Trie-树存在的问题：" class="headerlink" title="Trie 树存在的问题："></a>Trie 树存在的问题：</h2><ol>
-<li>使用数组存储子节点指针，会占用更多的内存空间，尤其是字符集比较大的时候，插入和查找效率都会降低</li>
-<li>字符串前缀重合的多，才能节省空间</li>
-<li>手动实现工业级容易出bug</li>
-<li>指针非连续存储，对缓存优化不好</li>
-</ol>
-<p>比较适合的场景是：搜索时候的联想功能</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/07/2020-03-07-Trie-树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-04字符串-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/04/2020-03-04字符串-3/">字符串(KMP算法)-3</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/04/2020-03-04字符串-3/" class="archive-article-date">
-  	<time datetime="2020-03-04T07:47:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>KMP 算法：在模式串与主串比较过程中，当遇到坏字符时，匹配成功的好前缀，如何最大程度向后滑动</p>
-<p>拆解：</p>
-<ol>
-<li>找到坏字符下标 j</li>
-<li>坏字符前面的子串，是好前缀</li>
-<li>需要好前缀(模式串与主串匹配部分)滑动最多<ol>
-<li>滑动计算，只关心模式串，就可以了(此时是好前缀)</li>
-<li>所有模式串前缀子串，与后缀子串匹配</li>
-<li>得到最长的前缀子串，最长后缀子串，以及最长前缀子串的下标 j’</li>
-</ol>
-</li>
-<li>此时下一个需要匹配的字符位置(模式串中)就是 j = j’ + 1</li>
-</ol>
-<p>拆解模式串 next 算法：</p>
-<ol>
-<li>第一个字符无匹配 下标为 -1</li>
-<li>核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那 k 值增加 1</li>
-<li>上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]<br>此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的<br>我们在之前匹配过的子串中寻找，即 k = next[k]（次长串），看看接下来的字符能和 pattern[i]</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算next数组</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pLength 模式串的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext</span>(<span class="params">pattern, pLength</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> next = <span class="keyword">new</span> <span class="built_in">Array</span>(pLength)</span><br><span class="line">  next[<span class="number">0</span>] = <span class="number">-1</span> <span class="comment">// 第一个字符无匹配 下标为 -1</span></span><br><span class="line">  <span class="keyword">let</span> k = <span class="number">-1</span> <span class="comment">// 以及匹配到的下标</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; pLength; ++i) &#123;</span><br><span class="line">    <span class="comment">// 上次匹配到的字符下标 再接着向后比较 如果不相等 pattern[k + 1] != pattern[i]</span></span><br><span class="line">    <span class="comment">// 此时我们知道 pattern[k] != pattern[i-1] 因为之前都是匹配的</span></span><br><span class="line">    <span class="comment">// 我们在之前匹配过的子串中寻找，即k = next[k]（次长串），看看接下来的字符能和pattern[i]</span></span><br><span class="line">    <span class="keyword">while</span> (k != <span class="number">-1</span> &amp;&amp; pattern[k + <span class="number">1</span>] != pattern[i]) &#123;</span><br><span class="line">      k = next[k]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 核心概念是 上次匹配到的字符下标 再接着向后比较 如果相等，那k值增加1</span></span><br><span class="line">    <span class="keyword">if</span> (pattern[k + <span class="number">1</span>] == pattern[i]) &#123;</span><br><span class="line">      ++k</span><br><span class="line">    &#125;</span><br><span class="line">    next[i] = k</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * kmp 算法</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; main 主串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kmp</span>(<span class="params">main, pattern</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 长度</span></span><br><span class="line">  <span class="keyword">const</span> mLength = main.length</span><br><span class="line">  <span class="keyword">const</span> pLength = pattern.length</span><br><span class="line">  <span class="comment">// 获取next数组</span></span><br><span class="line">  <span class="keyword">const</span> next = getNext(pattern, pLength)</span><br><span class="line">  <span class="comment">// 模式串下标</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mLength; i++) &#123;</span><br><span class="line">    <span class="comment">// 一直找到 main[i]和 pattern[j] 坏字符</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; main[i] != pattern[j]) &#123;</span><br><span class="line">      <span class="comment">// j为坏字符下标</span></span><br><span class="line">      <span class="comment">// j - 1为好前缀最后一个字符下标</span></span><br><span class="line">      <span class="comment">// next[j - 1] 好前缀最长可匹配字符下标 +1是下个要匹配的字符</span></span><br><span class="line">      j = next[j - <span class="number">1</span>] + <span class="number">1</span> <span class="comment">// 滑动到最大可滑动的下标</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 匹配的字符 向后移动</span></span><br><span class="line">    <span class="keyword">if</span> (main[i] == pattern[j]) &#123;</span><br><span class="line">      ++j</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找到匹配模式串的了</span></span><br><span class="line">    <span class="keyword">if</span> (j === pLength) &#123;</span><br><span class="line">      <span class="keyword">return</span> i - pLength + <span class="number">1</span> <span class="comment">// 得出当前主串中匹配的第一个下标</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'e', 'a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="comment">// ['a', 'b', 'a', 'b', 'a', 'c']</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  kmp(</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>],</span><br><span class="line">    [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>]</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/04/2020-03-04字符串-3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-01-06字符串-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/06/2020-01-06字符串-2/">字符串(BM算法)-2</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/06/2020-01-06字符串-2/" class="archive-article-date">
-  	<time datetime="2020-01-06T09:11:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="BM-算法（Boyer-Moore）"><a href="#BM-算法（Boyer-Moore）" class="headerlink" title="BM 算法（Boyer-Moore）"></a>BM 算法（Boyer-Moore）</h2><h3 id="简析"><a href="#简析" class="headerlink" title="简析"></a>简析</h3><ol>
-<li>在暴力匹配中，我们把主串中子串和模式串一一对比，这样效率低</li>
-<li>BM 算法中，当主串字符在模式串中不存在时，我们就跳过这次对比，直接从当前字符的下一个子串开始对比</li>
-</ol>
-<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><ol>
-<li><p>坏字符规则（bad character rule）</p>
-<ul>
-<li>当倒序遍历模式串的字符，和主串对应位置字符无法匹配时，就称这个字符为坏字符，如果这个字符在模式串中没有，那主串匹配位置，移到当前字符后</li>
-<li>在模式串中无法匹配的字符小标记为 xi，在模式串中找当前主串字符，下标为 si（找到多个取最后一个，防止滑动过多），未找到 si 为-1，向后滑动的位置为 xi-si</li>
-<li>存在问题，就是 xi-si 可能为负数</li>
+        <ul>
+<li>编程实现斐波那契数列求值 f(n)=f(n-1)+f(n-2)</li>
 </ul>
-</li>
-<li><p>好后缀规则（good suffix shift）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fibonacci = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> memory = &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> n</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!memory[n]) &#123;</span><br><span class="line">      memory[n] = fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> memory[n]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
 <ul>
-<li>主串和模式串倒序匹配，匹配好的子串为 U，当下一个开始不匹配的时候，我们开始向后滑动</li>
-<li>滑动到的位置，是模式串的前缀子串和匹配好的子串 U 的最大交集</li>
+<li>编程实现求阶乘 n!</li>
 </ul>
-</li>
-</ol>
-<p>坏字符和好后缀同时使用，那个计算出的向后滑动多，使用哪个</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模式串生成map</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> patternMap = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generatePMap</span>(<span class="params">pattern</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pattern.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> word = pattern[i]</span><br><span class="line">    patternMap[word] = i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> suffix = &#123;&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算模式串的前缀和后缀子串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateFixMap</span>(<span class="params">pattern</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pattern.length; i++) &#123;</span><br><span class="line">    suffix[i] = <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> pLength = pattern.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pLength - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = i <span class="comment">// 起始下标</span></span><br><span class="line">    <span class="keyword">let</span> k = <span class="number">0</span> <span class="comment">// 长度</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; pattern[j] === pattern[pLength - <span class="number">1</span> - k]) &#123;</span><br><span class="line">      --j</span><br><span class="line">      ++k</span><br><span class="line">      suffix[k] = j + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * BM 算法</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; main 主串</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; pattern 模式串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bm</span>(<span class="params">main, pattern</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 模式串</span></span><br><span class="line">  generatePMap(pattern)</span><br><span class="line">  <span class="comment">//   前后缀串</span></span><br><span class="line">  generateFixMap(pattern)</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> mLength = main.length</span><br><span class="line">  <span class="keyword">const</span> pLength = pattern.length</span><br><span class="line">  <span class="comment">// 匹配结束边界</span></span><br><span class="line">  <span class="keyword">while</span> (i &lt;= mLength - pLength) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = pLength - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> (j; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (pattern[j] != main[i + j]) &#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 匹配成功了</span></span><br><span class="line">    <span class="keyword">if</span> (j &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//计算坏字符</span></span><br><span class="line">    <span class="keyword">const</span> k = pLength - <span class="number">1</span> - j</span><br><span class="line">    <span class="keyword">let</span> move = pLength</span><br><span class="line">    <span class="keyword">if</span> (k) &#123;</span><br><span class="line">      <span class="comment">// 模式子串中的存在相同后缀子串</span></span><br><span class="line">      <span class="keyword">if</span> (suffix[k] != <span class="number">-1</span>) &#123;</span><br><span class="line">        move = j - suffix[k] + <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 这里把好后缀的范围缩小 来查是否存在相同子串</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> r = j + <span class="number">2</span>; r &lt; pLength; r++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (suffix[pLength - r] === <span class="number">0</span>) &#123;</span><br><span class="line">            move = r</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 计算下标移动</span></span><br><span class="line">    <span class="keyword">const</span> num = <span class="built_in">isNaN</span>(patternMap[main[i + j]]) ? <span class="number">-1</span> : patternMap[main[i + j]]</span><br><span class="line">    i = i + <span class="built_in">Math</span>.max(j - num, move)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bm([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>], [<span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n * fn(n - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编程实现一组数据集合的全排列</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">permute</span>(<span class="params">list = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = []</span><br><span class="line">  <span class="keyword">if</span> (list.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//   先假设知道了之前的全排列，然后向里面插值</span></span><br><span class="line">  <span class="keyword">const</span> preRes = permute(list.slice(<span class="number">0</span>, list.length - <span class="number">1</span>))</span><br><span class="line">  <span class="keyword">const</span> str = list[list.length - <span class="number">1</span>]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; preRes.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> ele = preRes[i]</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= ele.length; j++) &#123;</span><br><span class="line">      result.push([...ele.slice(<span class="number">0</span>, j), str, ...ele.slice(j)])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/06/2020-01-06字符串-2/">展开全文 >></a>
-        </p>
-      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/22/2020-06-22-JavaScript-递归/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/15/2020-06-15-JavaScript-实现队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript 实现队列</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -775,323 +321,14 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-2020-01-06字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/06/2020-01-06字符串/">字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/06/2020-01-06字符串/" class="archive-article-date">
-  	<time datetime="2020-01-06T03:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>BF（Brute Force）算法</p>
-<blockquote>
-<p>中文：暴力匹配算法</p>
-</blockquote>
-<p>主串：在该字符串中查找字符串<br>模式串：在主串中，查找这个字符串</p>
-<p>算法：</p>
-<ol>
-<li>主串长度 n 模式串长度 m</li>
-<li>从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比</li>
-</ol>
-<p>时间复杂度：</p>
-<p>n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&gt; O(n * m)</p>
-<p>实际比较 BF 常用：</p>
-<ol>
-<li>一般字符串长度不会太长，影响不大，另外当比对一旦不一样的时候，就可以停止</li>
-<li>实现简单不容易出错</li>
-</ol>
-<p>RK 算法 (Rabin-Karp)</p>
-<ol>
-<li>n -m +1 个子串求 hash 值与模式串的 hash 值比较</li>
-<li>当散列冲突时，再比较子串和模式串，需要控制 hash 冲突，要不然就退化成 BF 算法了</li>
-</ol>
-<p>时间复杂度：</p>
-<p>遍历主串技术 hash 值，复杂度为 n，进行比较 n -m +1 次，因此时间复杂度为 O(n)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/06/2020-01-06字符串/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-12-31优先搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/2019-12-31优先搜索/">优先搜索</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/31/2019-12-31优先搜索/" class="archive-article-date">
-  	<time datetime="2019-12-31T03:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="广度优先搜索-BFS-Breadth-First-Search"><a href="#广度优先搜索-BFS-Breadth-First-Search" class="headerlink" title="广度优先搜索 BFS(Breadth-First-Search)"></a>广度优先搜索 BFS(Breadth-First-Search)</h2><p>含义：地毯式的层层推进搜索，由近及远</p>
-<p>定义顶点个数为 V，边数为 E</p>
-<ol>
-<li>visited 数组，记录已经访问过得顶点，不再次访问</li>
-<li>queue 队列，记录刚刚访问的顶点，为了接下来访问此顶点的下一个顶点</li>
-<li>prev 数组，用于存储访问记录（反向），找到顶点后，反向遍历就是最短路径</li>
-</ol>
-<p>复杂度：</p>
-<p>时间：</p>
-<ol>
-<li>对于连通图，边数 E 大于等于 顶点数 V - 1</li>
-<li>搜索到最后一个顶点，每个顶点，每条边都会被访问，时间复杂度为 O(E + V)，即时间复杂度为 O(V)</li>
-</ol>
-<p>空间：</p>
-<ol>
-<li>visited、queue、prev 大小都和 V 相关，所以最终空间复杂度为 O(V)</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 广度优先搜索 使用 JavaScript 写的伪代码</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; s 当前顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; t 目标顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; v 图的订单数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; graph 图</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; visited 遍历过的顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; queue 队列 已经被访问，但连接的顶点还没被访问，用于找到下一层节点访问</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; prev 访问记录，反向的，反向递归，可以打印s =&gt; t 的最短访问记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bfs</span>(<span class="params">s, t</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s === t) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//   已经访问</span></span><br><span class="line">  <span class="keyword">const</span> visited = &#123;&#125;</span><br><span class="line">  visited[s] = <span class="literal">true</span></span><br><span class="line">  <span class="comment">//   队列用于接下来访问</span></span><br><span class="line">  <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">  queue.enqueue(s)</span><br><span class="line">  <span class="comment">//   路径数组</span></span><br><span class="line">  <span class="keyword">const</span> prev = <span class="keyword">new</span> <span class="built_in">Array</span>(v).fill(<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">while</span> (queue.length) &#123;</span><br><span class="line">    <span class="comment">//   上个顶点</span></span><br><span class="line">    <span class="keyword">const</span> lastV = queue.dequeue()</span><br><span class="line">    <span class="comment">// graph[lastV].length 图的下一层的大小</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graph[lastV].length; i++) &#123;</span><br><span class="line">      <span class="comment">//   当前顶点</span></span><br><span class="line">      <span class="keyword">const</span> nowV = graph[lastV][i]</span><br><span class="line">      <span class="keyword">if</span> (!visited[nowV]) &#123;</span><br><span class="line">        <span class="comment">//   路径</span></span><br><span class="line">        prev[nowV] = lastV</span><br><span class="line">        <span class="keyword">if</span> (nowV === v) &#123;</span><br><span class="line">          print(prev, s, v)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//   记录遍历过</span></span><br><span class="line">        visited[nowV] = <span class="literal">true</span></span><br><span class="line">        <span class="comment">//   入队</span></span><br><span class="line">        queue.enqueue(nowV)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">prev, s, t</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 递归打印s-&gt;t的路径</span></span><br><span class="line">  <span class="keyword">if</span> (prev[t] != <span class="number">-1</span> &amp;&amp; t != s) &#123;</span><br><span class="line">    print(prev, s, prev[t])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(t + <span class="string">'  '</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="深度优先搜索-DFS-Depth-First-Search"><a href="#深度优先搜索-DFS-Depth-First-Search" class="headerlink" title="深度优先搜索 DFS (Depth-First-Search)"></a>深度优先搜索 DFS (Depth-First-Search)</h2><p>含义：走迷宫，选择一条路走，没路回退，接着换路，知道走到终点</p>
-<p>定义顶点个数为 V，边数为 E</p>
-<ol>
-<li>visited 数组，记录已经访问的顶点，不在继续访问</li>
-<li>prev 记录访问顺序，用于得出最短路径</li>
-<li>found 已经找到终点之后，不再进行递归</li>
-</ol>
-<p>复杂度：</p>
-<p>时间：</p>
-<p>最多遍历两遍边，所以时间复杂度为 O(E)</p>
-<p>空间：<br>visited、prev 和顶点 V 成正比，递归深度不会超过，顶点个数，空间复杂度为：O(V)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深度优先搜索 伪代码</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; startV 起始点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; endV 终点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; v 顶点个数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; visited 访问过</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; prev 访问路径</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; graph 图</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> found = <span class="literal">false</span> <span class="comment">// 标志找到顶点不再递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dfs</span>(<span class="params">startV, endV</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> visited = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> prev = <span class="keyword">new</span> <span class="built_in">Array</span>(v).fill(<span class="number">-1</span>)</span><br><span class="line">  recurDfs(startV, endV, visited, prev)</span><br><span class="line">  print(prev, startV, endV)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recurDfs</span>(<span class="params">startV, endV, visited, prev</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (found) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  visited[startV] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (startV === endV) &#123;</span><br><span class="line">    found = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graph[startV].length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (found) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> nowV = graph[startV][i]</span><br><span class="line">    <span class="keyword">if</span> (!visited[nowV]) &#123;</span><br><span class="line">      prev[nowV] = startV</span><br><span class="line">      recurDfs(nowV, endV, visited, prev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">prev, s, t</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 递归打印s-&gt;t的路径</span></span><br><span class="line">  <span class="keyword">if</span> (prev[t] != <span class="number">-1</span> &amp;&amp; t != s) &#123;</span><br><span class="line">    print(prev, s, prev[t])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(t + <span class="string">'  '</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/31/2019-12-31优先搜索/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-12-30图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/30/2019-12-30图/">图</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/30/2019-12-30图/" class="archive-article-date">
-  	<time datetime="2019-12-30T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="图-Graph-概念"><a href="#图-Graph-概念" class="headerlink" title="图(Graph)概念"></a>图(Graph)概念</h2><ol>
-<li>顶点（vertex）：图中的每个点</li>
-<li>边（edge）：任意两个顶点的连线</li>
-<li>顶点的度（degree）：顶点连接的边的数量</li>
-<li>方向：边具有方向，这种图叫有向图</li>
-<li>出度（out-degree）和入度（in-degree）：顶点指向其他顶点的边数，其他顶点指向当前顶点的边数</li>
-<li>带权图（weighted graph）：每条边都有权重</li>
-</ol>
-<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><ol>
-<li>二维数组存储</li>
-<li>无向 a[i][j]和 a[j][i]都存 1</li>
-<li>有向 i 指向 j a[i][j]存 1</li>
-<li>带权 a[i][j]存权重</li>
-</ol>
-<p>优势：</p>
-<ol>
-<li>矩阵方便进行数学运算</li>
-<li>存储方式简单直接</li>
-<li>基于数组，访问顶点关系简单</li>
-</ol>
-<p>劣势：</p>
-<ol>
-<li>无向图 多存储了一倍的数据</li>
-<li>稀疏图 很多空间没用上</li>
-</ol>
-<h3 id="邻接表存储方法"><a href="#邻接表存储方法" class="headerlink" title="邻接表存储方法"></a>邻接表存储方法</h3><ol>
-<li>有向图 每个顶点，存储指向的顶点</li>
-<li>无向图 每个顶点，存储连接的点</li>
-</ol>
-<p>优势：</p>
-<ol>
-<li>占用空间小</li>
-<li>链表可以采用更高效的数据结构，红黑树、平衡二叉树、跳表</li>
-</ol>
-<p>劣势：</p>
-<ol>
-<li>不利于计算，是用时间换空间</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/30/2019-12-30图/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1114,8 +351,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
