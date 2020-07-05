@@ -160,6 +160,176 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-04-20-索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/2020-04-20-索引/">索引</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/2020-04-20-索引/" class="archive-article-date">
+  	<time datetime="2020-04-20T11:17:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="索引意义"><a href="#索引意义" class="headerlink" title="索引意义"></a>索引意义</h2><p>节省内存空间，提高增删改查的效率</p>
+<h2 id="索引定义"><a href="#索引定义" class="headerlink" title="索引定义"></a>索引定义</h2><h3 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h3><ol>
+<li>是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理</li>
+<li>静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂</li>
+<li>存储内存还是硬盘，大量数据不适宜存储于内存</li>
+<li>单值查找还是区间查找，支持区间查找的数据结构，更复杂些</li>
+<li>单关键词还是多关键词</li>
+</ol>
+<h3 id="非功能性"><a href="#非功能性" class="headerlink" title="非功能性"></a>非功能性</h3><ol>
+<li>索引的存储空间要小，尤其是在内存中</li>
+<li>考虑索引的维护成本，索引维护不能太难</li>
+</ol>
+<h3 id="具体的数据结构"><a href="#具体的数据结构" class="headerlink" title="具体的数据结构"></a>具体的数据结构</h3><p><strong>散列表</strong>增删改查操作的性能非常好，时间复杂度是 O(1)。一些键值数据库，比如 Redis、Memcache，就是使用散列表来构建索引的。这类索引，一般都构建在内存中</p>
+<p><strong>红黑树</strong>作为一种常用的平衡二叉查找树，数据插入、删除、查找的时间复杂度是 O(logn)，也非常适合用来构建内存索引。Ext 文件系统中，对磁盘块的索引，用的就是红黑树。</p>
+<p><strong>B+ 树</strong>比起红黑树来说，更加适合构建存储在磁盘中的索引。B+ 树是一个多叉树，所以，对相同个数的数据构建索引，B+ 树的高度要低于红黑树。当借助索引查询数据的时候，读取 B+ 树索引，需要的磁盘 IO 次数会更少。所以，大部分关系型数据库的索引，比如 MySQL、Oracle，都是用 B+ 树来实现的。</p>
+<p><strong>跳表</strong>也支持快速添加、删除、查找数据。而且，我们通过灵活调整索引结点个数和数据个数之间的比例，可以很好地平衡索引对内存的消耗及其查询效率。Redis 中的有序集合，就是用跳表来构建的。</p>
+<p><strong>位图和布隆过滤器</strong>位图很省内存空间，还可以使用布隆过滤器优化，我们可以先构建布隆过滤器，拦截数据是否存在，不存在就不用查了，省了一次索引查询</p>
+<p><strong>有序数组</strong>静态数据，使用有序数组，二分查找也很快</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/2020-04-20-索引/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-04-20-A-搜索算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/2020-04-20-A-搜索算法/">A*搜索算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/2020-04-20-A-搜索算法/" class="archive-article-date">
+  	<time datetime="2020-04-20T09:38:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="A-和-dijkstra-对比"><a href="#A-和-dijkstra-对比" class="headerlink" title="A* 和 dijkstra 对比"></a>A* 和 dijkstra 对比</h2><ol>
+<li>dijkstra 算法：计算 dist 距离（当前顶点到起点距离），A* 算法：计算 f 值（dist + h（顶点到终点的麦哈顿距离, abs(x - xEnd) + abs(y - yEnd) ））</li>
+<li>A* 更新顶点 dist ,同时更新 f 值</li>
+<li>循环结束条件，dijkstra 所有值出队列结束，A* 到了终点就结束</li>
+</ol>
+<p>A* 并没有考察所有路线，到终点后得到的 dist，并不一定是最小，但是节省了更多计算资源</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/2020-04-20-A-搜索算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-04-20-B-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -846,187 +1016,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2020-03-11-动态规划2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/2020-03-11-动态规划2/">动态规划2 理论</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/11/2020-03-11-动态规划2/" class="archive-article-date">
-  	<time datetime="2020-03-11T10:16:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动态规划适合解决什么问题"><a href="#动态规划适合解决什么问题" class="headerlink" title="动态规划适合解决什么问题"></a>动态规划适合解决什么问题</h2><blockquote>
-<p>一个模型三个特征</p>
-</blockquote>
-<h3 id="一个模型"><a href="#一个模型" class="headerlink" title="一个模型"></a>一个模型</h3><blockquote>
-<p>多阶段决策最优解模型</p>
-</blockquote>
-<ol>
-<li>解决问题分为多个阶段，每个阶段对应一种状态</li>
-<li>选择一组状态，得到最优解</li>
-</ol>
-<h3 id="三个特征"><a href="#三个特征" class="headerlink" title="三个特征"></a>三个特征</h3><h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><p>问题的最优解，包含子问题的最优解，可以理解为，后面阶段的状态，可以由前面状态推到处理</p>
-<h3 id="无后效性"><a href="#无后效性" class="headerlink" title="无后效性"></a>无后效性</h3><ol>
-<li>只关心当前阶段值，不关心具体得到过程</li>
-<li>前面阶段值一旦确定，不受后面阶段影响</li>
-</ol>
-<h3 id="重复子问题"><a href="#重复子问题" class="headerlink" title="重复子问题"></a>重复子问题</h3><p>不同的组合状态，可能得到相同的结果</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="状态转移表法"><a href="#状态转移表法" class="headerlink" title="状态转移表法"></a>状态转移表法</h3><ul>
-<li>利用回溯算法，一般回溯算法，都可以使用动态规划实现</li>
-<li>回溯算法画出递归树，找出重复子问题</li>
-<li>然后画出状态表</li>
-</ul>
-<p>回溯算法实现 =&gt; 定义状态 =&gt; 画递归树 =&gt; 找重复子问题 =&gt; 画状态转移表 =&gt; 根据递推关系填表 =&gt; 将填表过程翻译成代码</p>
-<h3 id="状态转移方程法"><a href="#状态转移方程法" class="headerlink" title="状态转移方程法"></a>状态转移方程法</h3><p>类似这种</p>
-<blockquote>
-<p>min_dist(i, j) = w[i][j] + min(min_dist(i, j-1), min_dist(i-1, j))</p>
-</blockquote>
-<ul>
-<li>递归 + 备忘录</li>
-<li>迭代递推</li>
-</ul>
-<p>找最优子结构 =&gt; 写状态转移方程 =&gt; 将状态转移方程翻译成代码</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/11/2020-03-11-动态规划2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-03-11-动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/2020-03-11-动态规划/">动态规划</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/11/2020-03-11-动态规划/" class="archive-article-date">
-  	<time datetime="2020-03-11T02:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动态规划（Dynamic-Programming）"><a href="#动态规划（Dynamic-Programming）" class="headerlink" title="动态规划（Dynamic Programming）"></a>动态规划（Dynamic Programming）</h2><h3 id="0-1-背包问题-动态规划"><a href="#0-1-背包问题-动态规划" class="headerlink" title="0-1 背包问题 动态规划"></a>0-1 背包问题 动态规划</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算0-1背包问题 动态规划</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; weightList 物品重量</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; num 物品个数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; totalWeight 背包可承载重量</span></span><br><span class="line"><span class="comment"> * @returns</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">knapsack</span>(<span class="params">weightList, num, totalWeight</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> states = <span class="keyword">new</span> <span class="built_in">Array</span>(totalWeight + <span class="number">1</span>) <span class="comment">// 默认值false</span></span><br><span class="line">  <span class="comment">// 第一行的数据要特殊处理，可以利用哨兵优化</span></span><br><span class="line">  states[<span class="number">0</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (weightList[<span class="number">0</span>] &lt;= totalWeight) &#123;</span><br><span class="line">    states[weightList[<span class="number">0</span>]] = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; num; ++i) &#123;</span><br><span class="line">    <span class="comment">// 动态规划</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = totalWeight - weightList[i]; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">      <span class="comment">//把第i个物品放入背包</span></span><br><span class="line">      <span class="keyword">if</span> (states[j]) &#123;</span><br><span class="line">        states[j + weightList[i]] = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = totalWeight; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">    <span class="comment">// 输出结果</span></span><br><span class="line">    <span class="keyword">if</span> (states[i]) <span class="keyword">return</span> i</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> totalWeight = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">console</span>.log(knapsack(totalWeight, <span class="number">5</span>, <span class="number">9</span>))</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/11/2020-03-11-动态规划/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1174,7 +1166,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,7 +1174,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">

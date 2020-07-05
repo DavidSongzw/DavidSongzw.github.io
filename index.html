@@ -160,6 +160,138 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-07-05-JavaScript-二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/05/2020-07-05-JavaScript-二分查找/">JavaScript 二分查找</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/05/2020-07-05-JavaScript-二分查找/" class="archive-article-date">
+  	<time datetime="2020-07-05T11:40:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="有序数组二分查找"><a href="#有序数组二分查找" class="headerlink" title="有序数组二分查找"></a>有序数组二分查找</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分查找</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; num</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">array, num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> right = array.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (right &gt;= left) &#123;</span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (array[middle] === num) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[middle] &gt; num) &#123;</span><br><span class="line">      right = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      left = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearch([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="实现模糊二分查找算法（比如大于等于给定值的第一个元素）"><a href="#实现模糊二分查找算法（比如大于等于给定值的第一个元素）" class="headerlink" title="实现模糊二分查找算法（比如大于等于给定值的第一个元素）"></a>实现模糊二分查找算法（比如大于等于给定值的第一个元素）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现模糊二分查找算法（比如大于等于给定值的第一个元素）</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; num</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">array, num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> right = array.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (right &gt;= left) &#123;</span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (array[middle] &gt;= num) &#123;</span><br><span class="line">      <span class="keyword">if</span> (middle === <span class="number">0</span> || array[middle - <span class="number">1</span>] &lt; num) &#123;</span><br><span class="line">        <span class="keyword">return</span> middle</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        right = middle - <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      left = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(binarySearch([<span class="number">5</span>], <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/05/2020-07-05-JavaScript-二分查找/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-07-05-JavaScript-排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/05/2020-07-05-JavaScript-排序/">JavaScript 排序</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/05/2020-07-05-JavaScript-排序/" class="archive-article-date">
+  	<time datetime="2020-07-05T04:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 冒泡排序</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * 空间 O(1) 时间 O(n^2)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> flag = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; array.length - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[j] &gt; array[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        flag = <span class="literal">true</span></span><br><span class="line">        ;[array[j], array[j + <span class="number">1</span>]] = [array[j + <span class="number">1</span>], array[j]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!flag) <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入排序</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * 空间 O(1) 时间 O(n^2)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> num = array[i]</span><br><span class="line">    <span class="keyword">let</span> j = i</span><br><span class="line">    <span class="keyword">for</span> (; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">      <span class="keyword">if</span> (num &lt; array[j - <span class="number">1</span>]) &#123;</span><br><span class="line">        array[j] = array[j - <span class="number">1</span>]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    array[j] = num</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(insertSort([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * 空间 O(1) 时间 O(n^2)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> minIndex = i</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[minIndex] &gt; array[j]) &#123;</span><br><span class="line">        minIndex = j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i !== minIndex) &#123;</span><br><span class="line">      ;[array[i], array[minIndex]] = [array[minIndex], array[i]]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(selectSort([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * O(n) O(nlogn)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!array || !array.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (array.length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor(array.length / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">return</span> merge(mergeSort(array.slice(<span class="number">0</span>, mid)), mergeSort(array.slice(mid)))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 合并两个数组</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; arr1</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; arr2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = arr1.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> j = arr2.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> index = i + j + <span class="number">1</span></span><br><span class="line">  <span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(i + j + <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 注意--符号在后面，表示先进行计算再减1，这种缩写缩短了代码</span></span><br><span class="line">    arr[index--] = arr1[i] &gt; arr2[j] ? arr1[i--] : arr2[j--]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> tempArr = i &gt;= <span class="number">0</span> ? arr1.slice(<span class="number">0</span>, i + <span class="number">1</span>) : arr2.slice(<span class="number">0</span>, j + <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">const</span> array = tempArr.concat(arr.slice(i + <span class="number">1</span> || j + <span class="number">1</span>))</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(mergeSort([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<h2 id="快速"><a href="#快速" class="headerlink" title="快速"></a>快速</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * O(1) O(nlogn)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array, start, end</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 分区下标</span></span><br><span class="line">  <span class="keyword">const</span> pivotIndex = partition(array, start, end)</span><br><span class="line">  quickSort(array, start, pivotIndex - <span class="number">1</span>)</span><br><span class="line">  quickSort(array, pivotIndex + <span class="number">1</span>, end)</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 分区函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array, start, end</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pivot = array[end]</span><br><span class="line">  <span class="keyword">let</span> i = start</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = start; j &lt; end; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[j] &lt; pivot) &#123;</span><br><span class="line">      <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">        ;[array[i], array[j]] = [array[j], array[i]]</span><br><span class="line">      &#125;</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[array[i], array[end]] = [array[end], array[i]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(quickSort([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], <span class="number">0</span>, <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="O-n-查找数组-k-大元素"><a href="#O-n-查找数组-k-大元素" class="headerlink" title="O(n) 查找数组 k 大元素"></a>O(n) 查找数组 k 大元素</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 找到 K 大元素</span></span><br><span class="line"><span class="comment"> * @param &#123;Array&lt;Number&gt;&#125; array</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findK</span>(<span class="params">array, k</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> len = array.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> pivotIndex = partition(array, <span class="number">0</span>, len)</span><br><span class="line">  <span class="keyword">while</span> (pivotIndex + <span class="number">1</span> !== k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (pivotIndex + <span class="number">1</span> &gt; k) &#123;</span><br><span class="line">      pivotIndex = partition(array, <span class="number">0</span>, pivotIndex - <span class="number">1</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      pivotIndex = partition(array, pivotIndex + <span class="number">1</span>, len)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array[pivotIndex]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array, start, end</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> pivot = array[end]</span><br><span class="line">  <span class="keyword">let</span> i = start</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = start; j &lt; end; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &gt; pivot) &#123;</span><br><span class="line">      ;[array[i], array[j]] = [array[j], array[i]]</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ;[array[i], array[end]] = [array[end], array[i]]</span><br><span class="line">  <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findK([<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/05/2020-07-05-JavaScript-排序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2020-06-22-JavaScript-递归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -747,179 +879,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2020-04-20-索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/2020-04-20-索引/">索引</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/2020-04-20-索引/" class="archive-article-date">
-  	<time datetime="2020-04-20T11:17:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="索引意义"><a href="#索引意义" class="headerlink" title="索引意义"></a>索引意义</h2><p>节省内存空间，提高增删改查的效率</p>
-<h2 id="索引定义"><a href="#索引定义" class="headerlink" title="索引定义"></a>索引定义</h2><h3 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h3><ol>
-<li>是否是格式数据（MySQL数据），非格式化数据（搜索引擎爬取的数据）需要预处理</li>
-<li>静态数据还是动态数据，动态数据要考虑，增 删 改，设计更复杂</li>
-<li>存储内存还是硬盘，大量数据不适宜存储于内存</li>
-<li>单值查找还是区间查找，支持区间查找的数据结构，更复杂些</li>
-<li>单关键词还是多关键词</li>
-</ol>
-<h3 id="非功能性"><a href="#非功能性" class="headerlink" title="非功能性"></a>非功能性</h3><ol>
-<li>索引的存储空间要小，尤其是在内存中</li>
-<li>考虑索引的维护成本，索引维护不能太难</li>
-</ol>
-<h3 id="具体的数据结构"><a href="#具体的数据结构" class="headerlink" title="具体的数据结构"></a>具体的数据结构</h3><p><strong>散列表</strong>增删改查操作的性能非常好，时间复杂度是 O(1)。一些键值数据库，比如 Redis、Memcache，就是使用散列表来构建索引的。这类索引，一般都构建在内存中</p>
-<p><strong>红黑树</strong>作为一种常用的平衡二叉查找树，数据插入、删除、查找的时间复杂度是 O(logn)，也非常适合用来构建内存索引。Ext 文件系统中，对磁盘块的索引，用的就是红黑树。</p>
-<p><strong>B+ 树</strong>比起红黑树来说，更加适合构建存储在磁盘中的索引。B+ 树是一个多叉树，所以，对相同个数的数据构建索引，B+ 树的高度要低于红黑树。当借助索引查询数据的时候，读取 B+ 树索引，需要的磁盘 IO 次数会更少。所以，大部分关系型数据库的索引，比如 MySQL、Oracle，都是用 B+ 树来实现的。</p>
-<p><strong>跳表</strong>也支持快速添加、删除、查找数据。而且，我们通过灵活调整索引结点个数和数据个数之间的比例，可以很好地平衡索引对内存的消耗及其查询效率。Redis 中的有序集合，就是用跳表来构建的。</p>
-<p><strong>位图和布隆过滤器</strong>位图很省内存空间，还可以使用布隆过滤器优化，我们可以先构建布隆过滤器，拦截数据是否存在，不存在就不用查了，省了一次索引查询</p>
-<p><strong>有序数组</strong>静态数据，使用有序数组，二分查找也很快</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/2020-04-20-索引/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-04-20-A-搜索算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/2020-04-20-A-搜索算法/">A*搜索算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/2020-04-20-A-搜索算法/" class="archive-article-date">
-  	<time datetime="2020-04-20T09:38:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="A-和-dijkstra-对比"><a href="#A-和-dijkstra-对比" class="headerlink" title="A* 和 dijkstra 对比"></a>A* 和 dijkstra 对比</h2><ol>
-<li>dijkstra 算法：计算 dist 距离（当前顶点到起点距离），A* 算法：计算 f 值（dist + h（顶点到终点的麦哈顿距离, abs(x - xEnd) + abs(y - yEnd) ））</li>
-<li>A* 更新顶点 dist ,同时更新 f 值</li>
-<li>循环结束条件，dijkstra 所有值出队列结束，A* 到了终点就结束</li>
-</ol>
-<p>A* 并没有考察所有路线，到终点后得到的 dist，并不一定是最小，但是节省了更多计算资源</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/2020-04-20-A-搜索算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1067,7 +1029,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,7 +1037,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">

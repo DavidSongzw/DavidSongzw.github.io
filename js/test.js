@@ -1,10 +1,25 @@
-function permute(list = []) {
-  const result = []
-  if (list.length < 2) {
-    return list
+/**
+ * 实现模糊二分查找算法（比如大于等于给定值的第一个元素）
+ * @param {Array<number>} array
+ * @param {Number} num
+ */
+function binarySearch(array, num) {
+  let left = 0
+  let right = array.length - 1
+  while (right >= left) {
+    let middle = Math.floor((left + right) / 2)
+    if (array[middle] >= num) {
+      if (middle === 0 || array[middle - 1] < num) {
+        return middle
+      } else {
+        right = middle - 1
+      }
+    } else {
+      left = middle + 1
+    }
   }
-  const preRes = permute(list.slice(0, list.length -  1))
-  const str = list[list.length - 1]
-  for (let i = 0; i < preRes.length; i++) {
-    const ele = preRes[i];
-    for (let j = 0; j 
+  return -1
+}
+
+console.log(binarySearch([5], 4))
+</number>

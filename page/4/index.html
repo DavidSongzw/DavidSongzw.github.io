@@ -160,6 +160,220 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-31优先搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/31/2019-12-31优先搜索/">优先搜索</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/31/2019-12-31优先搜索/" class="archive-article-date">
+  	<time datetime="2019-12-31T03:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="广度优先搜索-BFS-Breadth-First-Search"><a href="#广度优先搜索-BFS-Breadth-First-Search" class="headerlink" title="广度优先搜索 BFS(Breadth-First-Search)"></a>广度优先搜索 BFS(Breadth-First-Search)</h2><p>含义：地毯式的层层推进搜索，由近及远</p>
+<p>定义顶点个数为 V，边数为 E</p>
+<ol>
+<li>visited 数组，记录已经访问过得顶点，不再次访问</li>
+<li>queue 队列，记录刚刚访问的顶点，为了接下来访问此顶点的下一个顶点</li>
+<li>prev 数组，用于存储访问记录（反向），找到顶点后，反向遍历就是最短路径</li>
+</ol>
+<p>复杂度：</p>
+<p>时间：</p>
+<ol>
+<li>对于连通图，边数 E 大于等于 顶点数 V - 1</li>
+<li>搜索到最后一个顶点，每个顶点，每条边都会被访问，时间复杂度为 O(E + V)，即时间复杂度为 O(V)</li>
+</ol>
+<p>空间：</p>
+<ol>
+<li>visited、queue、prev 大小都和 V 相关，所以最终空间复杂度为 O(V)</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 广度优先搜索 使用 JavaScript 写的伪代码</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; s 当前顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; t 目标顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; v 图的订单数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; graph 图</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; visited 遍历过的顶点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; queue 队列 已经被访问，但连接的顶点还没被访问，用于找到下一层节点访问</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; prev 访问记录，反向的，反向递归，可以打印s =&gt; t 的最短访问记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bfs</span>(<span class="params">s, t</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (s === t) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//   已经访问</span></span><br><span class="line">  <span class="keyword">const</span> visited = &#123;&#125;</span><br><span class="line">  visited[s] = <span class="literal">true</span></span><br><span class="line">  <span class="comment">//   队列用于接下来访问</span></span><br><span class="line">  <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">  queue.enqueue(s)</span><br><span class="line">  <span class="comment">//   路径数组</span></span><br><span class="line">  <span class="keyword">const</span> prev = <span class="keyword">new</span> <span class="built_in">Array</span>(v).fill(<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">while</span> (queue.length) &#123;</span><br><span class="line">    <span class="comment">//   上个顶点</span></span><br><span class="line">    <span class="keyword">const</span> lastV = queue.dequeue()</span><br><span class="line">    <span class="comment">// graph[lastV].length 图的下一层的大小</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graph[lastV].length; i++) &#123;</span><br><span class="line">      <span class="comment">//   当前顶点</span></span><br><span class="line">      <span class="keyword">const</span> nowV = graph[lastV][i]</span><br><span class="line">      <span class="keyword">if</span> (!visited[nowV]) &#123;</span><br><span class="line">        <span class="comment">//   路径</span></span><br><span class="line">        prev[nowV] = lastV</span><br><span class="line">        <span class="keyword">if</span> (nowV === v) &#123;</span><br><span class="line">          print(prev, s, v)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//   记录遍历过</span></span><br><span class="line">        visited[nowV] = <span class="literal">true</span></span><br><span class="line">        <span class="comment">//   入队</span></span><br><span class="line">        queue.enqueue(nowV)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">prev, s, t</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 递归打印s-&gt;t的路径</span></span><br><span class="line">  <span class="keyword">if</span> (prev[t] != <span class="number">-1</span> &amp;&amp; t != s) &#123;</span><br><span class="line">    print(prev, s, prev[t])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(t + <span class="string">'  '</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="深度优先搜索-DFS-Depth-First-Search"><a href="#深度优先搜索-DFS-Depth-First-Search" class="headerlink" title="深度优先搜索 DFS (Depth-First-Search)"></a>深度优先搜索 DFS (Depth-First-Search)</h2><p>含义：走迷宫，选择一条路走，没路回退，接着换路，知道走到终点</p>
+<p>定义顶点个数为 V，边数为 E</p>
+<ol>
+<li>visited 数组，记录已经访问的顶点，不在继续访问</li>
+<li>prev 记录访问顺序，用于得出最短路径</li>
+<li>found 已经找到终点之后，不再进行递归</li>
+</ol>
+<p>复杂度：</p>
+<p>时间：</p>
+<p>最多遍历两遍边，所以时间复杂度为 O(E)</p>
+<p>空间：<br>visited、prev 和顶点 V 成正比，递归深度不会超过，顶点个数，空间复杂度为：O(V)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深度优先搜索 伪代码</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; startV 起始点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; endV 终点</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; v 顶点个数</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; visited 访问过</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; prev 访问路径</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; graph 图</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> found = <span class="literal">false</span> <span class="comment">// 标志找到顶点不再递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dfs</span>(<span class="params">startV, endV</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> visited = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> prev = <span class="keyword">new</span> <span class="built_in">Array</span>(v).fill(<span class="number">-1</span>)</span><br><span class="line">  recurDfs(startV, endV, visited, prev)</span><br><span class="line">  print(prev, startV, endV)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recurDfs</span>(<span class="params">startV, endV, visited, prev</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (found) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  visited[startV] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (startV === endV) &#123;</span><br><span class="line">    found = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graph[startV].length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (found) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> nowV = graph[startV][i]</span><br><span class="line">    <span class="keyword">if</span> (!visited[nowV]) &#123;</span><br><span class="line">      prev[nowV] = startV</span><br><span class="line">      recurDfs(nowV, endV, visited, prev)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">prev, s, t</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 递归打印s-&gt;t的路径</span></span><br><span class="line">  <span class="keyword">if</span> (prev[t] != <span class="number">-1</span> &amp;&amp; t != s) &#123;</span><br><span class="line">    print(prev, s, prev[t])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(t + <span class="string">'  '</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/31/2019-12-31优先搜索/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-12-30图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/30/2019-12-30图/">图</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/30/2019-12-30图/" class="archive-article-date">
+  	<time datetime="2019-12-30T12:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="图-Graph-概念"><a href="#图-Graph-概念" class="headerlink" title="图(Graph)概念"></a>图(Graph)概念</h2><ol>
+<li>顶点（vertex）：图中的每个点</li>
+<li>边（edge）：任意两个顶点的连线</li>
+<li>顶点的度（degree）：顶点连接的边的数量</li>
+<li>方向：边具有方向，这种图叫有向图</li>
+<li>出度（out-degree）和入度（in-degree）：顶点指向其他顶点的边数，其他顶点指向当前顶点的边数</li>
+<li>带权图（weighted graph）：每条边都有权重</li>
+</ol>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><ol>
+<li>二维数组存储</li>
+<li>无向 a[i][j]和 a[j][i]都存 1</li>
+<li>有向 i 指向 j a[i][j]存 1</li>
+<li>带权 a[i][j]存权重</li>
+</ol>
+<p>优势：</p>
+<ol>
+<li>矩阵方便进行数学运算</li>
+<li>存储方式简单直接</li>
+<li>基于数组，访问顶点关系简单</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>无向图 多存储了一倍的数据</li>
+<li>稀疏图 很多空间没用上</li>
+</ol>
+<h3 id="邻接表存储方法"><a href="#邻接表存储方法" class="headerlink" title="邻接表存储方法"></a>邻接表存储方法</h3><ol>
+<li>有向图 每个顶点，存储指向的顶点</li>
+<li>无向图 每个顶点，存储连接的点</li>
+</ol>
+<p>优势：</p>
+<ol>
+<li>占用空间小</li>
+<li>链表可以采用更高效的数据结构，红黑树、平衡二叉树、跳表</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>不利于计算，是用时间换空间</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/30/2019-12-30图/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-30堆应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -940,204 +1154,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-16散列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/16/2019-12-16散列表/">散列表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/16/2019-12-16散列表/" class="archive-article-date">
-  	<time datetime="2019-12-16T03:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ol>
-<li>数组实现随机访问 O(1)</li>
-<li>散列函数实现下标对应<ol>
-<li>散列值 hash 值非负数</li>
-<li>相同散列值，结果相同</li>
-<li>不同散列值，结果不同（散列冲突）</li>
-</ol>
-</li>
-<li>散列冲突解决：<ol>
-<li>开放寻址法<ol>
-<li>线性探测：向后查找空处插入（线性查找）</li>
-<li>二次探测法：寻址时使用平方</li>
-<li>双重散列：多个散列函数，第一个冲突用第二个</li>
-</ol>
-</li>
-<li>链表法：<ol>
-<li>散列值相同，放入同一个槽的链表中</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>装载因子: 填入表的个数/散列表长度</li>
-</ol>
-<h2 id="工业级散列表"><a href="#工业级散列表" class="headerlink" title="工业级散列表"></a>工业级散列表</h2><ol>
-<li>装载因子过高：动态扩容(避免一次搬移数据消耗太多时间，先扩容数据搬移，在每次查找时完成)</li>
-<li>装载因子过低：省内存可以动态缩容</li>
-</ol>
-<h2 id="冲突解决分析"><a href="#冲突解决分析" class="headerlink" title="冲突解决分析"></a>冲突解决分析</h2><ol>
-<li>开放寻址法：<br>优点：数组存储查找快，方便序列化<br>缺点：冲突代价高，尤其在删除是还需要标记，所以一般装载因子都得小，这样需要更多存储空间<br>总结：数据量小，装载因子小，适合开放寻址</li>
-<li>链表法：<br>优点：存储空间利用率更高，转载因子可以更大<br>缺点：链表需要存储指针，需要消耗更多内存空间，内存地址不连续，对CPU缓存不友好<br>总结：适合存储大对象，大量数据</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/16/2019-12-16散列表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-12-05跳表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/2019-12-05跳表/">跳表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/05/2019-12-05跳表/" class="archive-article-date">
-  	<time datetime="2019-12-05T04:59:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="链表加多级索引就是跳表"><a href="#链表加多级索引就是跳表" class="headerlink" title="链表加多级索引就是跳表"></a>链表加多级索引就是跳表</h2><h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ol>
-<li>n 个数据，假设每 2 个数据建 1 索引，那第一级索引个数为 n/2，第 k 级索引是 n/2^k</li>
-<li>当 k 级索引个数为 2 时，n/2^k = 2，k = log2(n) - 1，加上原始数据，那整个跳表高度为 log2(n)</li>
-<li>每 2 个数据一个索引，那每一级遍历最多 3 次，时间复杂度为：O(3*log2(n)) =&gt; O(log(n))</li>
-</ol>
-<h3 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h3><ol>
-<li>第一级 n/2 第二级 n/4 第三级 n/8 …等比数列</li>
-<li>额外的空间占用 n - 2</li>
-<li>当索引建立间隔增加，空间占用会更小</li>
-</ol>
-<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><ol>
-<li>查找的时间复杂度为: O(log(n)) 执行插入的时间复杂度为 O(1)</li>
-<li>删除查找的时间复杂度为: O(log(n)) 执行删除的时间复杂度为 O(1)，同时还需要删除索引节点，单链表还需要找到前驱节点</li>
-</ol>
-<h3 id="索引动态更新"><a href="#索引动态更新" class="headerlink" title="索引动态更新"></a>索引动态更新</h3><ol>
-<li>当插入数据过多时，可能退化为单链表，这时候需要动态更新索引</li>
-<li>使用随机函数来插入索引，从 k 级到 1 级执行插入，随机函数要保证插入的数据大小平衡和索引大小平衡</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/05/2019-12-05跳表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -1285,7 +1304,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1293,7 +1312,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
