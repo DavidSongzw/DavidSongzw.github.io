@@ -160,6 +160,103 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-01-06字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/06/2020-01-06字符串/">字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/06/2020-01-06字符串/" class="archive-article-date">
+  	<time datetime="2020-01-06T03:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BF（Brute Force）算法</p>
+<blockquote>
+<p>中文：暴力匹配算法</p>
+</blockquote>
+<p>主串：在该字符串中查找字符串<br>模式串：在主串中，查找这个字符串</p>
+<p>算法：</p>
+<ol>
+<li>主串长度 n 模式串长度 m</li>
+<li>从 0、1、2… n - m 且长度为 m 的 n - m + 1 个子串进行对比</li>
+</ol>
+<p>时间复杂度：</p>
+<p>n - m +1 个子串比较 m 次，因此复杂度 O((n - m +1) * m) =&gt; O(n * m)</p>
+<p>实际比较 BF 常用：</p>
+<ol>
+<li>一般字符串长度不会太长，影响不大，另外当比对一旦不一样的时候，就可以停止</li>
+<li>实现简单不容易出错</li>
+</ol>
+<p>RK 算法 (Rabin-Karp)</p>
+<ol>
+<li>n -m +1 个子串求 hash 值与模式串的 hash 值比较</li>
+<li>当散列冲突时，再比较子串和模式串，需要控制 hash 冲突，要不然就退化成 BF 算法了</li>
+</ol>
+<p>时间复杂度：</p>
+<p>遍历主串技术 hash 值，复杂度为 n，进行比较 n -m +1 次，因此时间复杂度为 O(n)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/06/2020-01-06字符串/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-31优先搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1035,125 +1132,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-12-16哈希算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/16/2019-12-16哈希算法/">哈希算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/16/2019-12-16哈希算法/" class="archive-article-date">
-  	<time datetime="2019-12-16T08:54:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><ul>
-<li>单向算法，不能从哈希值，推到出原始数据</li>
-<li>数据敏感，原始值很小的差距，hash 值可以很大改变</li>
-<li>hash 冲突小，不同的值得出的 hash 值，冲突的概率很小</li>
-<li>高效，很长的文本也能很快算出 hash 值</li>
-</ul>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
-<li>数据加密<ol>
-<li>MD5、SHA、DES、AES</li>
-<li>反向推到数据可能小</li>
-<li>散列冲突小</li>
-</ol>
-</li>
-<li>唯一标识<ol>
-<li>对图片做唯一标识，方便的识别图片，处理版权问题</li>
-</ol>
-</li>
-<li>数据校验<ol>
-<li>先得到数据的 hash，然后获取数据，计算 hash 值看数据是否改变</li>
-</ol>
-</li>
-<li>散列函数<ol>
-<li>散列函数对性能的要求比较高，对安全的要求低，所以散列函数一般采用简单的<!-- 分布式问题 --></li>
-</ol>
-</li>
-<li>负载均衡<ol>
-<li>把用户ip或者id做hash运算，得到的hash值取模，此时的值对应此编号的服务器</li>
-</ol>
-</li>
-<li>数据分片<ol>
-<li>把数据计算hash值，对机器取模放入对应编号机器</li>
-<li>查找的时候一样计算取模，去指定机器查找，这样实现了数据的分片</li>
-</ol>
-</li>
-<li>分布式存储<ol>
-<li>先数据分片，但是扩容会出问题，需要大量搬移数据</li>
-<li>使用一致性hash算法，把hash值区间[0, max]分成小区间</li>
-<li>小区间个数远远大于机器个数，当加入机器，把部分区间搬到新机器</li>
-</ol>
-</li>
-</ol>
-<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><ol>
-<li>区块链中，区块分为头和体</li>
-<li>区块头中会存储上一个区块，和当前区块的 hash 值，计算比较耗时</li>
-<li>如果要篡改一个区块，必须把区块后所有的区块全部计算一遍</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/16/2019-12-16哈希算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1304,15 +1282,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">

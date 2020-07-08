@@ -160,6 +160,125 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-12-16哈希算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/16/2019-12-16哈希算法/">哈希算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/16/2019-12-16哈希算法/" class="archive-article-date">
+  	<time datetime="2019-12-16T08:54:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><ul>
+<li>单向算法，不能从哈希值，推到出原始数据</li>
+<li>数据敏感，原始值很小的差距，hash 值可以很大改变</li>
+<li>hash 冲突小，不同的值得出的 hash 值，冲突的概率很小</li>
+<li>高效，很长的文本也能很快算出 hash 值</li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li>数据加密<ol>
+<li>MD5、SHA、DES、AES</li>
+<li>反向推到数据可能小</li>
+<li>散列冲突小</li>
+</ol>
+</li>
+<li>唯一标识<ol>
+<li>对图片做唯一标识，方便的识别图片，处理版权问题</li>
+</ol>
+</li>
+<li>数据校验<ol>
+<li>先得到数据的 hash，然后获取数据，计算 hash 值看数据是否改变</li>
+</ol>
+</li>
+<li>散列函数<ol>
+<li>散列函数对性能的要求比较高，对安全的要求低，所以散列函数一般采用简单的<!-- 分布式问题 --></li>
+</ol>
+</li>
+<li>负载均衡<ol>
+<li>把用户ip或者id做hash运算，得到的hash值取模，此时的值对应此编号的服务器</li>
+</ol>
+</li>
+<li>数据分片<ol>
+<li>把数据计算hash值，对机器取模放入对应编号机器</li>
+<li>查找的时候一样计算取模，去指定机器查找，这样实现了数据的分片</li>
+</ol>
+</li>
+<li>分布式存储<ol>
+<li>先数据分片，但是扩容会出问题，需要大量搬移数据</li>
+<li>使用一致性hash算法，把hash值区间[0, max]分成小区间</li>
+<li>小区间个数远远大于机器个数，当加入机器，把部分区间搬到新机器</li>
+</ol>
+</li>
+</ol>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><ol>
+<li>区块链中，区块分为头和体</li>
+<li>区块头中会存储上一个区块，和当前区块的 hash 值，计算比较耗时</li>
+<li>如果要篡改一个区块，必须把区块后所有的区块全部计算一遍</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/16/2019-12-16哈希算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-12-16散列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -465,7 +584,7 @@ var _hmt = _hmt || [];
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = list.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(low + (high - low) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      high = middle - <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br><span class="line"><span class="built_in">console</span>.log(binarySearch(list, <span class="number">7</span>))</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">list = [], value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bSearch(list, <span class="number">0</span>, list.length - <span class="number">1</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bSearch</span>(<span class="params">list, low, high, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (low &gt; high) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(low + (high - low) / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">if</span> (list[middle] === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list[middle] &gt; value) &#123;</span><br><span class="line">      <span class="keyword">return</span> bSearch(list, low, middle - <span class="number">1</span>, value)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> bSearch(list, middle + <span class="number">1</span>, high, value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br><span class="line"><span class="built_in">console</span>.log(binarySearch(list, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开方</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sqrtBisection</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) <span class="keyword">return</span> n</span><br><span class="line">  <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> high = n &lt; <span class="number">1</span> ? <span class="number">1</span> : n</span><br><span class="line">  <span class="comment">// 使用Number.EPSILON表示能够接受的最小误差范围</span></span><br><span class="line"><span class="comment">//   const E = Number.EPSILON // 接受的最小误差范围</span></span><br><span class="line">  <span class="keyword">const</span> E = <span class="number">0.000001</span> <span class="comment">//指定精度</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> middle = (low + high) / <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Math</span>.abs(middle * middle - n) &lt;= E) &#123;</span><br><span class="line">      <span class="keyword">return</span> middle</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (middle * middle - n &gt; E) &#123;</span><br><span class="line">      high = middle</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      low = middle</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sqrtBisection'</span>, sqrtBisection(<span class="number">0.1</span>), <span class="built_in">Math</span>.sqrt(<span class="number">0.1</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sqrtBisection</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) <span class="keyword">return</span> <span class="literal">NaN</span>;</span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span> || n === <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">var</span> low = <span class="number">0</span>,</span><br><span class="line">        high = n &lt; <span class="number">1</span> ? <span class="number">1</span> : n,</span><br><span class="line">        pivot = (low + high) / <span class="number">2</span>,</span><br><span class="line">        lastPivot = pivot;</span><br><span class="line">    <span class="comment">// do while 保证执行一次</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(low, high, pivot, lastPivot)</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Math</span>.pow(pivot, <span class="number">2</span>) &gt; n) &#123;</span><br><span class="line">            high = pivot;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Math</span>.pow(pivot, <span class="number">2</span>) &lt; n) &#123;</span><br><span class="line">            low = pivot;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pivot;</span><br><span class="line">        &#125;</span><br><span class="line">        lastPivot = pivot;</span><br><span class="line">        pivot = (low + high) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2018-04-25 22:08 更新</span></span><br><span class="line">    <span class="comment">// 使用Number.EPSILON表示能够接受的最小误差范围</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">Math</span>.abs(pivot - lastPivot) &gt;= <span class="built_in">Number</span>.EPSILON)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pivot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sqrtBisection'</span>, sqrtBisection(<span class="number">9</span>), <span class="built_in">Math</span>.sqrt(<span class="number">9</span>))</span><br></pre></td></tr></table></figure>
 
       
 
@@ -952,88 +1071,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2019-08-05栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/2019-08-05栈/">栈</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/05/2019-08-05栈/" class="archive-article-date">
-  	<time datetime="2019-08-05T09:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><ul>
-<li>先进后出，后进先出，只允许在一端插入和删除数据。</li>
-<li>数组实现为顺序栈。</li>
-<li>链表实现为链式栈。</li>
-</ul>
-<h2 id="栈的应用"><a href="#栈的应用" class="headerlink" title="栈的应用"></a>栈的应用</h2><h3 id="1-浏览器前进后退"><a href="#1-浏览器前进后退" class="headerlink" title="1. 浏览器前进后退"></a>1. 浏览器前进后退</h3><p>栈 1[a, b, c] 栈 2[]<br>后退：栈 1[a, b] 栈 2[c]<br>后退：栈 1[a] 栈 2[b, c]<br>前进：栈 1[a, b] 栈 2[c]<br>新开：栈 1[a, b, d] 栈 2[]（清空）</p>
-<h3 id="2-括号匹配"><a href="#2-括号匹配" class="headerlink" title="2.  [] 括号匹配"></a>2.  [] 括号匹配</h3><p>我们用栈来保存未匹配的左括号，从左到右依次扫描字符串。当扫描到左括号时，则将其压入栈中；<br>当扫描到右括号时，从栈顶取出一个左括号。匹配继续执行，不匹配非法格式。</p>
-<h3 id="3-表达式求值"><a href="#3-表达式求值" class="headerlink" title="3. 表达式求值"></a>3. 表达式求值</h3><p><img src="https://davidsongzw.github.io/assets/blogImg/stack1.jpg" alt="image"></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.函数调用为何使用栈来实现？<br>答：后入先出（LIFO）的数据结构，和函数嵌套执行顺序天然合适。另外就是函数执行的临时作用域，栈顶生成执行完重置，也很合适。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">技术，数据结构，算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/05/2019-08-05栈/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1184,15 +1221,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">关于我</a>
               </li>
              
               <li class="article-tag-list-item">
