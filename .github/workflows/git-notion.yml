@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: git-notion
+          uses: DavidSongzw/git-notion@latest
+          env:
+            NOTION_IGNORE_REGEX: ${{ secrets.NOTION_IGNORE_REGEX }}
+            NOTION_ROOT_PAGE: ${{ secrets.NOTION_ROOT_PAGE }}
+            NOTION_TOKEN_V2: ${{ secrets.NOTION_TOKEN_V2 }}
