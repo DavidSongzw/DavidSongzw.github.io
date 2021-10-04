@@ -1,28 +1,18 @@
-name: Notion2Github
 on:
-  pull_request:
   push:
     branches:
       - master
+
 jobs:
-  auto-sync-from-notion-to-github:
+  release:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        - uses: actions/checkout@v2
 
-      - name: Notion2Github
-        uses: younho9/notion2github@v1.1.0
-        with:
-          database-url: 'https://www.notion.so/30c67eb0cccd4fceaa3566e747e837ba?v=978d8983ce714c3a82f3b63d318c21cc'
-          docs-directory: docs
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-
-      - name: Format documents
-        uses: creyD/prettier_action@v3.1
-        with:
-          prettier_options: --write ./docs/**/*.md
-          commit_message: 'docs: Update docs (auto)'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: Notion Documentation Sync
+          uses: imnotjames/notion-docs-sync@latest
+          with:
+            docs_path: ./mobile2/
+            notion_url: ${{ secrets.NOTION_URL }}
+            notion_token: ${{ secrets.NOTION_TOKEN }}
