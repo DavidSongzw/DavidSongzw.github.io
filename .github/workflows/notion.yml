@@ -13,6 +13,6 @@ jobs:
         - name: Notion Documentation Sync
           uses: imnotjames/notion-docs-sync@latest
           with:
-            docs_path: ./mobile2/
+            docs_path: ./
             notion_url: ${{ secrets.NOTION_URL }}
             notion_token: ${{ secrets.NOTION_TOKEN }}
