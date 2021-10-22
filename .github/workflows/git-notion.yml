@@ -26,9 +26,6 @@ jobs:
         - name: Install dependencies
           run: |
             python -m pip install --upgrade pip git-notion
-        # - name: Set up env
-        #   run: |
-        #     echo $NOTION_IGNORE_REGEX $NOTION_ROOT_PAGE $NOTION_TOKEN_V2
         - name: Sync md doc
           run: |
             git-notion
