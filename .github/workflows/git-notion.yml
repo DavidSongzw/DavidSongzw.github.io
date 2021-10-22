@@ -31,6 +31,8 @@ jobs:
             NOTION_IGNORE_REGEX: ${{ secrets.NOTION_IGNORE_REGEX }}
             NOTION_ROOT_PAGE: ${{ secrets.NOTION_ROOT_PAGE }}
             NOTION_TOKEN_V2: ${{ secrets.NOTION_TOKEN_V2 }}
+          run: |
+            echo $NOTION_IGNORE_REGEX $NOTION_ROOT_PAGE $NOTION_TOKEN_V2
         - name: Sync md doc
           run: |
             git-notion
