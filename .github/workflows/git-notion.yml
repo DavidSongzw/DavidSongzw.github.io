@@ -30,6 +30,6 @@ jobs:
           run: |
             git-notion
           env:
-            NOTION_IGNORE_REGEX: ${{ secrets.NOTION_IGNORE_REGEX }}
+            NOTION_IGNORE_REGEX: 'node_modules/.*|ios/.*|android/.*'
             NOTION_ROOT_PAGE: ${{ secrets.NOTION_ROOT_PAGE }}
             NOTION_TOKEN_V2: ${{ secrets.NOTION_TOKEN_V2 }}
